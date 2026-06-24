@@ -8,162 +8,105 @@ import { useLanguage } from '@/lib/i18n/language-context'
 export function HowItWorksSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
-  const { t } = useLanguage()
+  const { language } = useLanguage()
 
   const steps = [
     {
       number: '01',
       icon: Database,
-      titleKey: 'howItWorks.step1.title',
-      descriptionKey: 'howItWorks.step1.description',
+      title: 'Connect & Collect',
+      title_fa: 'اتصال و جمع‌آوری',
+      desc: 'Connect your chillers via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.',
+      desc_fa: 'چیلرهای خود را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.',
     },
     {
       number: '02',
       icon: Cpu,
-      titleKey: 'howItWorks.step2.title',
-      descriptionKey: 'howItWorks.step2.description',
+      title: 'Real-Time Monitoring',
+      title_fa: 'پایش لحظه‌ای',
+      desc: 'Live dashboards display every metric from temperature to power consumption in real time.',
+      desc_fa: 'داشبوردهای زنده تمام معیارها را از دما تا مصرف برق به صورت لحظه‌ای نمایش می‌دهند.',
     },
     {
       number: '03',
       icon: TrendingUp,
-      titleKey: 'howItWorks.step3.title',
-      descriptionKey: 'howItWorks.step3.description',
+      title: 'Analyze & Optimize',
+      title_fa: 'تحلیل و بهینه‌سازی',
+      desc: 'AI-powered analytics identify inefficiencies and recommend optimizations automatically.',
+      desc_fa: 'تحلیل مبتنی بر هوش مصنوعی ناکارآمدی‌ها را شناسایی و بهینه‌سازی‌ها را به طور خودکار توصیه می‌کند.',
     },
     {
       number: '04',
       icon: Rocket,
-      titleKey: 'howItWorks.step4.title',
-      descriptionKey: 'howItWorks.step4.description',
+      title: 'Scale & Succeed',
+      title_fa: 'توسعه و موفقیت',
+      desc: 'Add more units, users, and facilities seamlessly. Your platform grows with your business.',
+      desc_fa: 'واحدها، کاربران و تأسیسات بیشتری را به طور یکپارچه اضافه کنید. پلتفرم شما با کسب و کارتان رشد می‌کند.',
     },
   ]
 
   return (
-    <section id="how-it-works" className="relative py-10 px-4 overflow-hidden" ref={containerRef}>
+    <section id="how-it-works" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
-          {/* <span className="inline-block text-primary text-sm font-medium tracking-wider uppercase mb-4">
-            {t('howItWorks.badge')}
-          </span> */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 text-balance">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-              {t('howItWorks.title')}
+          <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] sm:text-xs data-text tracking-wider uppercase mb-4 sm:mb-6 text-primary/80">
+            <span className="glow-dot text-chart-3" />
+            HOW IT WORKS
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
+            {language === 'fa' ? 'چهار گام ساده تا' : 'Four Simple Steps to'}{' '}
+            <span className="text-primary block sm:inline">
+              {language === 'fa' ? 'مدیریت هوشمند' : 'Smart Management'}
             </span>
           </h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground text-pretty">
-            {t('howItWorks.subtitle')}
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+            From setup to full control — get your cooling systems online and optimized in no time.
           </p>
         </motion.div>
 
         {/* Steps */}
-        <div className="relative">
-          {/* Connection line */}
-          <div className="absolute start-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-accent/50 to-glow-green/50 hidden lg:block" />
-
-          <div className="space-y-12 lg:space-y-0">
-            {steps.map((step, index) => (
-              <StepItem 
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            return (
+              <motion.div
                 key={step.number}
-                step={step}
-                index={index}
-                isInView={isInView}
-                isEven={index % 2 === 1}
-                t={t}
-              />
-            ))}
-          </div>
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.12 }}
+                className="card-command p-6 sm:p-8 relative group hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all"
+              >
+                {/* Step number */}
+                <div className="flex items-start justify-between mb-4 sm:mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary/15 transition-colors">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <span className="text-lg sm:text-xl font-bold font-mono text-primary/30">{step.number}</span>
+                </div>
+
+                <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-foreground/90">
+                  {language === 'fa' ? step.title_fa : step.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground/70 leading-relaxed">
+                  {language === 'fa' ? step.desc_fa : step.desc}
+                </p>
+
+                {/* Bottom accent */}
+                <div className="absolute bottom-0 start-0 w-1/3 h-0.5 bg-gradient-to-r from-primary/40 to-transparent group-hover:w-2/3 transition-all duration-500" />
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
-  )
-}
-
-function StepItem({
-  step,
-  index,
-  isInView,
-  isEven,
-  t,
-}: {
-  step: {
-    number: string
-    icon: React.ComponentType<{ className?: string }>
-    titleKey: string
-    descriptionKey: string
-  }
-  index: number
-  isInView: boolean
-  isEven: boolean
-  t: (key: string) => string
-}) {
-  const Icon = step.icon
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: isEven ? 50 : -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ 
-        duration: 0.8, 
-        delay: 0.2 * index,
-        ease: [0.22, 1, 0.36, 1]
-      }}
-      className={`relative lg:grid lg:grid-cols-2 lg:gap-12 items-center ${isEven ? 'lg:text-end' : ''}`}
-    >
-      {/* Content */}
-      <div className={`${isEven ? 'lg:order-2 lg:text-start' : ''}`}>
-        <div className={`relative p-8 rounded-2xl glass gradient-border ${isEven ? 'lg:ms-12' : 'lg:me-12'}`}>
-          {/* Step number */}
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 + index * 0.2 }}
-            className="absolute -top-4 -start-4 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-sm font-bold text-primary-foreground shadow-lg glow-cyan"
-          >
-            {step.number}
-          </motion.span>
-
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center">
-              <Icon className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">{t(step.titleKey)}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {t(step.descriptionKey)}
-              </p>
-            </div>
-          </div>
-
-          {/* Decorative element */}
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: '100%' } : {}}
-            transition={{ duration: 0.8, delay: 0.5 + index * 0.2 }}
-            className="absolute bottom-0 start-0 h-0.5 bg-gradient-to-r from-primary via-accent to-transparent rtl:bg-gradient-to-l"
-          />
-        </div>
-      </div>
-
-      {/* Center node (desktop only) */}
-      <div className={`hidden lg:flex justify-center absolute start-1/2 transform -translate-x-1/2 rtl:translate-x-1/2 ${isEven ? '' : ''}`}>
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 + index * 0.2, type: "spring" }}
-          className="w-4 h-4 rounded-full bg-primary shadow-lg glow-cyan"
-        />
-      </div>
-
-      {/* Empty space for alternating layout */}
-      <div className={`hidden lg:block ${isEven ? 'lg:order-1' : ''}`} />
-    </motion.div>
   )
 }

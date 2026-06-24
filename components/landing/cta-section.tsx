@@ -2,79 +2,80 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import Link from 'next/link'
-import { ArrowRight, Zap, Radio } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Zap, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export function CTASection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: '-100px' })
-  const { t } = useLanguage()
+  const { language } = useLanguage()
 
   return (
-    <section className="relative py-28 px-4 overflow-hidden" ref={containerRef}>
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              linear-gradient(oklch(0.6 0.2 225 / 0.2) 1px, transparent 1px),
-              linear-gradient(90deg, oklch(0.6 0.2 225 / 0.2) 1px, transparent 1px)
-            `,
-            backgroundSize: '80px 80px',
-          }}
-        />
-      </div>
-
-      {/* Glow orbs */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-96 h-96 bg-primary/5 blur-[150px] rounded-full" />
-      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-96 h-96 bg-accent/5 blur-[150px] rounded-full" />
-
-      {/* Scanline */}
+    <section className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+      {/* Ambient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.02] via-transparent to-primary/[0.02]" />
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.02]"
-        style={{ backgroundImage: `var(--scanline)` }}
+        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+        }}
       />
 
-      <div className="max-w-4xl mx-auto relative">
+      <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative text-center"
+          className="text-center"
         >
-          {/* Floating data indicators */}
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          {/* Status indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-6 sm:mb-8"
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-chart-3 animate-pulse" />
-            <span className="text-[9px] data-text text-muted-foreground/30 tracking-widest">READY FOR CONNECTION</span>
-          </div>
+            <span className="data-text text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-primary/80">READY FOR CONNECTION</span>
+          </motion.div>
 
-          <div className="rounded-2xl border border-border/40 bg-card/30 p-12 sm:p-16 relative overflow-hidden">
-            {/* Inner glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6">
+            {language === 'fa' ? (
+              'آماده‌اید تا مدیریت سرمایش خود را متحول کنید؟'
+            ) : (
+              <>
+                Ready to Transform{' '}
+                <span className="text-primary block sm:inline">Your Cooling Management?</span>
+              </>
+            )}
+          </h2>
 
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 leading-[1.15]">
-              {t('cta.title')}
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground/70 leading-relaxed mb-10 max-w-2xl mx-auto">
-              {t('cta.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="#contact">
-                <Button size="lg" className="px-8 py-6 text-base group relative overflow-hidden">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Zap className="w-4 h-4" />
-                    {t('cta.button')}
-                  </span>
-                </Button>
-              </Link>
-            </div>
-            <p className="mt-5 text-xs text-muted-foreground/40 data-text tracking-wider">
-              {t('cta.note')}
-            </p>
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/70 leading-relaxed max-w-xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
+            {language === 'fa'
+              ? 'همین حالا شروع کنید و تفاوت را احساس کنید. تیم پشتیبانی ما ۲۴ ساعته آماده کمک به شماست.'
+              : 'Get started today and feel the difference. Our support team is ready 24/7 to help you succeed.'}
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <Link href="#contact" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto px-8 sm:px-10 py-5 sm:py-6 text-sm sm:text-base group">
+                <Zap className="w-4 h-4 me-2 group-hover:scale-110 transition-transform" />
+                {language === 'fa' ? 'شروع کنید' : 'Get Started'}
+              </Button>
+            </Link>
+            <Link href="#features" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 sm:px-10 py-5 sm:py-6 text-sm sm:text-base border-primary/20 hover:bg-primary/5">
+                {language === 'fa' ? 'مشاهده مستندات' : 'View Documentation'}
+                <ArrowRight className="w-4 h-4 ms-1.5 sm:ms-2 rtl:rotate-180" />
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </div>

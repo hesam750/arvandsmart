@@ -1,93 +1,113 @@
 'use client'
 
-import Link from 'next/link'
-import { Monitor, Linkedin, Twitter, Youtube, MapPin, Radio } from 'lucide-react'
+import { Monitor, Github, Linkedin, Twitter } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import Link from 'next/link'
+
+const footerLinks = [
+  {
+    title: 'Product',
+    title_fa: 'محصولات',
+    links: [
+      { label: 'ASC-2000', href: '#products' },
+      { label: 'ASC-1000', href: '#products' },
+      { label: 'Arvand Cloud', href: '#products' },
+      { label: 'Pricing', label_fa: 'قیمت‌گذاری', href: '#pricing' },
+    ],
+  },
+  {
+    title: 'Company',
+    title_fa: 'شرکت',
+    links: [
+      { label: 'About', label_fa: 'درباره ما', href: '#about' },
+      { label: 'Blog', label_fa: 'وبلاگ', href: '#articles' },
+      { label: 'Careers', label_fa: 'فرصت‌های شغلی', href: '#' },
+      { label: 'Contact', label_fa: 'تماس', href: '#contact' },
+    ],
+  },
+  {
+    title: 'Resources',
+    title_fa: 'منابع',
+    links: [
+      { label: 'Documentation', label_fa: 'مستندات', href: '#' },
+      { label: 'API Reference', label_fa: 'مرجع API', href: '#' },
+      { label: 'Support', label_fa: 'پشتیبانی', href: '#contact' },
+      { label: 'Status', label_fa: 'وضعیت', href: '#' },
+    ],
+  },
+  {
+    title: 'Legal',
+    title_fa: 'قانونی',
+    links: [
+      { label: 'Privacy Policy', label_fa: 'حریم خصوصی', href: '#' },
+      { label: 'Terms of Service', label_fa: 'شرایط استفاده', href: '#' },
+      { label: 'Cookie Policy', label_fa: 'سیاست کوکی', href: '#' },
+      { label: 'License', label_fa: 'مجوز', href: '#' },
+    ],
+  },
+]
 
 const socialLinks = [
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
+  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Linkedin, href: '#', label: 'LinkedIn' },
 ]
 
 export function Footer() {
-  const { t, language } = useLanguage()
-
-  const footerLinks = {
-    [t('footer.products')]: [
-      { name: t('footer.chillers'), href: '#products' },
-      { name: t('footer.semiIndustrial'), href: '#products' },
-      { name: t('footer.smartControl'), href: '#features' },
-    ],
-    [t('footer.company')]: [
-      { name: t('footer.about'), href: '#about' },
-      { name: t('footer.articles'), href: '#articles' },
-      { name: t('footer.contact'), href: '#contact' },
-      { name: t('footer.careers'), href: '#' },
-    ],
-    [t('footer.resources')]: [
-      { name: t('footer.documents'), href: '#' },
-      { name: t('footer.guides'), href: '#' },
-      { name: t('footer.support'), href: '#' },
-      { name: t('footer.faq'), href: '#' },
-    ],
-    [t('footer.legal')]: [
-      { name: t('footer.privacy'), href: '#' },
-      { name: t('footer.terms'), href: '#' },
-    ],
-  }
+  const { language } = useLanguage()
 
   return (
-    <footer className="border-t border-border/40 bg-background">
-      {/* Top bar */}
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <footer className="relative border-t border-border/40 overflow-hidden">
+      {/* Top gradient line */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
-          {/* Brand */}
-          <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg group-hover:bg-primary/30 transition-all" />
-                <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 border border-primary/30">
-                  <Monitor className="w-5 h-5 text-primary" />
-                </div>
-              </div>
-              <span className="text-base font-bold tracking-tight text-foreground">
-                Arvand<span className="text-primary">SmartControl</span>
-              </span>
-            </Link>
-            <p className="text-sm text-muted-foreground/60 max-w-xs mb-6 leading-relaxed font-mono text-[13px]">
-              {t('footer.description')}
-            </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="w-10 h-10 rounded-lg border border-border/40 bg-card/40 flex items-center justify-center text-muted-foreground/50 hover:text-foreground hover:border-primary/30 transition-colors"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                )
-              })}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10">
+        {/* Top section: Logo + Social */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-14">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+              <Monitor className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
             </div>
-          </div>
+            <div>
+              <div className="font-bold text-sm sm:text-base text-foreground leading-tight">
+                Arvand<span className="text-primary">SmartControl</span>
+              </div>
+              <div className="data-text text-[8px] sm:text-[9px] text-muted-foreground/30 tracking-[0.15em]">SYSTEM v3.0</div>
+            </div>
+          </Link>
 
-          {/* Link columns */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="text-xs font-bold font-mono tracking-wider text-foreground/60 mb-4">{category}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
+          <div className="flex items-center gap-2">
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg border border-border/60 bg-card flex items-center justify-center text-muted-foreground/50 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all"
+                  aria-label={social.label}
+                >
+                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                </a>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Links Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-12">
+          {footerLinks.map((group) => (
+            <div key={group.title}>
+              <h4 className="text-xs sm:text-sm font-bold text-foreground/80 mb-3 sm:mb-4 data-text tracking-wider">
+                {language === 'fa' ? group.title_fa : group.title}
+              </h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {group.links.map((link) => (
+                  <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground/50 hover:text-foreground transition-colors"
+                      className="text-xs sm:text-sm text-muted-foreground/60 hover:text-foreground/80 transition-colors"
                     >
-                      {link.name}
+                      {language === 'fa' && link.label_fa ? link.label_fa : link.label}
                     </Link>
                   </li>
                 ))}
@@ -96,19 +116,19 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground/40 data-text tracking-wider">
-            &copy; {new Date().getFullYear()} {t('footer.copyright')}
+        {/* Bottom bar */}
+        <div className="pt-6 sm:pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-[10px] sm:text-xs text-muted-foreground/40 data-text">
+            &copy; {new Date().getFullYear()} ArvandSmartControl. {language === 'fa' ? 'تمام حقوق محفوظ است.' : 'All rights reserved.'}
           </p>
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-2 text-xs text-muted-foreground/40 data-text tracking-wider">
-              <MapPin className="w-3 h-3" />
-              {t('contact.address')}
-            </span>
-            <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/30 data-text">
-              <Radio className="w-3 h-3" />
-              SYSTEM v3.0
+          <div className="flex items-center gap-3 sm:gap-4 text-[9px] sm:text-[10px] data-text text-muted-foreground/30 tracking-wider">
+            <span>SYSTEM v3.0</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
+            <span>BUILD 2024.12</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
+            <span className="flex items-center gap-1">
+              <span className="w-1 h-1 rounded-full bg-chart-3 animate-pulse" />
+              ONLINE
             </span>
           </div>
         </div>

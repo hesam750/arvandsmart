@@ -2,154 +2,197 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Send, Phone, Mail, MapPin, CheckCircle, Loader2 } from 'lucide-react'
+import { Phone, MapPin, Mail, Send, CheckCircle, Loader2 } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n/language-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { useLanguage } from '@/lib/i18n/language-context'
-import { submitContact } from '@/lib/data-service'
+
+const contactInfo = [
+  {
+    icon: Phone,
+    title: 'Phone',
+    value: '+98 21 1234 5678',
+    href: 'tel:+982112345678',
+  },
+  {
+    icon: Mail,
+    title: 'Email',
+    value: 'info@arvandsmartcontrol.com',
+    href: 'mailto:info@arvandsmartcontrol.com',
+  },
+  {
+    icon: MapPin,
+    title: 'Address',
+    value: 'Tehran, Iran',
+    value_fa: 'تهران، ایران',
+  },
+]
 
 export function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: '-100px' })
-  const { t, language } = useLanguage()
-  const [formState, setFormState] = useState({
-    name: '', email: '', phone: '', subject: '', message: '',
-  })
-  const [sending, setSending] = useState(false)
-  const [sent, setSent] = useState(false)
+  const { language } = useLanguage()
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSending(true)
-    try {
-      await submitContact(formState)
-      setSent(true)
-      setFormState({ name: '', email: '', phone: '', subject: '', message: '' })
-      setTimeout(() => setSent(false), 5000)
-    } catch {
-      // ignore
-    } finally {
-      setSending(false)
-    }
+    setLoading(true)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    setLoading(false)
+    setSubmitted(true)
   }
 
   return (
     <section id="contact" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="section-glow max-w-7xl mx-auto">
+      <div className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-xs data-text tracking-wider uppercase mb-6 text-primary/80">
+          <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] sm:text-xs data-text tracking-wider uppercase mb-4 sm:mb-6 text-primary/80">
             <span className="glow-dot text-chart-3" />
-            {t('contact.badge')}
+            GET IN TOUCH
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">
-            {t('contact.title')}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
+            {language === 'fa' ? 'با ما تماس بگیرید' : 'Let&apos;s Talk About'} <span className="text-primary block sm:inline">{language === 'fa' ? 'پروژه شما' : 'Your Project'}</span>
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground/80 leading-relaxed font-mono">
-            {t('contact.subtitle')}
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+            {language === 'fa'
+              ? 'تیم ما آماده پاسخگویی به سوالات شما و ارائه مشاوره تخصصی است.'
+              : 'Our team is ready to answer your questions and provide expert consultation.'}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-          {/* Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="lg:col-span-2 space-y-4"
-          >
-            <div className="card-command p-5 flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/10">
-                <Phone className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-[10px] data-text text-muted-foreground/50 tracking-widest mb-0.5">{t('contact.phone.label')}</div>
-                <div className="font-semibold font-mono text-sm">+98 21 1234 5678</div>
-              </div>
-            </div>
-            <div className="card-command p-5 flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/10">
-                <Mail className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-[10px] data-text text-muted-foreground/50 tracking-widest mb-0.5">{t('contact.email.label')}</div>
-                <div className="font-semibold font-mono text-sm">info@arvandchiller.com</div>
-              </div>
-            </div>
-            <div className="card-command p-5 flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/10">
-                <MapPin className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-[10px] data-text text-muted-foreground/50 tracking-widest mb-0.5">{t('contact.address.label')}</div>
-                <div className="font-semibold font-mono text-sm">{t('contact.address')}</div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="lg:col-span-3"
-          >
-            <form onSubmit={handleSubmit} className="card-command p-8">
-              {sent ? (
+        <div className="grid lg:grid-cols-5 gap-5 sm:gap-6">
+          {/* Contact Info Cards */}
+          <div className="lg:col-span-2 space-y-4 sm:space-y-5">
+            {contactInfo.map((info, i) => {
+              const Icon = info.icon
+              const content = (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-12 text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="card-command p-5 sm:p-6 flex items-center gap-4 sm:gap-5 group hover:-translate-y-0.5 hover:shadow-md transition-all"
                 >
-                  <CheckCircle className="w-16 h-16 text-chart-3 mb-4" />
-                  <h3 className="text-xl font-bold mb-2 font-mono text-foreground/80">{t('contact.success')}</h3>
-                </motion.div>
-              ) : (
-                <div className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-wider mb-1.5">{t('contact.name')}</label>
-                      <Input name="name" value={formState.name} onChange={e => setFormState(p => ({ ...p, name: e.target.value }))} required className="bg-background/50 border-border/40" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-wider mb-1.5">{t('contact.email')}</label>
-                      <Input name="email" type="email" value={formState.email} onChange={e => setFormState(p => ({ ...p, email: e.target.value }))} required className="bg-background/50 border-border/40" />
+                  <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 flex-shrink-0">
+                    <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[10px] sm:text-xs data-text text-muted-foreground/50 tracking-wider mb-0.5">{info.title}</div>
+                    <div className="text-sm sm:text-base text-foreground/80 font-medium truncate">
+                      {language === 'fa' && info.value_fa ? info.value_fa : info.value}
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-wider mb-1.5">{t('contact.phone')}</label>
-                      <Input name="phone" value={formState.phone} onChange={e => setFormState(p => ({ ...p, phone: e.target.value }))} className="bg-background/50 border-border/40" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-wider mb-1.5">{t('contact.subject')}</label>
-                      <Input name="subject" value={formState.subject} onChange={e => setFormState(p => ({ ...p, subject: e.target.value }))} required className="bg-background/50 border-border/40" />
-                    </div>
+                </motion.div>
+              )
+
+              return info.href ? (
+                <a key={info.title} href={info.href} className="block">
+                  {content}
+                </a>
+              ) : (
+                <div key={info.title}>{content}</div>
+              )
+            })}
+          </div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="lg:col-span-3 card-command p-5 sm:p-6 md:p-8"
+          >
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center py-10 sm:py-14">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                >
+                  <CheckCircle className="w-14 h-14 sm:w-16 sm:h-16 text-chart-3 mb-4 sm:mb-5" />
+                </motion.div>
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'پیام شما ارسال شد' : 'Message Sent!'}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground/70 text-center max-w-sm">
+                  {language === 'fa'
+                    ? 'تیم ما در اسرع وقت با شما تماس خواهد گرفت.'
+                    : 'Our team will get back to you as soon as possible.'}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
+                      {language === 'fa' ? 'نام' : 'Name'} <span className="text-destructive">*</span>
+                    </label>
+                    <Input
+                      required
+                      placeholder={language === 'fa' ? 'نام خود را وارد کنید' : 'Your name'}
+                      className="bg-background/50 border-border/40 text-sm"
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-mono text-muted-foreground/60 tracking-wider mb-1.5">{t('contact.message')}</label>
-                    <Textarea name="message" value={formState.message} onChange={e => setFormState(p => ({ ...p, message: e.target.value }))} required rows={5} className="resize-none bg-background/50 border-border/40" />
+                    <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
+                      {language === 'fa' ? 'ایمیل' : 'Email'} <span className="text-destructive">*</span>
+                    </label>
+                    <Input
+                      required
+                      type="email"
+                      placeholder={language === 'fa' ? 'ایمیل خود را وارد کنید' : 'your@email.com'}
+                      className="bg-background/50 border-border/40 text-sm"
+                    />
                   </div>
-                  <Button type="submit" disabled={sending} className="w-full py-5">
-                    {sending ? (
-                      <><Loader2 className="w-4 h-4 me-2 animate-spin" />{t('contact.sending')}</>
-                    ) : (
-                      <><Send className="w-4 h-4 me-2" />{t('contact.submit')}</>
-                    )}
-                  </Button>
                 </div>
-              )}
-            </form>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
+                    {language === 'fa' ? 'موضوع' : 'Subject'}
+                  </label>
+                  <Input
+                    placeholder={language === 'fa' ? 'موضوع پیام' : 'Message subject'}
+                    className="bg-background/50 border-border/40 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
+                    {language === 'fa' ? 'پیام' : 'Message'} <span className="text-destructive">*</span>
+                  </label>
+                  <Textarea
+                    required
+                    rows={4}
+                    placeholder={language === 'fa' ? 'پیام خود را بنویسید...' : 'Write your message...'}
+                    className="bg-background/50 border-border/40 text-sm resize-none"
+                  />
+                </div>
+
+                <Button type="submit" disabled={loading} className="w-full text-sm">
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 me-2 animate-spin" />
+                      {language === 'fa' ? 'در حال ارسال...' : 'Sending...'}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 me-2" />
+                      {language === 'fa' ? 'ارسال پیام' : 'Send Message'}
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

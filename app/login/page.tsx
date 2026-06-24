@@ -66,7 +66,7 @@ export default function LoginPage() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full max-w-md"
       >
-        <div className="card-command p-8 sm:p-10">
+        <div className="card-command p-6 sm:p-8 md:p-10">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-4">
