@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Quote, Star } from 'lucide-react'
+import { Star } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
