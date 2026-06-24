@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "Arvand HC-200",
+      "tagline": "چیلر صنعتی هوشمند با راندمان بالا",
+      "tagline_en": "High-Efficiency Industrial Smart Chiller",
+      "description": "چیلر صنعتی HC-200 با بهره‌گیری از جدیدترین فناوری‌های کنترل هوشمند و کمپرسورهای اسکرال، راهکاری ایده‌آل برای ساختمان‌های تجاری و صنعتی است.",
+      "description_en": "The HC-200 industrial chiller leverages the latest smart control technologies and scroll compressors, making it an ideal solution for commercial and industrial buildings.",
+      "specs": [
+        { "label": "ظرفیت سرمایشی", "label_en": "Cooling Capacity", "value": "200 kW" },
+        { "label": "نوع کمپرسور", "label_en": "Compressor Type", "value": "Scroll" },
+        { "label": "مبرد", "label_en": "Refrigerant", "value": "R-410A" },
+        { "label": "مصرف انرژی", "label_en": "Energy Consumption", "value": "58 kW" },
+        { "label": "EER", "label_en": "EER", "value": "3.45" },
+        { "label": "وزن", "label_en": "Weight", "value": "850 kg" }
+      ],
+      "features": [
+        "کنترل هوشمند با پروتکل Modbus",
+        "کمپرسور اسکرال با راندمان بالا",
+        "سیستم حفاظت کامل در برابر خطاها",
+        "ECO mode برای کاهش مصرف انرژی"
+      ],
+      "features_en": [
+        "Smart control with Modbus protocol",
+        "High-efficiency scroll compressor",
+        "Complete fault protection system",
+        "ECO mode for energy reduction"
+      ],
+      "capacity": "200 kW",
+      "order": 1
+    },
+    {
+      "id": "prod_002",
+      "name": "Arvand HC-400",
+      "tagline": "چیلر نیمه‌صنعتی با فناوری اینورتر",
+      "tagline_en": "Semi-Industrial Chiller with Inverter Technology",
+      "description": "HC-400 با بهره‌گیری از فناوری اینورتر، مصرف انرژی را تا ۳۰٪ کاهش داده و عملکردی نرم و پایدار ارائه می‌دهد.",
+      "description_en": "The HC-400 uses inverter technology, reducing energy consumption by up to 30% and delivering smooth, stable performance.",
+      "specs": [
+        { "label": "ظرفیت سرمایشی", "label_en": "Cooling Capacity", "value": "400 kW" },
+        { "label": "نوع کمپرسور", "label_en": "Compressor Type", "value": "Screw" },
+        { "label": "مبرد", "label_en": "Refrigerant", "value": "R-134a" },
+        { "label": "مصرف انرژی", "label_en": "Energy Consumption", "value": "105 kW" },
+        { "label": "EER", "label_en": "EER", "value": "3.81" },
+        { "label": "وزن", "label_en": "Weight", "value": "1,450 kg" }
+      ],
+      "features": [
+        "فناوری اینورتر با کنترل دور کمپرسور",
+        "اتصال به سیستم BMS از طریق BACnet",
+        "استارت نرم و کاهش جریان راه‌اندازی",
+        "مناسب برای هتل‌ها و بیمارستان‌ها"
+      ],
+      "features_en": [
+        "Inverter technology with compressor speed control",
+        "BMS connection via BACnet",
+        "Soft start with reduced starting current",
+        "Ideal for hotels and hospitals"
+      ],
+      "capacity": "400 kW",
+      "order": 2
+    },
+    {
+      "id": "prod_003",
+      "name": "Arvand HC-800",
+      "tagline": "چیلر صنعتی سنگین با راندمان فوق‌العاده",
+      "tagline_en": "Heavy-Duty Industrial Chiller with Superior Efficiency",
+      "description": "HC-800 یک چیلر صنعتی سنگین با دو مدار مجزا و قابلیت اطمینان بالا برای کاربردهای حیاتی و پروژه‌های بزرگ صنعتی است.",
+      "description_en": "The HC-800 is a heavy-duty industrial chiller with dual independent circuits and high reliability for critical applications and large industrial projects.",
+      "specs": [
+        { "label": "ظرفیت سرمایشی", "label_en": "Cooling Capacity", "value": "800 kW" },
+        { "label": "نوع کمپرسور", "label_en": "Compressor Type", "value": "Centrifugal" },
+        { "label": "مبرد", "label_en": "Refrigerant", "value": "R-1234ze" },
+        { "label": "مصرف انرژی", "label_en": "Energy Consumption", "value": "190 kW" },
+        { "label": "EER", "label_en": "EER", "value": "4.21" },
+        { "label": "وزن", "label_en": "Weight", "value": "3,200 kg" }
+      ],
+      "features": [
+        "دو مدار مستقل برای افزونگی کامل",
+        "کمپرسور سانتریفیوژ با راندمان بالا",
+        "گاز دوستدار محیط زیست R-1234ze",
+        "طراحی ماژولار و اشغال فضای کم"
+      ],
+      "features_en": [
+        "Dual independent circuits for full redundancy",
+        "High-efficiency centrifugal compressor",
+        "Eco-friendly R-1234ze refrigerant",
+        "Modular design with small footprint"
+      ],
+      "capacity": "800 kW",
+      "order": 3
+    }
+  ]
+}

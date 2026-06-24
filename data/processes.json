@@ -1,0 +1,161 @@
+{
+  "processes": [
+    {
+      "id": "proc_001",
+      "name": "Competitor Price Match",
+      "description": "Automatically adjust prices when competitors lower their prices",
+      "trigger": "competitor_price_change",
+      "conditions": [
+        {
+          "field": "competitor_price",
+          "operator": "less_than",
+          "value": "current_price"
+        },
+        {
+          "field": "price_difference_percentage",
+          "operator": "greater_than",
+          "value": 5
+        }
+      ],
+      "actions": [
+        {
+          "type": "adjust_price",
+          "method": "match_competitor",
+          "margin": 2
+        },
+        {
+          "type": "send_notification",
+          "channel": "email",
+          "recipients": ["pricing-team@company.com"]
+        }
+      ],
+      "priority": 1,
+      "status": "running",
+      "lastRun": "2024-03-22T14:30:00Z",
+      "nextRun": "2024-03-22T15:00:00Z",
+      "runFrequency": "every_30_minutes",
+      "createdAt": "2024-02-01T10:00:00Z"
+    },
+    {
+      "id": "proc_002",
+      "name": "Low Inventory Price Increase",
+      "description": "Increase prices when inventory falls below threshold",
+      "trigger": "inventory_change",
+      "conditions": [
+        {
+          "field": "inventory_level",
+          "operator": "less_than",
+          "value": 50
+        },
+        {
+          "field": "demand_score",
+          "operator": "greater_than",
+          "value": 70
+        }
+      ],
+      "actions": [
+        {
+          "type": "adjust_price",
+          "method": "increase_percentage",
+          "value": 10,
+          "maxPrice": "max_price"
+        }
+      ],
+      "priority": 2,
+      "status": "running",
+      "lastRun": "2024-03-22T12:00:00Z",
+      "nextRun": "2024-03-22T18:00:00Z",
+      "runFrequency": "every_6_hours",
+      "createdAt": "2024-02-05T09:00:00Z"
+    },
+    {
+      "id": "proc_003",
+      "name": "Weekend Promotion",
+      "description": "Apply automatic discounts during weekends",
+      "trigger": "schedule",
+      "conditions": [
+        {
+          "field": "day_of_week",
+          "operator": "in",
+          "value": ["saturday", "sunday"]
+        }
+      ],
+      "actions": [
+        {
+          "type": "adjust_price",
+          "method": "decrease_percentage",
+          "value": 15,
+          "minPrice": "min_price"
+        }
+      ],
+      "priority": 3,
+      "status": "paused",
+      "lastRun": "2024-03-17T00:00:00Z",
+      "nextRun": null,
+      "runFrequency": "weekly",
+      "createdAt": "2024-02-10T11:00:00Z"
+    },
+    {
+      "id": "proc_004",
+      "name": "Demand-Based Dynamic Pricing",
+      "description": "Adjust prices based on real-time demand signals",
+      "trigger": "demand_change",
+      "conditions": [
+        {
+          "field": "demand_increase_24h",
+          "operator": "greater_than",
+          "value": 20
+        }
+      ],
+      "actions": [
+        {
+          "type": "adjust_price",
+          "method": "ai_recommendation",
+          "confidenceThreshold": 85
+        },
+        {
+          "type": "log_event",
+          "details": "AI-driven price adjustment"
+        }
+      ],
+      "priority": 1,
+      "status": "running",
+      "lastRun": "2024-03-22T14:45:00Z",
+      "nextRun": "2024-03-22T15:00:00Z",
+      "runFrequency": "every_15_minutes",
+      "createdAt": "2024-02-15T14:00:00Z"
+    },
+    {
+      "id": "proc_005",
+      "name": "Clearance Automation",
+      "description": "Gradually reduce prices for slow-moving inventory",
+      "trigger": "schedule",
+      "conditions": [
+        {
+          "field": "days_in_inventory",
+          "operator": "greater_than",
+          "value": 90
+        },
+        {
+          "field": "sales_velocity",
+          "operator": "less_than",
+          "value": 5
+        }
+      ],
+      "actions": [
+        {
+          "type": "adjust_price",
+          "method": "decrease_percentage",
+          "value": 5,
+          "minPrice": "min_price"
+        }
+      ],
+      "priority": 4,
+      "status": "stopped",
+      "lastRun": "2024-03-15T06:00:00Z",
+      "nextRun": null,
+      "runFrequency": "daily",
+      "createdAt": "2024-02-20T08:00:00Z"
+    }
+  ]
+}
