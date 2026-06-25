@@ -160,9 +160,8 @@ export function PricingSection() {
                 </Link>
               )}
 
-              {/* Features */}
               <ul className="space-y-2.5 sm:space-y-3 flex-1">
-                {plan.features.map((feature, i) => (
+                {(plan.features[language] || plan.features.en).map((feature: string, i: number) => (
                   <motion.li
                     key={feature}
                     initial={{ opacity: 0, x: -10 }}
@@ -173,7 +172,7 @@ export function PricingSection() {
                     <div className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
                       <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                     </div>
-                    <span className="text-muted-foreground/80">{plan.features[language] ? plan.features[language][i] : plan.features.en[i]}</span>
+                    <span className="text-muted-foreground/80">{feature}</span>
                   </motion.li>
                 ))}
               </ul>
