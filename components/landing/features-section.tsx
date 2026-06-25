@@ -10,6 +10,9 @@ import {
   Shield,
   ArrowRight,
   Database,
+  Layers,
+  Zap,
+  Palette,
 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import Link from 'next/link'
@@ -63,6 +66,30 @@ const featuresList = [
     metric: '99.99%',
     metricLabel: 'UPTIME SLA',
     color: 'text-chart-2',
+  },
+  {
+    icon: Layers,
+    title: { en: 'Multi-Brand Support', fa: 'پشتیبانی از برندهای مختلف', ar: 'دعم متعدد العلامات' },
+    desc: { en: 'Connect Carel, Danfoss, Microtech and more — all from a single dashboard. Not locked to one brand.', fa: 'اتصال چیلرهای Carel، Danfoss، Microtech و سایر برندها — همه از یک داشبورد. محدود به یک برند نیستید.', ar: 'قم بتوصيل Carel وDanfoss وMicrotech والمزيد — كل ذلك من لوحة تحكم واحدة. لست مقيداً بعلامة تجارية واحدة.' },
+    metric: '5+',
+    metricLabel: 'BRANDS SUPPORTED',
+    color: 'text-primary',
+  },
+  {
+    icon: Zap,
+    title: { en: 'No Gateway Required', fa: 'بدون نیاز به گیت‌وی', ar: 'بدون حاجة لبوابة' },
+    desc: { en: 'Direct TCP/IP connection to chiller controllers. No extra hardware, no configuration headaches.', fa: 'اتصال مستقیم TCP/IP به کنترلر چیلر. بدون سخت‌افزار اضافه، بدون دردسر تنظیمات.', ar: 'اتصال مباشر عبر TCP/IP بوحدات تحكم المبردات. بدون أجهزة إضافية، بدون متاعب التكوين.' },
+    metric: '0',
+    metricLabel: 'GATEWAYS NEEDED',
+    color: 'text-chart-3',
+  },
+  {
+    icon: Palette,
+    title: { en: 'White-Label Customization', fa: 'شخصی‌سازی برند سفید', ar: 'تخصيص العلامة البيضاء' },
+    desc: { en: 'Custom branding, custom domain, custom dashboards. The platform adapts to your company identity.', fa: 'برند اختصاصی، دامنه سفارشی، داشبورد شخصی‌سازی شده. پلتفرم با هویت سازمان شما تطبیق می‌یابد.', ar: 'علامة تجارية مخصصة، نطاق مخصص، لوحات تحكم مخصصة. المنصة تتكيف مع هوية شركتك.' },
+    metric: '100%',
+    metricLabel: 'CUSTOMIZABLE',
+    color: 'text-chart-4',
   },
 ]
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { getProducts, deleteProduct } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
@@ -52,10 +53,12 @@ export default function AdminProducts() {
           <h1 className="text-2xl font-bold">{t('admin.products.title')}</h1>
           <p className="text-sm text-muted-foreground/70 font-mono">{t('admin.products.description')}</p>
         </div>
-        <Button className="bg-primary text-primary-foreground gap-2 hover:bg-primary/90 shadow-sm">
-          <Plus className="w-4 h-4" />
-          {t('admin.products.add')}
-        </Button>
+        <Link href="/admin/products/new">
+          <Button className="bg-primary text-primary-foreground gap-2 hover:bg-primary/90 shadow-sm cursor-pointer">
+            <Plus className="w-4 h-4" />
+            {t('admin.products.add')}
+          </Button>
+        </Link>
       </motion.div>
 
       {/* Search */}
@@ -106,9 +109,11 @@ export default function AdminProducts() {
               <div className="flex items-center justify-between pt-3 border-t border-border/30">
                 <span className="text-xs text-muted-foreground/40 font-mono">Order: {product.order}</span>
                 <div className="flex items-center gap-1">
-                  <Button variant="ghost" size="icon" className="w-8 h-8 text-muted-foreground/50 hover:text-foreground">
-                    <Edit3 className="w-4 h-4" />
-                  </Button>
+                  <Link href={`/admin/products/${product.id}/edit`}>
+                    <Button variant="ghost" size="icon" className="w-8 h-8 text-muted-foreground/50 hover:text-foreground cursor-pointer">
+                      <Edit3 className="w-4 h-4" />
+                    </Button>
+                  </Link>
                   <Button variant="ghost" size="icon" className="w-8 h-8 text-destructive/50 hover:text-destructive" onClick={() => handleDelete(product.id)}>
                     <Trash2 className="w-4 h-4" />
                   </Button>

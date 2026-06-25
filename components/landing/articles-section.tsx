@@ -43,7 +43,7 @@ export function ArticlesSection() {
         <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
-      <div className="section-glow max-w-7xl mx-auto">
+      <div className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

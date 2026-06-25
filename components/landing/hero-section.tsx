@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Activity, Zap, Thermometer, Radio } from 'lucide-react'
+import { ArrowRight, Activity, Zap, Thermometer, Radio, Layers, Palette } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { StarField } from '@/components/ui/star-field'
 
@@ -49,7 +49,7 @@ export function HeroSection() {
             className="lg:col-span-7"
           >
             {/* Status badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -58,7 +58,7 @@ export function HeroSection() {
               <span className="glow-dot text-chart-3 w-1 sm:w-1.5 h-1 sm:h-1.5" />
               <span className="data-text text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-primary/80">{t('hero.badge.status')}</span>
               <span className="text-[10px] sm:text-xs text-muted-foreground">— v3.0</span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.0] sm:leading-[0.95] mb-4 sm:mb-6">
@@ -68,6 +68,22 @@ export function HeroSection() {
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-xl">
               {t('hero.description')}
             </p>
+
+            {/* Key differentiators — bold selling points */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/15 bg-primary/5 text-[11px] sm:text-xs font-medium text-primary/90">
+                <Zap className="w-3 h-3" />
+                {t('hero.noGateway')}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-3/15 bg-chart-3/5 text-[11px] sm:text-xs font-medium text-chart-3">
+                <Layers className="w-3 h-3" />
+                {t('hero.multiBrand')}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-4/15 bg-chart-4/5 text-[11px] sm:text-xs font-medium text-chart-4">
+                <Palette className="w-3 h-3" />
+                {t('hero.customizable')}
+              </span>
+            </div>
 
             {/* CTAs - stacked on mobile, side by side on larger */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12">

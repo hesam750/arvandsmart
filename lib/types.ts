@@ -29,9 +29,15 @@ export interface Product {
   id: string
   name: string
   tagline: string
+  tagline_en: string
+  tagline_ar?: string
   description: string
+  description_en: string
+  description_ar?: string
   specs: ProductSpec[]
   features: string[]
+  features_en: string[]
+  features_ar?: string[]
   capacity: string
   image?: string
   order: number
@@ -39,7 +45,11 @@ export interface Product {
 
 export interface ProductSpec {
   label: string
+  label_en: string
+  label_ar?: string
   value: string
+  value_en?: string
+  value_ar?: string
 }
 
 // ── Company Stats ──

@@ -18,7 +18,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "SYSTEM ONLINE",
     "hero.title": "Intelligent Chiller Monitoring & Control Platform",
     "hero.subtitle": "Smart Control | Energy Optimization | IoT Connectivity",
-    "hero.description": "ArvandSmartControl is an advanced IoT platform for remote monitoring, intelligent control, and energy management of industrial chillers and HVAC systems. Reduce operational costs, prevent failures, and manage all equipment from anywhere.",
+    "hero.description": "The only platform that connects directly to any chiller controller — no gateway needed. Monitor and control Carel, Danfoss, Microtech, and more from a single dashboard. Reduce costs, prevent failures, and manage everything remotely.",
     "hero.cta.primary": "Explore Features",
     "hero.cta.secondary": "Read Articles",
     "hero.stats.years": "Years of Experience",
@@ -28,6 +28,9 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.nominal": "All Systems Nominal",
     "hero.status.datafeed": "Live Data Feed",
     "hero.status.units": "24 Units Online",
+    "hero.noGateway": "No Gateway Needed",
+    "hero.multiBrand": "Multi-Brand",
+    "hero.customizable": "Fully Customizable",
 
     // ── Stats ──
     "stats.units.label": "Units Connected",
@@ -338,7 +341,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "سیستم فعال",
     "hero.title": "پلتفرم پایش و کنترل هوشمند چیلر",
     "hero.subtitle": "کنترل هوشمند | بهینه‌سازی انرژی | اتصال IoT",
-    "hero.description": "آروانداسمارت‌کنترل یک پلتفرم پیشرفته IoT برای پایش از راه دور، کنترل هوشمند و مدیریت انرژی چیلرهای صنعتی و سیستم‌های HVAC است. کاهش هزینه‌های عملیاتی، جلوگیری از خرابی‌ها و مدیریت تمام تجهیزات از هر مکان.",
+    "hero.description": "تنها پلتفرمی که مستقیماً به هر کنترلر چیلری متصل می‌شود — بدون نیاز به گیت‌وی. مانیتورینگ و کنترل Carel، Danfoss، Microtech و سایر برندها از یک داشبورد. کاهش هزینه‌ها، جلوگیری از خرابی و مدیریت همه چیز از راه دور.",
     "hero.cta.primary": "مشاهده قابلیت‌ها",
     "hero.cta.secondary": "خواندن مقالات",
     "hero.stats.years": "سال تجربه",
@@ -348,6 +351,9 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.nominal": "همه سیستم‌ها عادی",
     "hero.status.datafeed": "فید داده زنده",
     "hero.status.units": "۲۴ واحد آنلاین",
+    "hero.noGateway": "بدون نیاز به گیت‌وی",
+    "hero.multiBrand": "چند برند",
+    "hero.customizable": "شخصی‌سازی کامل",
 
     // ── Stats ──
     "stats.units.label": "دستگاه متصل",
@@ -658,7 +664,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "النظام نشط",
     "hero.title": "منصة مراقبة وتحكم ذكي للمبردات",
     "hero.subtitle": "تحكم ذكي | تحسين الطاقة | اتصال IoT",
-    "hero.description": "أرواند سمارت كونترول هي منصة IoT متطورة للمراقبة عن بعد والتحكم الذكي وإدارة الطاقة للمبردات الصناعية وأنظمة التكييف. تقليل تكاليف التشغيل، منع الأعطال، وإدارة جميع المعدات من أي مكان.",
+    "hero.description": "المنصة الوحيدة التي تتصل مباشرة بأي وحدة تحكم مبرد — بدون حاجة لبوابة. راقب وتحكم في Carel وDanfoss وMicrotech والمزيد من لوحة تحكم واحدة. خفض التكاليف، منع الأعطال، وإدارة كل شيء عن بعد.",
     "hero.cta.primary": "استعرض الإمكانيات",
     "hero.cta.secondary": "اقرأ المقالات",
     "hero.stats.years": "سنوات الخبرة",
@@ -668,6 +674,9 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.nominal": "جميع الأنظمة طبيعية",
     "hero.status.datafeed": "تغذية بيانات حية",
     "hero.status.units": "٢٤ وحدة متصلة",
+    "hero.noGateway": "بدون حاجة لبوابة",
+    "hero.multiBrand": "متعدد العلامات",
+    "hero.customizable": "قابل للتخصيص",
 
     // ── Stats ──
     "stats.units.label": "وحدات متصلة",

@@ -49,7 +49,7 @@ export function TestimonialsSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-primary/3 blur-[120px]" />
 
-      <div className="section-glow max-w-7xl mx-auto">
+      <div className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

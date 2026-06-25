@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { getArticles, getProducts, getContactMessages } from '@/lib/data-service'
+import { getArticles, getProducts, getContactMessages, getRecentActivity } from '@/lib/data-service'
+import type { ActivityEntry } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
 import {
   FileText,
@@ -24,14 +25,19 @@ export default function AdminDashboard() {
     unreadMessages: 0,
     featuredArticles: 0,
   })
+  const [activities, setActivities] = useState<ActivityEntry[]>([])
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [articlesRes, productsRes, messagesRes] = await Promise.all([
+      const [articlesRes, productsRes, messagesRes, activityRes] = await Promise.all([
         getArticles(),
         getProducts(),
         getContactMessages(),
+        getRecentActivity(),
       ])
+      if (activityRes.success && activityRes.data) {
+        setActivities(activityRes.data)
+      }
       setStats({
         articles: articlesRes.success ? (articlesRes.data?.length || 0) : 0,
         products: productsRes.success ? (productsRes.data?.length || 0) : 0,
@@ -78,16 +84,20 @@ export default function AdminDashboard() {
   ]
 
   const quickActions = [
-    { title: t('admin.addArticle'), icon: FileText, href: '/admin/articles' },
-    { title: t('admin.addProduct'), icon: Package, href: '/admin/products' },
+    { title: t('admin.addArticle'), icon: FileText, href: '/admin/articles/new' },
+    { title: t('admin.addProduct'), icon: Package, href: '/admin/products/new' },
     { title: t('admin.viewMessages'), icon: MessageSquare, href: '/admin/messages' },
   ]
 
-  const recentActivity = [
-    { action: 'Article published', item: 'Energy Optimization Guide', time: '2 days ago', type: 'article' },
-    { action: 'Product updated', item: 'Arvand HC-400', time: '5 days ago', type: 'product' },
-    { action: 'Contact message received', item: 'Inquiry from Tehran', time: '1 week ago', type: 'message' },
-  ]
+  const formatTime = (ts: string) => {
+    const diff = Date.now() - new Date(ts).getTime()
+    const mins = Math.floor(diff / 60000)
+    if (mins < 60) return `${mins}m ago`
+    const hrs = Math.floor(mins / 60)
+    if (hrs < 24) return `${hrs}h ago`
+    const days = Math.floor(hrs / 24)
+    return `${days}d ago`
+  }
 
   return (
     <div className="space-y-8">
@@ -174,24 +184,24 @@ export default function AdminDashboard() {
             <Activity className="w-5 h-5 text-muted-foreground/30" />
           </div>
           <div className="space-y-4">
-            {recentActivity.length > 0 ? (
-              recentActivity.map((activity, index) => (
+            {activities.length > 0 ? (
+              activities.map((activity, index) => (
                 <motion.div
-                  key={index}
+                  key={activity.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
                   className="flex items-center gap-4 p-3 rounded-xl hover:bg-secondary/20 transition-colors border border-transparent hover:border-border/20"
                 >
                   <div className={`w-2 h-2 rounded-full ${
-                    activity.type === 'article' ? 'bg-primary' :
-                    activity.type === 'product' ? 'bg-accent' : 'bg-chart-3'
+                    activity.itemType === 'article' ? 'bg-primary' :
+                    activity.itemType === 'product' ? 'bg-accent' : 'bg-chart-3'
                   }`} />
                   <div className="flex-1">
-                    <div className="text-sm font-medium">{activity.action}</div>
-                    <div className="text-xs text-muted-foreground/60">{activity.item}</div>
+                    <div className="text-sm font-medium capitalize">{activity.action}</div>
+                    <div className="text-xs text-muted-foreground/60">{activity.itemTitle}</div>
                   </div>
-                  <div className="text-xs text-muted-foreground/40 font-mono">{activity.time}</div>
+                  <div className="text-xs text-muted-foreground/40 font-mono">{formatTime(activity.timestamp)}</div>
                 </motion.div>
               ))
             ) : (

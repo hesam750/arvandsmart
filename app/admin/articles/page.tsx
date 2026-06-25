@@ -66,10 +66,12 @@ export default function AdminArticles() {
           <h1 className="text-2xl font-bold">{t('admin.articles.title')}</h1>
           <p className="text-sm text-muted-foreground/70 font-mono">{t('admin.articles.description')}</p>
         </div>
-        <Button className="bg-primary text-primary-foreground gap-2 hover:bg-primary/90 shadow-sm">
-          <Plus className="w-4 h-4" />
-          {t('admin.articles.add')}
-        </Button>
+        <Link href="/admin/articles/new">
+          <Button className="bg-primary text-primary-foreground gap-2 hover:bg-primary/90 shadow-sm cursor-pointer">
+            <Plus className="w-4 h-4" />
+            {t('admin.articles.add')}
+          </Button>
+        </Link>
       </motion.div>
 
       {/* Search */}
@@ -123,9 +125,11 @@ export default function AdminArticles() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
-                  <Button variant="ghost" size="icon" className="w-8 h-8 text-muted-foreground/50 hover:text-foreground">
-                    <Edit3 className="w-4 h-4" />
-                  </Button>
+                  <Link href={`/admin/articles/${article.id}/edit`}>
+                    <Button variant="ghost" size="icon" className="w-8 h-8 text-muted-foreground/50 hover:text-foreground cursor-pointer">
+                      <Edit3 className="w-4 h-4" />
+                    </Button>
+                  </Link>
                   <Button variant="ghost" size="icon" className="w-8 h-8 text-destructive/50 hover:text-destructive" onClick={() => handleDelete(article.id)}>
                     <Trash2 className="w-4 h-4" />
                   </Button>

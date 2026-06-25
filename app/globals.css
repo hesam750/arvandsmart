@@ -20,7 +20,7 @@
   --secondary: oklch(0.935 0.008 85);
   --secondary-foreground: oklch(0.2 0.01 85);
   --muted: oklch(0.95 0.005 85);
-  --muted-foreground: oklch(0.52 0.008 85);
+  --muted-foreground: oklch(0.38 0.012 85);
   --accent: oklch(0.65 0.18 70);
   --accent-foreground: oklch(0.15 0.01 85);
   --destructive: oklch(0.55 0.2 25);
@@ -38,21 +38,21 @@
 .dark {
   --background: oklch(0.07 0.005 85);
   --foreground: oklch(0.95 0.003 85);
-  --card: oklch(0.105 0.008 85);
+  --card: oklch(0.16 0.01 85);
   --card-foreground: oklch(0.95 0.003 85);
-  --popover: oklch(0.09 0.006 85);
+  --popover: oklch(0.13 0.008 85);
   --popover-foreground: oklch(0.95 0.003 85);
   --primary: oklch(0.58 0.15 240);
   --primary-foreground: oklch(0.04 0.005 85);
-  --secondary: oklch(0.14 0.008 85);
+  --secondary: oklch(0.18 0.01 85);
   --secondary-foreground: oklch(0.85 0.008 85);
-  --muted: oklch(0.09 0.005 85);
-  --muted-foreground: oklch(0.55 0.01 85);
+  --muted: oklch(0.12 0.008 85);
+  --muted-foreground: oklch(0.72 0.012 85);
   --accent: oklch(0.7 0.18 70);
   --accent-foreground: oklch(0.06 0.005 85);
   --destructive: oklch(0.55 0.2 25);
-  --border: oklch(0.18 0.008 85);
-  --input: oklch(0.13 0.008 85);
+  --border: oklch(0.25 0.012 85);
+  --input: oklch(0.17 0.01 85);
   --ring: oklch(0.58 0.15 240);
   --chart-1: oklch(0.55 0.16 240);
   --chart-2: oklch(0.5 0.14 210);
@@ -162,5 +162,143 @@
       color-mix(in oklch, var(--primary) 3%, transparent),
       transparent
     );
+  }
+
+  /* ── Article / Blog Content Styles ── */
+
+  /* Callout box — executive summary / key takeaway */
+  .article-callout {
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+    background: color-mix(in oklch, var(--primary) 5%, transparent);
+  }
+  .article-callout-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+  }
+  .article-callout p {
+    font-size: 0.8125rem;
+    color: color-mix(in oklch, var(--foreground) 80%, transparent);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Highlight box — success / tip */
+  .article-highlight {
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border: 1px solid color-mix(in oklch, var(--chart-3) 25%, transparent);
+    background: color-mix(in oklch, var(--chart-3) 8%, transparent);
+  }
+  .article-highlight-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  .article-highlight p {
+    font-size: 0.8125rem;
+    color: color-mix(in oklch, var(--foreground) 80%, transparent);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Brand cards grid inside articles */
+  .article-brand-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  @media (min-width: 640px) {
+    .article-brand-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .article-brand-grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .article-brand-card {
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+    background: var(--card);
+    text-align: center;
+  }
+  .article-brand-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .article-brand-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+  .article-brand-desc {
+    font-size: 0.75rem;
+    color: color-mix(in oklch, var(--muted-foreground) 70%, transparent);
+    margin-top: 0.25rem;
+  }
+
+  /* Comparison table */
+  .article-table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .article-table {
+    width: 100%;
+    font-size: 0.8125rem;
+    border-collapse: collapse;
+  }
+  .article-table thead th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    border-bottom: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+  }
+  .article-table tbody td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid color-mix(in oklch, var(--border) 25%, transparent);
+  }
+  .article-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .article-table .col-best {
+    color: var(--primary);
+    font-weight: 500;
+  }
+  .article-table .col-dim {
+    color: color-mix(in oklch, var(--muted-foreground) 60%, transparent);
+  }
+
+  /* Checkmark list */
+  .article-checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+  .article-checklist li {
+    font-size: 0.875rem;
+    margin-bottom: 0.375rem;
+    padding-left: 0.25rem;
+  }
+
+  /* Article table cell brand icons */
+  .article-td-feature { font-weight: 500; }
+  .article-td-yes { color: var(--chart-3); font-weight: 500; }
+  .article-td-no { color: color-mix(in oklch, var(--muted-foreground) 60%, transparent); }
+  .article-td-maybe { color: color-mix(in oklch, var(--chart-4) 70%, transparent); }
+  .article-td-low { color: var(--chart-3); font-weight: 500; }
+  .article-td-med { color: var(--chart-4); }
+  .article-td-high { color: var(--destructive); }
+
+  /* RTL adjustments for article content */
+  [dir="rtl"] .article-table thead th {
+    text-align: right;
+  }
+  [dir="rtl"] .article-checklist {
+    padding-right: 0;
   }
 }
