@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Activity, Zap, Thermometer, Radio } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { DotGrid } from '@/components/ui/dot-grid'
+import { StarField } from '@/components/ui/star-field'
 
 export function HeroSection() {
   const { t } = useLanguage()
@@ -15,18 +15,12 @@ export function HeroSection() {
       {/* Deep ambient background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95" />
-        {/* Dot grid background */}
-        <DotGrid dotSize={1.5} spacing={28} opacityMin={0.03} opacityMax={0.1} />
+        {/* Star field background */}
+        <StarField count={150} maxDuration={7} />
         <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-[120px] hidden sm:block" />
         <div className="absolute bottom-1/3 -right-32 w-80 h-80 rounded-full bg-accent/5 blur-[100px] hidden sm:block" />
         <div className="absolute top-2/3 left-1/3 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-chart-2/5 blur-[80px]" />
       </div>
-
-      {/* Scanline overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04] dark:opacity-[0.03]"
-        style={{ backgroundImage: `var(--scanline)` }}
-      />
 
       {/* Data particles row */}
       <div className="absolute top-24 sm:top-32 inset-x-0 h-px overflow-hidden">
