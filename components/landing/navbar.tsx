@@ -30,39 +30,39 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled ? 'nav-command' : 'bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 md:h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-2.5 group">
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg group-hover:bg-primary/30 transition-all" />
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 border border-primary/30">
-                <Monitor className="w-5 h-5 text-primary" />
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/30">
+                <Monitor className="w-4 h-4 text-primary" />
               </div>
             </div>
-            <div>
-              <span className="text-base font-bold tracking-tight">Arvand</span>
-              <span className="text-base font-bold text-primary">SmartControl</span>
+            <div className="hidden xs:block">
+              <span className="text-sm font-bold tracking-tight">Arvand</span>
+              <span className="text-sm font-bold text-primary">SmartControl</span>
             </div>
           </Link>
 
           {/* Desktop */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
+                className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
               >
                 {item.name}
               </Link>
             ))}
-            <div className="ms-3 flex items-center gap-2">
+            <div className="ms-2 flex items-center gap-2">
               <ThemeLanguageSwitcher />
               <Link href="/admin">
                 <Button size="sm">
@@ -73,9 +73,9 @@ export function Navbar() {
           </nav>
 
           {/* Mobile */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-1">
             <ThemeLanguageSwitcher />
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
           </div>
@@ -84,22 +84,22 @@ export function Navbar() {
         {/* Mobile Menu */}
         <motion.div
           initial={false}
-          animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="lg:hidden overflow-hidden"
+          animate={isOpen ? { opacity: 1, pointerEvents: 'auto' as const } : { opacity: 0, pointerEvents: 'none' as const }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden overflow-hidden"
         >
-          <div className="py-4 space-y-1 border-t border-border mb-4">
+          <div className="py-3 space-y-0.5 border-t border-border/50">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors active:bg-secondary/70"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="pt-2 px-4">
+            <div className="pt-2 px-4 pb-1">
               <Link href="/admin" onClick={() => setIsOpen(false)}>
                 <Button className="w-full" size="sm">{t('nav.admin')}</Button>
               </Link>

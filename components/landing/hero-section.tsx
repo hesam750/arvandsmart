@@ -103,7 +103,7 @@ export function HeroSection() {
             </div>
 
             {/* System status bar */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-xs text-muted-foreground data-text">
+            {/* <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-xs text-muted-foreground data-text">
               <span className="flex items-center gap-1.5 sm:gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-chart-3 animate-pulse flex-shrink-0" />
                 {t('hero.status.nominal')}
@@ -116,7 +116,7 @@ export function HeroSection() {
                 <Activity className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 {t('hero.status.units')}
               </span>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Right: Dashboard — hidden on mobile, shown on tablet+ */}
