@@ -58,10 +58,6 @@ export function PricingSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] sm:text-xs data-text tracking-wider uppercase mb-4 sm:mb-6 text-primary/80">
-            <span className="glow-dot text-chart-3" />
-            {t('pricing.badge')}
-          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
             {t('pricing.title.part1')}{' '}
             <span className="text-primary block sm:inline">

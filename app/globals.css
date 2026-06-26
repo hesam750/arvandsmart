@@ -149,9 +149,9 @@
     @apply bg-background/70 backdrop-blur-xl border-b border-border/40;
   }
 
-  /* Section spacing — generous but not excessive */
+  /* Section spacing — compact */
   .section-py {
-    @apply py-10 sm:py-14 lg:py-18;
+    @apply py-8 sm:py-10 lg:py-14;
   }
 
   /* Alternating section background tint — creates visual rhythm */
