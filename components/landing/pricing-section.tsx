@@ -10,8 +10,14 @@ import Link from 'next/link'
 export function PricingSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
-  const [isAnnual, setIsAnnual] = useState(true)
   const { t, language } = useLanguage()
+  const currencySymbol = language === 'fa' ? 'ریال' : '$'
+  const priceFactor = language === 'fa' ? 1_000_000 : 1
+  const periodLabels = {
+    monthly: language === 'fa' ? '/ماه' : language === 'ar' ? '/شهر' : '/mo',
+    annually: language === 'fa' ? '/سال' : language === 'ar' ? '/سنة' : '/yr',
+  }
+  const [isAnnual, setIsAnnual] = useState(true)
 
   const plans = [
     {
@@ -129,9 +135,12 @@ export function PricingSection() {
                 {plan.price.monthly ? (
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl sm:text-4xl font-bold font-mono">
-                      ${isAnnual ? plan.price.annual : plan.price.monthly}
+                      {language === 'fa'
+                        ? `${((isAnnual ? plan.price.annual : plan.price.monthly) * priceFactor).toLocaleString()} ${currencySymbol}`
+                        : `${currencySymbol}${isAnnual ? plan.price.annual : plan.price.monthly}`
+                      }
                     </span>
-                    <span className="text-muted-foreground/60 text-xs sm:text-sm">/{t('pricing.monthly').toLowerCase().slice(0, 2)}</span>
+                    <span className="text-muted-foreground/60 text-xs sm:text-sm">{periodLabels.monthly}</span>
                   </div>
                 ) : (
                   <div className="text-2xl sm:text-3xl font-bold font-mono">
@@ -140,7 +149,10 @@ export function PricingSection() {
                 )}
                 {plan.price.monthly && isAnnual && (
                   <div className="text-[11px] sm:text-xs text-muted-foreground/50 mt-1">
-                    ${((plan.price.annual || 0) * 12).toLocaleString()}/{t('pricing.annually').toLowerCase()}
+                    {language === 'fa'
+                      ? `${((plan.price.annual || 0) * 12 * priceFactor).toLocaleString()} ${currencySymbol}${periodLabels.annually}`
+                      : `${currencySymbol}${((plan.price.annual || 0) * 12).toLocaleString()}${periodLabels.annually}`
+                    }
                   </div>
                 )}
               </div>

@@ -71,7 +71,7 @@ export function AboutSection() {
                   <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary/15 transition-colors">
                     <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
-                  <div className="text-right ms-2">
+                  <div className="text-end ms-2">
                     <div className="text-lg sm:text-xl font-bold font-mono text-primary">{pillar.stat}</div>
                     <div className="text-[8px] sm:text-[9px] data-text text-muted-foreground/40 tracking-widest">
                       {pillar.statLabel[language] || pillar.statLabel.en}

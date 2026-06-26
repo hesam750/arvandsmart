@@ -27,7 +27,7 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children, translations }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>("en")
+  const [language, setLanguageState] = useState<Language>("fa")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {

@@ -146,7 +146,7 @@ export function FeaturesSection() {
                   <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors border border-primary/10">
                     <Icon className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
                   </div>
-                  <div className="text-right ms-2">
+                  <div className="text-end ms-2">
                     <div className={`text-base sm:text-lg font-bold font-mono ${feature.color}`}>{feature.metric}</div>
                     <div className="text-[7px] sm:text-[8px] data-text text-muted-foreground/40 tracking-widest">{feature.metricLabel}</div>
                   </div>

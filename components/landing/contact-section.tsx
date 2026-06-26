@@ -85,7 +85,10 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-[10px] sm:text-xs data-text text-muted-foreground/50 tracking-wider mb-0.5">{info.title[language] || info.title.en}</div>
-                    <div className="text-sm sm:text-base text-foreground/80 font-medium truncate">
+                    <div
+                      className="text-sm sm:text-base text-foreground/80 font-medium truncate"
+                      dir={info.icon === Phone || info.icon === Mail ? 'ltr' : undefined}
+                    >
                       {info.value[language] || info.value.en}
                     </div>
                   </div>
