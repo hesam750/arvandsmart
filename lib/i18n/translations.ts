@@ -378,7 +378,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.theme.dark": "تاریک",
 
     // ── Hero ──
-    "hero.badge": "پلتفرم کنترل هوشمند آرواند",
+    "hero.badge": "پلتفرم کنترل هوشمند اروند",
     "hero.badge.status": "سیستم فعال",
     "hero.title": "پلتفرم پایش و کنترل هوشمند چیلر",
     "hero.subtitle": "کنترل هوشمند | بهینه‌سازی انرژی | اتصال IoT",
@@ -428,7 +428,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "testimonials.badge": "نظرات مشتریان",
     "testimonials.title.part1": "مورد اعتماد",
     "testimonials.title.part2": "رهبران صنعت",
-    "testimonials.subtitle": "از مشتریان ما بشنوید که چگونه آروانداسمارت‌کنترل عملیات آنها را متحول کرده است.",
+    "testimonials.subtitle": "از مشتریان ما بشنوید که چگونه ارونداسمارت‌کنترل عملیات آنها را متحول کرده است.",
 
     // ── How It Works ──
     "howItWorks.badge": "نحوه کار",
@@ -481,9 +481,9 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.plan3.cta": "تماس با فروش",
 
     // ── About ──
-    "about.badge": "درباره آرواند",
+    "about.badge": "درباره اروند",
     "about.title": "پیشرو در فناوری کنترل هوشمند سرمایش",
-    "about.subtitle": "با بیش از ۱۸ سال تجربه در صنعت سرمایش، آرواند پیشگام در ارائه پلتفرم‌های کنترل هوشمند و IoT برای چیلرهای صنعتی و سیستم‌های تهویه مطبوع است.",
+    "about.subtitle": "با بیش از ۱۸ سال تجربه در صنعت سرمایش، اروند پیشگام در ارائه پلتفرم‌های کنترل هوشمند و IoT برای چیلرهای صنعتی و سیستم‌های تهویه مطبوع است.",
     "about.title.simple": "چرا ArvandSmartControl؟",
     "about.subtitle.simple": "ما در خط مقدم فناوری مدیریت سرمایش هستیم و راه‌حل‌های نوآورانه‌ای ارائه می‌دهیم که صنایع را متحول می‌کند.",
     "about.pillar1.title": "چشم‌انداز ما",
@@ -509,7 +509,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "articles.category.news": "اخبار",
 
     // ── Blog ──
-    "blog.title": "وبلاگ آروانداسمارت‌کنترل",
+    "blog.title": "وبلاگ ارونداسمارت‌کنترل",
     "blog.subtitle": "مقالات تخصصی، راهنماها و اخبار درباره فناوری سرمایش هوشمند و بهینه‌سازی انرژی.",
     "blog.back": "بازگشت به وبلاگ",
     "blog.readMore": "خواندن مقاله",
@@ -568,7 +568,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.legal": "حقوقی",
     "footer.privacy": "سیاست حریم خصوصی",
     "footer.terms": "شرایط خدمات",
-    "footer.copyright": "کنترل هوشمند آرواند. تمامی حقوق محفوظ است.",
+    "footer.copyright": "کنترل هوشمند اروند. تمامی حقوق محفوظ است.",
     "footer.status": "سیستم v3.0",
     "footer.build": "نسخه ۲۰۲۴.۱۲",
     "footer.online": "آنلاین",
@@ -581,7 +581,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     // ── Login ──
     "login.title": "پنل مدیریت",
-    "login.brand": "آروانداسمارت‌کنترل",
+    "login.brand": "ارونداسمارت‌کنترل",
     "login.username": "نام کاربری",
     "login.username.placeholder": "مدیر",
     "login.password": "رمز عبور",

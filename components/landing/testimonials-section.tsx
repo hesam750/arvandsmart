@@ -13,7 +13,7 @@ const testimonials = [
     role: { en: 'Facility Manager', fa: 'مدیر تأسیسات', ar: 'مدير المرافق' },
     company: { en: 'Tehran Commercial Complex', fa: 'مجتمع تجاری تهران', ar: 'المجمع التجاري بطهران' },
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-    quote: { en: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.', fa: 'آروانداسمارت‌کنترل نحوه مدیریت سیستم‌های سرمایشی ما را متحول کرد. در سه ماه اول ۲۸٪ هزینه انرژی را کاهش دادیم.', ar: 'أرواند سمارت كونترول غيرت طريقة إدارة أنظمة التبريد لدينا. خفضنا تكاليف الطاقة بنسبة ٢٨٪ في الأشهر الثلاثة الأولى.' },
+    quote: { en: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.', fa: 'ارونداسمارت‌کنترل نحوه مدیریت سیستم‌های سرمایشی ما را متحول کرد. در سه ماه اول ۲۸٪ هزینه انرژی را کاهش دادیم.', ar: 'أرواند سمارت كونترول غيرت طريقة إدارة أنظمة التبريد لدينا. خفضنا تكاليف الطاقة بنسبة ٢٨٪ في الأشهر الثلاثة الأولى.' },
   },
   {
     name: 'Sara Ahmadi',
