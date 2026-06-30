@@ -76,7 +76,7 @@ export function Footer() {
               <div className="font-bold text-sm sm:text-base text-foreground leading-tight">
                 Arvand<span className="text-primary">SmartControl</span>
               </div>
-              <div className="data-text text-[8px] sm:text-[9px] text-muted-foreground/30 tracking-[0.15em]">{t('footer.status')}</div>
+              {/* <div className="data-text text-[8px] sm:text-[9px] text-muted-foreground/30 tracking-[0.15em]">{t('footer.status')}</div> */}
             </div>
           </Link>
 
@@ -111,7 +111,7 @@ export function Footer() {
                       href={link.href}
                       className="text-xs sm:text-sm text-muted-foreground/60 hover:text-foreground/80 transition-colors"
                     >
-                      {t(link.tKey) || link.label}
+                      {link.tKey ? t(link.tKey) : link.label}
                     </Link>
                   </li>
                 ))}
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 sm:pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+        {/* <div className="pt-6 sm:pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-[10px] sm:text-xs text-muted-foreground/40 data-text">
             &copy; {new Date().getFullYear()} ArvandSmartControl. {t('footer.copyright')}
           </p>
@@ -135,7 +135,7 @@ export function Footer() {
               {t('footer.online')}
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   )
