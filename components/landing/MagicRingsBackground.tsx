@@ -57,6 +57,45 @@ function FanInCenter() {
 
   const isDark = theme === 'dark'
 
+  // Light-mode colors: warm silver/chrome that pops on white bg
+  const LM = {
+    bgBase: '#f1f5f9',
+    metal1: '#ffffff',
+    metal2: '#cbd5e1',
+    metal3: '#94a3af',
+    metal4: '#e2e8f0',
+    hub1: '#ffffff',
+    hub2: '#e2e8f0',
+    hub3: '#cbd5e1',
+    ring: '#cbd5e1',
+    ringAccent: '#94a3b8',
+    tick: '#64748b',
+    hubDark: '#e5e7eb',
+    hubDarker: '#d1d5db',
+    hubBlack: '#9ca3af',
+  }
+
+  // Dark-mode colors: industrial slate
+  const DM = {
+    bgBase: '#0f172a',
+    metal1: '#e2e8f0',
+    metal2: '#94a3b8',
+    metal3: '#64748b',
+    metal4: '#cbd5e1',
+    hub1: '#f1f5f9',
+    hub2: '#cbd5e1',
+    hub3: '#94a3b8',
+    ring: '#334155',
+    ringAccent: '#1e293b',
+    tick: '#94a3b8',
+    hubDark: '#1e293b',
+    hubDarker: '#334155',
+    hubBlack: '#0f172a',
+  }
+
+  const c = isDark ? DM : LM
+  const opacity = isDark ? 'opacity-35' : 'opacity-25'
+
   if (!isMounted) {
     return (
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -68,9 +107,7 @@ function FanInCenter() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
       <div
-        className={`relative w-[min(55vw,400px)] h-[min(55vw,400px)] rounded-full flex items-center justify-center ${
-          isDark ? 'opacity-35' : 'opacity-15'
-        }`}
+        className={`relative w-[min(55vw,400px)] h-[min(55vw,400px)] rounded-full flex items-center justify-center ${opacity}`}
         suppressHydrationWarning
       >
         {/* Radial halo behind fan */}
@@ -83,16 +120,16 @@ function FanInCenter() {
         >
           <defs>
             <linearGradient id="fanMetal" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#e2e8f0" />
-              <stop offset="35%" stopColor="#94a3b8" />
-              <stop offset="65%" stopColor="#64748b" />
-              <stop offset="100%" stopColor="#cbd5e1" />
+              <stop offset="0%" stopColor={c.metal1} />
+              <stop offset="35%" stopColor={c.metal2} />
+              <stop offset="65%" stopColor={c.metal3} />
+              <stop offset="100%" stopColor={c.metal4} />
             </linearGradient>
 
             <radialGradient id="fanHub" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#f1f5f9" />
-              <stop offset="60%" stopColor="#cbd5e1" />
-              <stop offset="100%" stopColor="#94a3b8" />
+              <stop offset="0%" stopColor={c.hub1} />
+              <stop offset="60%" stopColor={c.hub2} />
+              <stop offset="100%" stopColor={c.hub3} />
             </radialGradient>
 
             <filter id="fanGlow" x="-10%" y="-10%" width="120%" height="120%">
@@ -108,13 +145,16 @@ function FanInCenter() {
             </clipPath>
           </defs>
 
+          {/* Base circle */}
+          <circle cx="60" cy="60" r="58" fill={c.bgBase} />
+
           {/* Outer ring */}
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#334155" strokeWidth="3" opacity="0.6" />
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#e2e8f0" strokeWidth="0.3" opacity="0.2" />
+          <circle cx="60" cy="60" r="56" fill="none" stroke={c.ring} strokeWidth="3" opacity="0.6" />
+          <circle cx="60" cy="60" r="56" fill="none" stroke={c.metal1} strokeWidth="0.3" opacity="0.2" />
 
           {/* Inner ring */}
-          <circle cx="60" cy="60" r="51" fill="none" stroke="#1e293b" strokeWidth="0.6" opacity="0.5" />
-          <circle cx="60" cy="60" r="48" fill="none" stroke="#334155" strokeWidth="0.4" opacity="0.3" />
+          <circle cx="60" cy="60" r="51" fill="none" stroke={c.ringAccent} strokeWidth="0.6" opacity="0.5" />
+          <circle cx="60" cy="60" r="48" fill="none" stroke={c.ring} strokeWidth="0.4" opacity="0.3" />
 
           {/* Tick marks */}
           {Array.from({ length: 36 }).map((_, i) => {
@@ -130,7 +170,7 @@ function FanInCenter() {
               <line
                 key={i}
                 x1={x1} y1={y1} x2={x2} y2={y2}
-                stroke="#94a3b8"
+                stroke={c.tick}
                 strokeWidth={isMajor ? '0.5' : '0.3'}
                 opacity={isMajor ? '0.4' : '0.2'}
               />
@@ -158,13 +198,13 @@ function FanInCenter() {
           </g>
 
           {/* Hub outer */}
-          <circle cx="60" cy="60" r="13.5" fill="#0f172a" stroke="#334155" strokeWidth="1" />
+          <circle cx="60" cy="60" r="13.5" fill={c.bgBase} stroke={c.ring} strokeWidth="1" />
           {/* Hub */}
-          <circle cx="60" cy="60" r="11.5" fill="url(#fanHub)" stroke="#475569" strokeWidth="0.6" />
+          <circle cx="60" cy="60" r="11.5" fill="url(#fanHub)" stroke={c.tick} strokeWidth="0.6" />
           {/* Hub detail */}
-          <circle cx="60" cy="60" r="8" fill="none" stroke="#64748b" strokeWidth="0.3" opacity="0.5" />
-          <circle cx="60" cy="60" r="4.5" fill="#1e293b" stroke="#334155" strokeWidth="0.4" />
-          <circle cx="60" cy="60" r="2" fill="#0f172a" />
+          <circle cx="60" cy="60" r="8" fill="none" stroke={c.tick} strokeWidth="0.3" opacity="0.5" />
+          <circle cx="60" cy="60" r="4.5" fill={c.hubDark} stroke={c.hubDarker} strokeWidth="0.4" />
+          <circle cx="60" cy="60" r="2" fill={c.hubBlack} />
         </svg>
       </div>
     </div>
