@@ -18,7 +18,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "SYSTEM ONLINE",
     "hero.title": "Intelligent Chiller Monitoring & Control Platform",
     "hero.subtitle": "Smart Control | Energy Optimization | IoT Connectivity",
-    "hero.description": "The only platform that connects directly to any chiller controller — no gateway needed. Monitor and control Carel, Danfoss, Microtech, and more from a single dashboard. Reduce costs, prevent failures, and manage everything remotely.",
+    "hero.description": "Specialized for Carel pCO and c.series controllers — with full multi-brand support for Danfoss, Microtech, Siemens, and more. All from one dashboard, no gateway required.",
     "hero.cta.primary": "Explore Features",
     "hero.cta.secondary": "Read Articles",
     "hero.stats.years": "Years of Experience",
@@ -29,7 +29,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.datafeed": "Live Data Feed",
     "hero.status.units": "24 Units Online",
     "hero.noGateway": "No Gateway Needed",
-    "hero.multiBrand": "Multi-Brand",
+    "hero.multiBrand": "Carel Specialized",
     "hero.customizable": "Fully Customizable",
 
     // ── Stats ──
@@ -48,6 +48,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "features.title.part2": "Control Your Cooling",
     "features.subtitle": "A comprehensive platform for monitoring, analyzing, and optimizing your chiller systems with real-time data and intelligent automation.",
     "features.viewAll": "View All Capabilities",
+    "features.marqueeHeading": "Carel & Compatible Brands",
 
     // ── Products ──
     "products.badge": "PRODUCT LINE",
@@ -72,7 +73,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "howItWorks.title.part2": "Smart Management",
     "howItWorks.subtitle": "From setup to full control — get your cooling systems online and optimized in no time.",
     "howItWorks.step1.title": "Connect & Collect",
-    "howItWorks.step1.desc": "Connect your chillers via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.",
+    "howItWorks.step1.desc": "Connect your Carel chillers (pCO, c.series) via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.",
     "howItWorks.step2.title": "Real-Time Monitoring",
     "howItWorks.step2.desc": "Live dashboards display every metric from temperature to power consumption in real time.",
     "howItWorks.step3.title": "Analyze & Optimize",
@@ -230,8 +231,8 @@ export const translations: Record<Language, Record<string, string>> = {
     // ── Brands ──
     "brands.badge": "COMPATIBLE WITH",
     "brands.title.part1": "Works With",
-    "brands.title.part2": "All Major Controllers",
-    "brands.subtitle": "Direct compatibility with the world's leading chiller controller brands. No adapters, no middleware — just connect and monitor.",
+    "brands.title.part2": "Carel & Beyond",
+    "brands.subtitle": "Deep Carel integration with broad multi-brand compatibility. Direct connection to pCO, c.series, and 50+ controller models across 8 brands.",
     "brands.note": "And many more — if your controller speaks Modbus, BACnet, or TCP/IP, it will work.",
 
     // ── Case Studies ──
@@ -382,7 +383,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "سیستم فعال",
     "hero.title": "پلتفرم پایش و کنترل هوشمند چیلر",
     "hero.subtitle": "کنترل هوشمند | بهینه‌سازی انرژی | اتصال IoT",
-    "hero.description": "تنها پلتفرمی که مستقیماً به هر کنترلر چیلری متصل می‌شود — بدون نیاز به گیت‌وی. مانیتورینگ و کنترل Carel، Danfoss، Microtech و سایر برندها از یک داشبورد. کاهش هزینه‌ها، جلوگیری از خرابی و مدیریت همه چیز از راه دور.",
+    "hero.description": "متخصص در کنترلرهای Carel pCO و c.series — با پشتیبانی کامل از برندهای Danfoss، Microtech، Siemens و سایر برندها. همه از یک داشبورد، بدون نیاز به گیت‌وی.",
     "hero.cta.primary": "مشاهده قابلیت‌ها",
     "hero.cta.secondary": "خواندن مقالات",
     "hero.stats.years": "سال تجربه",
@@ -393,7 +394,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.datafeed": "فید داده زنده",
     "hero.status.units": "۲۴ واحد آنلاین",
     "hero.noGateway": "بدون نیاز به گیت‌وی",
-    "hero.multiBrand": "چند برند",
+    "hero.multiBrand": "تخصص کرل",
     "hero.customizable": "شخصی‌سازی کامل",
 
     // ── Stats ──
@@ -412,6 +413,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "features.title.part2": "کنترل سرمایش شما",
     "features.subtitle": "یک پلتفرم جامع برای پایش، تحلیل و بهینه‌سازی سیستم‌های چیلر شما با داده‌های لحظه‌ای و اتوماسیون هوشمند.",
     "features.viewAll": "مشاهده همه قابلیت‌ها",
+    "features.marqueeHeading": "کرل و برندهای سازگار",
 
     // ── Products ──
     "products.badge": "خط تولید",
@@ -436,7 +438,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "howItWorks.title.part2": "مدیریت هوشمند",
     "howItWorks.subtitle": "از راه‌اندازی تا کنترل کامل — سیستم‌های سرمایشی خود را در کمترین زمان آنلاین و بهینه کنید.",
     "howItWorks.step1.title": "اتصال و جمع‌آوری",
-    "howItWorks.step1.desc": "چیلرهای خود را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.",
+    "howItWorks.step1.desc": "چیلرهای Carel خود (pCO، c.series) را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.",
     "howItWorks.step2.title": "پایش لحظه‌ای",
     "howItWorks.step2.desc": "داشبوردهای زنده تمام معیارها را از دما تا مصرف برق به صورت لحظه‌ای نمایش می‌دهند.",
     "howItWorks.step3.title": "تحلیل و بهینه‌سازی",
@@ -595,8 +597,8 @@ export const translations: Record<Language, Record<string, string>> = {
     // ── Brands ──
     "brands.badge": "سازگار با",
     "brands.title.part1": "همکاری با",
-    "brands.title.part2": "تمام برندهای معتبر",
-    "brands.subtitle": "سازگاری مستقیم با برندهای برتر کنترلر چیلر جهان. بدون آداپتور، بدون میان‌افزار — فقط وصل شوید و نظارت کنید.",
+    "brands.title.part2": "کرل و فراتر",
+    "brands.subtitle": "یکپارچگی عمیق با Carel و سازگاری گسترده با سایر برندها. اتصال مستقیم به pCO، c.series و بیش از ۵۰ مدل کنترلر از ۸ برند.",
     "brands.note": "و بسیاری دیگر — اگر کنترلر شما Modbus، BACnet یا TCP/IP پشتیبانی کند، کار خواهد کرد.",
 
     // ── Case Studies ──
@@ -747,7 +749,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.badge.status": "النظام نشط",
     "hero.title": "منصة مراقبة وتحكم ذكي للمبردات",
     "hero.subtitle": "تحكم ذكي | تحسين الطاقة | اتصال IoT",
-    "hero.description": "المنصة الوحيدة التي تتصل مباشرة بأي وحدة تحكم مبرد — بدون حاجة لبوابة. راقب وتحكم في Carel وDanfoss وMicrotech والمزيد من لوحة تحكم واحدة. خفض التكاليف، منع الأعطال، وإدارة كل شيء عن بعد.",
+    "hero.description": "متخصص في وحدات تحكم Carel pCO و c.series — مع دعم كامل متعدد العلامات التجارية لـ Danfoss و Microtech و Siemens والمزيد. كل ذلك من لوحة تحكم واحدة، بدون حاجة لبوابة.",
     "hero.cta.primary": "استعرض الإمكانيات",
     "hero.cta.secondary": "اقرأ المقالات",
     "hero.stats.years": "سنوات الخبرة",
@@ -758,7 +760,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.status.datafeed": "تغذية بيانات حية",
     "hero.status.units": "٢٤ وحدة متصلة",
     "hero.noGateway": "بدون حاجة لبوابة",
-    "hero.multiBrand": "متعدد العلامات",
+    "hero.multiBrand": "متخصص كرل",
     "hero.customizable": "قابل للتخصيص",
 
     // ── Stats ──
@@ -777,6 +779,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "features.title.part2": "التحكم بتبريدك",
     "features.subtitle": "منصة شاملة لمراقبة وتحليل وتحسين أنظمة المبردات الخاصة بك ببيانات لحظية وأتمتة ذكية.",
     "features.viewAll": "عرض جميع الإمكانيات",
+    "features.marqueeHeading": "كرل والعلامات التجارية المتوافقة",
 
     // ── Products ──
     "products.badge": "خط الإنتاج",
@@ -801,7 +804,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "howItWorks.title.part2": "الإدارة الذكية",
     "howItWorks.subtitle": "من الإعداد إلى التحكم الكامل — قم بتشغيل وتحسين أنظمة التبريد الخاصة بك في وقت قياسي.",
     "howItWorks.step1.title": "اتصال وجمع",
-    "howItWorks.step1.desc": "قم بتوصيل مبرداتك عبر Modbus أو BACnet أو بوابة IoT. تتدفق البيانات تلقائياً إلى السحابة.",
+    "howItWorks.step1.desc": "قم بتوصيل مبردات Carel الخاصة بك (pCO، c.series) عبر Modbus أو BACnet أو بوابة IoT. تتدفق البيانات تلقائياً إلى السحابة.",
     "howItWorks.step2.title": "مراقبة لحظية",
     "howItWorks.step2.desc": "لوحات المعلومات الحية تعرض كل مقياس من درجة الحرارة إلى استهلاك الطاقة في الوقت الفعلي.",
     "howItWorks.step3.title": "تحليل وتحسين",
@@ -960,8 +963,8 @@ export const translations: Record<Language, Record<string, string>> = {
     // ── Brands ──
     "brands.badge": "متوافق مع",
     "brands.title.part1": "يعمل مع",
-    "brands.title.part2": "جميع وحدات التحكم الرئيسية",
-    "brands.subtitle": "توافق مباشر مع أشهر ماركات وحدات تحكم المبردات في العالم. بدون محولات، بدون وسيط — فقط قم بالتوصيل وراقب.",
+    "brands.title.part2": "كرل وما بعدها",
+    "brands.subtitle": "تكامل عميق مع Carel وتوافق واسع مع العلامات التجارية المتعددة. اتصال مباشر بـ pCO و c.series وأكثر من ٥٠ طراز وحدة تحكم عبر ٨ علامات تجارية.",
     "brands.note": "والمزيد — إذا كانت وحدة التحكم لديك تدعم Modbus أو BACnet أو TCP/IP، فستعمل.",
 
     // ── Case Studies ──

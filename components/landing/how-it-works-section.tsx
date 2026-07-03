@@ -15,7 +15,7 @@ export function HowItWorksSection() {
       number: '01',
       icon: Database,
       title: { en: 'Connect & Collect', fa: 'اتصال و جمع‌آوری', ar: 'اتصال وجمع' },
-      desc: { en: 'Connect your chillers via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.', fa: 'چیلرهای خود را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.', ar: 'قم بتوصيل مبرداتك عبر Modbus أو BACnet أو بوابة IoT. تتدفق البيانات تلقائياً إلى السحابة.' },
+      desc: { en: 'Connect your Carel chillers (pCO, c.series) via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.', fa: 'چیلرهای Carel خود (pCO، c.series) را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.', ar: 'قم بتوصيل مبردات Carel الخاصة بك (pCO، c.series) عبر Modbus أو BACnet أو بوابة IoT. تتدفق البيانات تلقائياً إلى السحابة.' },
     },
     {
       number: '02',

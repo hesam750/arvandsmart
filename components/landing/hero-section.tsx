@@ -136,7 +136,7 @@ export function HeroSection() {
                 <Zap className="w-3 h-3" />
                 {t('hero.noGateway')}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-3/15 bg-chart-3/5 text-[11px] sm:text-xs font-medium text-chart-3 animate-pulse">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/15 bg-primary/5 text-[11px] sm:text-xs font-medium text-primary/90">
                 <Layers className="w-3 h-3" />
                 {t('hero.multiBrand')}
               </span>

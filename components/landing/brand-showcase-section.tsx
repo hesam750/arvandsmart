@@ -97,22 +97,30 @@ export function BrandShowcaseSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {brands.map((brand, i) => {
             const Icon = brand.icon
+            const isCarel = brand.name === 'Carel'
             return (
               <motion.div
                 key={brand.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.08 * i }}
-                className="group card-command p-4 sm:p-5 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-default"
+                className={`group card-command p-4 sm:p-5 hover:-translate-y-1 hover:shadow-lg transition-all cursor-default ${isCarel ? 'sm:col-span-2 lg:col-span-2 border-primary/30 shadow-primary/10 hover:shadow-primary/20' : 'hover:shadow-primary/5'}`}
                 style={{ direction: dir }}
               >
                 {/* Icon */}
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${brand.color} flex items-center justify-center mb-3 border border-border/30`}>
-                  <Icon className="w-5 h-5 text-foreground/80" />
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${brand.color} flex items-center justify-center mb-3 border ${isCarel ? 'border-primary/40 shadow-sm shadow-primary/20' : 'border-border/30'}`}>
+                  <Icon className={`w-5 h-5 ${isCarel ? 'text-primary' : 'text-foreground/80'}`} />
                 </div>
 
                 {/* Brand name */}
-                <h3 className="text-base sm:text-lg font-bold text-foreground/90 mb-1">{brand.name}</h3>
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className={`text-base sm:text-lg font-bold ${isCarel ? 'text-primary' : 'text-foreground/90'} mb-0`}>{brand.name}</h3>
+                  {isCarel && (
+                    <span className="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[9px] sm:text-[10px] font-mono text-primary tracking-wider uppercase">
+                      Primary
+                    </span>
+                  )}
+                </div>
 
                 {/* Description */}
                 <p className="text-xs sm:text-sm text-muted-foreground/70 leading-relaxed mb-3">
@@ -124,7 +132,7 @@ export function BrandShowcaseSection() {
                   {brand.protocols.map((p) => (
                     <span
                       key={p}
-                      className="px-2 py-0.5 rounded-md bg-primary/5 border border-primary/10 text-[10px] sm:text-[11px] font-mono text-primary/70"
+                      className={`px-2 py-0.5 rounded-md border text-[10px] sm:text-[11px] font-mono ${isCarel ? 'bg-primary/10 border-primary/20 text-primary' : 'bg-primary/5 border-primary/10 text-primary/70'}`}
                     >
                       {p}
                     </span>

@@ -78,10 +78,10 @@ const featuresList: FeatureData[] = [
   },
   {
     icon: Layers,
-    title: { en: 'Multi-Brand Support', fa: 'پشتیبانی از برندهای مختلف', ar: 'دعم متعدد العلامات' },
-    description: { en: 'Connect Carel, Danfoss, Microtech and more — all from a single dashboard. Not locked to one brand.', fa: 'اتصال چیلرهای Carel، Danfoss، Microtech و سایر برندها — همه از یک داشبورد. محدود به یک برند نیستید.', ar: 'قم بتوصيل Carel وDanfoss وMicrotech والمزيد — كل ذلك من لوحة تحكم واحدة. لست مقيداً بعلامة تجارية واحدة.' },
-    metric: '5+',
-    metricLabel: 'BRANDS SUPPORTED',
+    title: { en: 'Carel Expertise', fa: 'تخصص کرل', ar: 'خبرة كرل' },
+    description: { en: 'Deep integration with Carel pCO, c.series, and all programmable controllers. Plus multi-brand support for Danfoss, Microtech and more.', fa: 'یکپارچگی عمیق با Carel pCO، c.series و تمامی کنترلرهای قابل برنامه‌ریزی. به همراه پشتیبانی از برندهای Danfoss، Microtech و سایر برندها.', ar: 'تكامل عميق مع Carel pCO و c.series وجميع وحدات التحكم القابلة للبرمجة. بالإضافة إلى دعم متعدد العلامات التجارية لـ Danfoss و Microtech والمزيد.' },
+    metric: '50+',
+    metricLabel: 'CAREL MODELS',
     color: 'text-primary',
   },
   {
@@ -178,11 +178,7 @@ export function FeaturesSection() {
           className="mt-14 sm:mt-16 pt-8 sm:pt-10 border-t border-border/30"
         >
           <p className="text-center text-[10px] sm:text-xs text-muted-foreground/50 tracking-widest uppercase mb-6 sm:mb-8">
-            {language === 'fa'
-              ? 'برندهای قابل پشتیبانی'
-              : language === 'ar'
-                ? 'العلامات التجارية المدعومة'
-                : 'Supported Brands'}
+            {t('features.marqueeHeading')}
           </p>
           <div className="relative overflow-hidden marquee-holder">
             {/* Fade edges */}
