@@ -1,19 +1,18 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Zap, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export function CTASection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 8, scaleRange: [0.95, 1] })
   const { t, language } = useLanguage()
 
   return (
-    <section className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Ambient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.02] via-transparent to-primary/[0.02]" />
@@ -28,10 +27,11 @@ export function CTASection() {
         }}
       />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
@@ -75,7 +75,7 @@ export function CTASection() {
             </Link>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -1,17 +1,17 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Clock, User, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import type { Article } from '@/lib/types'
 import { getFeaturedArticles } from '@/lib/data-service'
 
 export function ArticlesSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
   const [articles, setArticles] = useState<Article[]>([])
 
@@ -35,7 +35,7 @@ export function ArticlesSection() {
   }
 
   return (
-    <section id="articles" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="articles" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
@@ -43,11 +43,12 @@ export function ArticlesSection() {
         <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
-      <div className="section-glow max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -71,7 +72,8 @@ export function ArticlesSection() {
               <motion.article
                 key={article.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="group"
               >
@@ -120,7 +122,8 @@ export function ArticlesSection() {
         {/* View All */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-center"
         >
@@ -131,7 +134,7 @@ export function ArticlesSection() {
             </Button>
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Eye, Target, ShieldCheck } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 
 const pillars = [
   {
@@ -30,19 +30,19 @@ const pillars = [
 ]
 
 export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 6, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
 
   return (
-    <section id="about" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="about" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative z-10">
         {/* Section Header — no badge, just heading for variety */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -63,7 +63,8 @@ export function AboutSection() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="card-command p-6 sm:p-8 flex flex-col group hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all"
               >
@@ -89,7 +90,7 @@ export function AboutSection() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

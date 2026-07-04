@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import {
   Cpu,
   BarChart3,
@@ -14,6 +13,7 @@ import {
   Palette,
 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { HoverEffect, type HoverItem } from '@/components/ui/card-hover-effect'
@@ -103,9 +103,8 @@ const featuresList: FeatureData[] = [
 ]
 
 export function FeaturesSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
   const { t, language } = useLanguage()
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 6, scaleRange: [0.97, 1] })
 
   const items: HoverItem[] = featuresList.map((f) => ({
     icon: f.icon,
@@ -117,7 +116,7 @@ export function FeaturesSection() {
   }))
 
   return (
-    <section id="features" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="features" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
@@ -126,7 +125,10 @@ export function FeaturesSection() {
       </div>
 
       {/* Section glow */}
-      <div className="section-glow relative z-10 max-w-7xl mx-auto">
+      <motion.div
+        style={{ rotateX, scale, y }}
+        className="section-glow relative z-10 max-w-7xl mx-auto"
+      >
         {/* Marquee keyframes */}
         <style>{`
           @keyframes marquee {
@@ -148,7 +150,8 @@ export function FeaturesSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -164,7 +167,8 @@ export function FeaturesSection() {
         {/* Hover Effect Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <HoverEffect items={items} />
@@ -173,7 +177,8 @@ export function FeaturesSection() {
         {/* Brand logos — animated loop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-14 sm:mt-16 pt-8 sm:pt-10 border-t border-border/30"
         >
@@ -235,7 +240,8 @@ export function FeaturesSection() {
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center mt-8 sm:mt-10"
         >
@@ -248,7 +254,7 @@ export function FeaturesSection() {
             </Button>
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

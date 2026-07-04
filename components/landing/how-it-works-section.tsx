@@ -1,14 +1,13 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Database, Cpu, TrendingUp, Rocket } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 
 export function HowItWorksSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
   const { t, language } = useLanguage()
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
 
   const steps = [
     {
@@ -38,15 +37,19 @@ export function HowItWorksSection() {
   ]
 
   return (
-    <section id="how-it-works" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="how-it-works" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        style={{ rotateX, scale, y }}
+        className="max-w-7xl mx-auto"
+      >
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -69,7 +72,8 @@ export function HowItWorksSection() {
               <motion.div
                 key={step.number}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: index * 0.12 }}
                 className="card-command p-6 sm:p-8 relative group hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all"
               >
@@ -94,7 +98,7 @@ export function HowItWorksSection() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

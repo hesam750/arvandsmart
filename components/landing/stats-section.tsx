@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { BarChart3, Building2, Users, TrendingUp } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 
 const stats = [
   { icon: Building2, value: '3,400+', label: { en: 'Units Connected', fa: 'دستگاه متصل', ar: 'وحدات متصلة' }, sub: { en: 'globally deployed', fa: 'مستقر در جهان', ar: 'منشورة عالمياً' } },
@@ -13,17 +13,16 @@ const stats = [
 ]
 
 export function StatsSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 4, scaleRange: [0.97, 1] })
   const { language } = useLanguage()
 
   return (
-    <section className="relative py-14 sm:py-20 px-4 overflow-hidden" ref={containerRef}>
+    <section className="relative py-14 sm:py-20 px-4 overflow-hidden" ref={scrollRef}>
       {/* Ambient line */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/20 rounded-2xl overflow-hidden border border-border/20">
           {stats.map((stat, i) => {
             const Icon = stat.icon
@@ -31,7 +30,8 @@ export function StatsSection() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-card/30 p-5 sm:p-6 md:p-8 text-center relative group hover:bg-card/50 transition-colors"
               >
@@ -47,7 +47,7 @@ export function StatsSection() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

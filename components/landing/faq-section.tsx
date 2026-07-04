@@ -1,8 +1,9 @@
 'use client'
 
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
@@ -41,23 +42,23 @@ const faqs = [
 ]
 
 export function FAQSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
   const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   const toggleIdx = (i: number) => setOpenIdx(openIdx === i ? null : i)
 
   return (
-    <section id="faq" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="faq" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="section-alt absolute inset-0 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14"
         >
@@ -78,7 +79,8 @@ export function FAQSection() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.3, delay: 0.05 * i }}
                 className={`card-command overflow-hidden transition-all duration-300 ${
                   isOpen ? 'border-primary/20 shadow-sm shadow-primary/5' : ''
@@ -127,7 +129,7 @@ export function FAQSection() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

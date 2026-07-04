@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Monitor, ArrowRight, Gauge, Cpu, Wifi, Thermometer } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
@@ -68,8 +68,7 @@ const products = [
 
 export function ProductsSection() {
   const [activeCategory, setActiveCategory] = useState('all')
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 6, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
 
   const filtered = activeCategory === 'all'
@@ -77,15 +76,16 @@ export function ProductsSection() {
     : products.filter(p => p.category === activeCategory)
 
   return (
-    <section id="products" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="products" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="section-glow max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -178,7 +178,7 @@ export function ProductsSection() {
             })}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

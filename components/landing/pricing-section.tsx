@@ -1,15 +1,15 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Check, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import Link from 'next/link'
 
 export function PricingSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 6, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
   const currencySymbol = language === 'fa' ? 'ریال' : '$'
   const priceFactor = language === 'fa' ? 1_000_000 : 1
@@ -47,14 +47,15 @@ export function PricingSection() {
   ]
 
   return (
-    <section id="pricing" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="pricing" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -102,7 +103,8 @@ export function PricingSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
               className={`card-command p-6 sm:p-8 flex flex-col relative ${
                 plan.popular ? 'ring-1 ring-primary/30 shadow-lg shadow-primary/5' : ''
@@ -173,7 +175,8 @@ export function PricingSection() {
                   <motion.li
                     key={feature}
                     initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
                     className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm"
                   >
@@ -187,7 +190,7 @@ export function PricingSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

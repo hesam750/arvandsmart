@@ -1,9 +1,10 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Phone, MapPin, Mail, Send, CheckCircle, Loader2 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -29,8 +30,7 @@ const contactInfo = [
 ]
 
 export function ContactSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -45,14 +45,15 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="contact" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="section-glow max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
@@ -76,7 +77,8 @@ export function ContactSection() {
               const content = (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="card-command p-5 sm:p-6 flex items-center gap-4 sm:gap-5 group hover:-translate-y-0.5 hover:shadow-md transition-all"
                 >
@@ -108,7 +110,8 @@ export function ContactSection() {
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="lg:col-span-3 card-command p-5 sm:p-6 md:p-8"
           >
@@ -193,7 +196,7 @@ export function ContactSection() {
             )}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

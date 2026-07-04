@@ -1,8 +1,9 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { CircuitBoard, Cpu, Wifi, Building2, Thermometer, Factory, Microchip, Zap } from 'lucide-react'
 
 const brands = [
@@ -65,22 +66,25 @@ const brands = [
 ]
 
 export function BrandShowcaseSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
   const { t, language } = useLanguage()
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
   const dir = language === 'ar' ? 'rtl' : 'ltr'
 
   return (
-    <section id="brands" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="brands" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="section-alt absolute inset-0 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div
+        style={{ rotateX, scale, y }}
+        className="max-w-7xl mx-auto relative z-10"
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14"
         >
@@ -102,7 +106,8 @@ export function BrandShowcaseSection() {
               <motion.div
                 key={brand.name}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.4, delay: 0.08 * i }}
                 className={`group card-command p-4 sm:p-5 hover:-translate-y-1 hover:shadow-lg transition-all cursor-default ${isCarel ? 'sm:col-span-2 lg:col-span-2 border-primary/30 shadow-primary/10 hover:shadow-primary/20' : 'hover:shadow-primary/5'}`}
                 style={{ direction: dir }}
@@ -146,13 +151,14 @@ export function BrandShowcaseSection() {
         {/* Bottom note */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center text-xs sm:text-sm text-muted-foreground/50 mt-6 sm:mt-8 data-text"
         >
           {t('brands.note')}
         </motion.p>
-      </div>
+      </motion.div>
     </section>
   )
 }

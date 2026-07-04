@@ -1,13 +1,13 @@
 'use client'
 
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { Calculator, TrendingDown, Leaf, DollarSign, RefreshCw } from 'lucide-react'
 
 export function ROICalculatorSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
   const { t, language } = useLanguage()
 
   const [chillers, setChillers] = useState(10)
@@ -40,14 +40,15 @@ export function ROICalculatorSection() {
   const currencySymbol = language === 'fa' ? 'تومان' : language === 'ar' ? '$' : '$'
 
   return (
-    <section id="roi-calculator" className="relative section-py px-4 overflow-hidden" ref={containerRef}>
+    <section id="roi-calculator" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14"
         >
@@ -65,7 +66,8 @@ export function ROICalculatorSection() {
           {/* Inputs */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="card-command p-5 sm:p-6 lg:p-8"
           >
@@ -165,7 +167,8 @@ export function ROICalculatorSection() {
           {/* Results */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="card-command p-5 sm:p-6 lg:p-8 flex flex-col"
           >
@@ -255,13 +258,14 @@ export function ROICalculatorSection() {
         {/* Disclaimer */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-center text-[9px] sm:text-[10px] text-muted-foreground/30 data-text mt-4 sm:mt-5 max-w-xl mx-auto"
         >
           {t('roi.disclaimer')}
         </motion.p>
-      </div>
+      </motion.div>
     </section>
   )
 }
