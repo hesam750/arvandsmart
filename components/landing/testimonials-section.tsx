@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Star } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'

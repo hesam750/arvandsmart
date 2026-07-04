@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 export function CircuitBackground() {
   const containerRef = useRef<HTMLDivElement>(null)

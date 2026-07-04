@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 import { Phone, MapPin, Mail, Send, CheckCircle, Loader2 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 
 const slides = [
   { src: '/screenshots/screen-1.png', alt: 'Arvand Smart Control — Overview' },

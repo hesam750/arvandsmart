@@ -20,7 +20,7 @@ import { Footer } from '@/components/landing/footer'
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
-      <BackgroundFan />
+      {/* <BackgroundFan /> */}
       <Navbar />
       <main>
         <HeroSection />

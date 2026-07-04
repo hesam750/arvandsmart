@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { Check, Monitor, ArrowRight, Gauge, Cpu, Wifi, Thermometer } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
