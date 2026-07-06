@@ -18,7 +18,7 @@ export const Ripple = React.memo(function Ripple({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-0 mask-[linear-gradient(to_bottom,white,transparent)] select-none",
+        "pointer-events-none absolute inset-0 select-none",
         className
       )}
       {...props}
@@ -26,13 +26,12 @@ export const Ripple = React.memo(function Ripple({
       {Array.from({ length: numCircles }, (_, i) => {
         const size = mainCircleSize + i * 70
         const opacity = mainCircleOpacity - i * 0.03
-        const animationDelay = `${i * 0.06}s`
-        const borderStyle = "solid"
+        const animationDelay = `${i * 0.12}s`
 
         return (
           <div
             key={i}
-            className={`animate-ripple bg-foreground/25 absolute rounded-full border shadow-xl`}
+            className="absolute rounded-full animate-ripple border shadow-xl"
             style={
               {
                 "--i": i,
@@ -40,9 +39,11 @@ export const Ripple = React.memo(function Ripple({
                 height: `${size}px`,
                 opacity,
                 animationDelay,
-                borderStyle,
                 borderWidth: "1px",
+                borderStyle: "solid",
                 borderColor: `var(--foreground)`,
+                background: `radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--foreground) 8%, transparent) 0%, transparent 70%)`,
+                boxShadow: `0 0 6px color-mix(in oklch, var(--foreground) 12%, transparent), inset 0 0 3px color-mix(in oklch, var(--foreground) 6%, transparent)`,
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%) scale(1)",

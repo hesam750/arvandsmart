@@ -143,7 +143,7 @@ export function CombinedBackground() {
     <div className="pointer-events-none fixed inset-0 overflow-hidden z-0" suppressHydrationWarning>
       {/* Layer 1: Fan — centered */}
       <div className="absolute inset-0 z-[1] flex items-center justify-center">
-        <div className="w-[min(35vw,400px)] h-[min(35vw,400px)] opacity-[0.35] dark:opacity-[0.20] transition-opacity duration-500">
+        <div className="w-[min(55vw,420px)] h-[min(55vw,420px)] opacity-[0.35] dark:opacity-[0.20] transition-opacity duration-500">
           <FanSVG isDark={isDark} />
         </div>
       </div>
