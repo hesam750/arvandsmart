@@ -97,6 +97,17 @@
   --color-sidebar-accent-foreground: var(--secondary-foreground);
   --color-sidebar-border: var(--border);
   --color-sidebar-ring: var(--ring);
+  --animate-ripple: ripple var(--duration,3s) ease calc(var(--i, 0)*0.15s) infinite;
+  @keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+  }
 }
 
 @layer base {
