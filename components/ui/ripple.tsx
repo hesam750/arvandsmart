@@ -46,8 +46,8 @@ export const Ripple = React.memo(function Ripple({
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%) scale(1)",
-                background: `radial-gradient(circle at 50% 50%, color-mix(in oklch, ${color} 50%, transparent) 0%, color-mix(in oklch, ${color} 30%, transparent) 50%, transparent 72%)`,
-                boxShadow: `0 0 ${blurPx * 6}px color-mix(in oklch, ${color} 35%, transparent), inset 0 0 ${blurPx * 3}px color-mix(in oklch, ${color} 25%, transparent)`,
+                background: `radial-gradient(circle at 50% 50%, color-mix(in oklch, ${color} 45%, transparent) 0%, color-mix(in oklch, ${color} 22%, transparent) 50%, transparent 72%)`,
+                boxShadow: `0 0 ${blurPx * 6}px color-mix(in oklch, ${color} 25%, transparent), inset 0 0 ${blurPx * 3}px color-mix(in oklch, ${color} 18%, transparent)`,
                 backdropFilter: `blur(${blurPx}px)`,
                 WebkitBackdropFilter: `blur(${blurPx}px)`,
               } as CSSProperties
