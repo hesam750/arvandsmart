@@ -52,9 +52,9 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Github, href: 'https://github.com/hesam750', label: 'GitHub' },
   { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/hesam-naderi-4252a4367', label: 'LinkedIn' },
 ]
 
 export function Footer() {
