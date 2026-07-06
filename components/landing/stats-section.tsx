@@ -2,14 +2,15 @@
 
 import { motion } from 'motion/react'
 import { BarChart3, Building2, Users, TrendingUp } from 'lucide-react'
+import { NumberTicker } from '@/components/ui/number-ticker'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
 
 const stats = [
-  { icon: Building2, value: '3,400+', label: { en: 'Units Connected', fa: 'دستگاه متصل', ar: 'وحدات متصلة' }, sub: { en: 'globally deployed', fa: 'مستقر در جهان', ar: 'منشورة عالمياً' } },
-  { icon: BarChart3, value: '32%', label: { en: 'Avg. Energy Savings', fa: 'میانگین صرفه‌جویی انرژی', ar: 'متوسط توفير الطاقة' }, sub: { en: 'verified reduction', fa: 'کاهش تأیید شده', ar: 'تخفيض مؤكد' } },
-  { icon: Users, value: '200+', label: { en: 'Active Clients', fa: 'مشتریان فعال', ar: 'عملاء نشطون' }, sub: { en: 'growing daily', fa: 'رشد روزافزون', ar: 'ينمو يومياً' } },
-  { icon: TrendingUp, value: '99.7%', label: { en: 'Uptime Rate', fa: 'نرخ در دسترس بودن', ar: 'معدل التشغيل' }, sub: { en: '30-day rolling', fa: 'میانگین ۳۰ روزه', ar: 'متوسط ٣٠ يوماً' } },
+  { icon: Building2, value: 3400, suffix: '+', decimalPlaces: 0, label: { en: 'Units Connected', fa: 'دستگاه متصل', ar: 'وحدات متصلة' }, sub: { en: 'globally deployed', fa: 'مستقر در جهان', ar: 'منشورة عالمياً' } },
+  { icon: BarChart3, value: 32, suffix: '%', decimalPlaces: 0, label: { en: 'Avg. Energy Savings', fa: 'میانگین صرفه‌جویی انرژی', ar: 'متوسط توفير الطاقة' }, sub: { en: 'verified reduction', fa: 'کاهش تأیید شده', ar: 'تخفيض مؤكد' } },
+  { icon: Users, value: 200, suffix: '+', decimalPlaces: 0, label: { en: 'Active Clients', fa: 'مشتریان فعال', ar: 'عملاء نشطون' }, sub: { en: 'growing daily', fa: 'رشد روزافزون', ar: 'ينمو يومياً' } },
+  { icon: TrendingUp, value: 99.7, suffix: '%', decimalPlaces: 1, label: { en: 'Uptime Rate', fa: 'نرخ در دسترس بودن', ar: 'معدل التشغيل' }, sub: { en: '30-day rolling', fa: 'میانگین ۳۰ روزه', ar: 'متوسط ٣٠ يوماً' } },
 ]
 
 export function StatsSection() {
@@ -40,7 +41,10 @@ export function StatsSection() {
                   <div className="absolute top-0 left-0 w-8 sm:w-12 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent group-hover:via-primary/60 transition-all" />
                 )}
                 <Icon className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-primary/40 mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:text-primary/60 transition-colors" />
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-0.5 sm:mb-1 font-mono tracking-tight">{stat.value}</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-0.5 sm:mb-1 font-mono tracking-tight">
+                  <NumberTicker value={stat.value} decimalPlaces={stat.decimalPlaces} className="text-foreground" />
+                  <span>{stat.suffix}</span>
+                </div>
                 <div className="text-xs sm:text-sm text-foreground/80 font-medium">{stat.label[language] || stat.label.en}</div>
                 <div className="text-[9px] sm:text-[10px] data-text text-muted-foreground/40 mt-0.5 sm:mt-1 tracking-wider">{stat.sub[language] || stat.sub.en}</div>
               </motion.div>
