@@ -152,7 +152,7 @@ export function CombinedBackground() {
       <Ripple
         mainCircleSize={40}
         mainCircleOpacity={0.2}
-        numCircles={8}
+        numCircles={5}
         className="z-[2]"
       />
 

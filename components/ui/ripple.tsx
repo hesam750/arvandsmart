@@ -31,7 +31,7 @@ export const Ripple = React.memo(function Ripple({
         return (
           <div
             key={i}
-            className="absolute rounded-full animate-ripple border shadow-xl"
+            className="absolute rounded-full animate-ripple border"
             style={
               {
                 "--i": i,
@@ -42,8 +42,7 @@ export const Ripple = React.memo(function Ripple({
                 borderWidth: "1px",
                 borderStyle: "solid",
                 borderColor: `var(--foreground)`,
-                background: `radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--foreground) 8%, transparent) 0%, transparent 70%)`,
-                boxShadow: `0 0 6px color-mix(in oklch, var(--foreground) 12%, transparent), inset 0 0 3px color-mix(in oklch, var(--foreground) 6%, transparent)`,
+                willChange: "transform, opacity",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%) scale(1)",
