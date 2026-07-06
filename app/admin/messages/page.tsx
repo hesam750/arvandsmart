@@ -1,10 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { getContactMessages, markContactRead, deleteContact } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
+import { DeleteConfirmDialog } from '@/components/ui/delete-confirm-dialog'
 import {
   MessageSquare,
   Trash2,
@@ -22,6 +23,7 @@ export default function AdminMessages() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<ContactMessage | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null)
 
   const load = async () => {
     setLoading(true)
@@ -38,7 +40,7 @@ export default function AdminMessages() {
   }
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this message?')) return
+    setDeleteTarget(null)
     await deleteContact(id)
     setSelected(null)
     load()
@@ -115,7 +117,7 @@ export default function AdminMessages() {
                     variant="ghost"
                     size="icon"
                     className="w-7 h-7 text-destructive/50 hover:text-destructive flex-shrink-0"
-                    onClick={(e) => { e.stopPropagation(); handleDelete(msg.id) }}
+                    onClick={(e) => { e.stopPropagation(); setDeleteTarget(msg.id) }}
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </Button>
@@ -151,7 +153,7 @@ export default function AdminMessages() {
                   </div>
                   {selected.phone && (
                     <div className="text-sm text-muted-foreground/60 font-mono">
-                      Phone: {selected.phone}
+                      {t('common.phoneLabel')}: {selected.phone}
                     </div>
                   )}
                   <div className="flex items-center gap-1 text-xs text-muted-foreground/40 font-mono">
@@ -163,7 +165,7 @@ export default function AdminMessages() {
                 <p className="text-sm leading-relaxed whitespace-pre-wrap text-muted-foreground/80">{selected.message}</p>
 
                 <div className="mt-6">
-                  <Button variant="destructive" size="sm" onClick={() => handleDelete(selected.id)}>
+                  <Button variant="destructive" size="sm" onClick={() => setDeleteTarget(selected.id)}>
                     <Trash2 className="w-4 h-4 me-1" />
                     {t('admin.messages.delete')}
                   </Button>
@@ -173,13 +175,22 @@ export default function AdminMessages() {
               <div className="card-command p-6 flex items-center justify-center h-48">
                 <div className="text-center">
                   <MessageSquare className="w-12 h-12 mx-auto mb-2 text-muted-foreground/20" />
-                  <p className="text-sm text-muted-foreground/50 font-mono">Select a message to view</p>
+                  <p className="text-sm text-muted-foreground/50 font-mono">{t('common.selectToView')}</p>
                 </div>
               </div>
             )}
           </div>
         </div>
       )}
+
+      <DeleteConfirmDialog
+        open={deleteTarget !== null}
+        onOpenChange={(open) => { if (!open) setDeleteTarget(null) }}
+        onConfirm={() => deleteTarget && handleDelete(deleteTarget)}
+        title={t('admin.messages.delete') + '?'}
+        cancelLabel={t('common.cancel')}
+        confirmLabel={t('common.delete')}
+      />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { getArticles, getProducts, getContactMessages, getRecentActivity } from '@/lib/data-service'
@@ -56,28 +56,28 @@ export default function AdminDashboard() {
     {
       title: t('admin.totalArticles'),
       value: stats.articles,
-      subtitle: `${stats.featuredArticles} featured`,
+      subtitle: `${stats.featuredArticles} ${t('common.featured').toLowerCase()}`,
       icon: FileText,
       href: '/admin/articles',
     },
     {
       title: t('admin.totalProducts'),
       value: stats.products,
-      subtitle: 'chiller models',
+      subtitle: t('common.chillerModels'),
       icon: Package,
       href: '/admin/products',
     },
     {
       title: t('admin.unreadMessages'),
       value: stats.unreadMessages,
-      subtitle: 'awaiting reply',
+      subtitle: t('common.awaitingReply'),
       icon: MessageSquare,
       href: '/admin/messages',
     },
     {
-      title: 'System Status',
-      value: 'Online',
-      subtitle: 'all systems operational',
+      title: t('common.systemStatus'),
+      value: t('common.online'),
+      subtitle: t('common.allSystemsOperational'),
       icon: Activity,
       href: '/admin/settings',
     },
@@ -112,7 +112,7 @@ export default function AdminDashboard() {
           <h1 className="text-2xl sm:text-3xl font-bold">{t('admin.welcome')}</h1>
         </div>
         <p className="text-muted-foreground/70 font-mono text-sm">
-          Manage your articles, products, and contact messages from this dashboard.
+          {t('admin.dashboardDesc')}
         </p>
       </motion.div>
 
@@ -205,7 +205,7 @@ export default function AdminDashboard() {
                 </motion.div>
               ))
             ) : (
-              <p className="text-sm text-muted-foreground/50 text-center py-4 font-mono">No recent activity</p>
+              <p className="text-sm text-muted-foreground/50 text-center py-4 font-mono">{t('common.noRecentActivity')}</p>
             )}
           </div>
         </motion.div>

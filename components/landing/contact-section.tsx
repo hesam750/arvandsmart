@@ -8,19 +8,20 @@ import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { submitContact } from '@/lib/data-service'
 
 const contactInfo = [
   {
     icon: Phone,
     title: { en: 'Phone', fa: 'تلفن', ar: 'هاتف' },
     value: { en: '+989021584678', fa: '+989021584678', ar: '+989021584678' },
-    href: 'tel:+989165760896',
+    href: 'tel:+989021584678',
   },
   {
     icon: Mail,
     title: { en: 'Email', fa: 'ایمیل', ar: 'بريد إلكتروني' },
-    value: { en: 'hesamnaderi75@gmail.com', fa: 'hesamnaderi75@gmail.com', ar: 'hesamnaderi75@gmail.com' },
-    href: 'hesamnaderi75@gmail.com',
+    value: { en: 'info@arvandsmartcontrol.com', fa: 'info@arvandsmartcontrol.com', ar: 'info@arvandsmartcontrol.com' },
+    href: 'mailto:info@arvandsmartcontrol.com',
   },
   {
     icon: MapPin,
@@ -34,14 +35,40 @@ export function ContactSection() {
   const { t, language } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  })
+
+  const updateField = (field: string, value: string) =>
+    setFormData(prev => ({ ...prev, [field]: value }))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setLoading(false)
-    setSubmitted(true)
+    try {
+      const res = await submitContact({
+        name: formData.name,
+        email: formData.email,
+        phone: '',
+        subject: formData.subject,
+        message: formData.message,
+      })
+      if (res.success) {
+        setSubmitted(true)
+      } else {
+        setError(res.error || t('contact.error'))
+      }
+    } catch {
+      setError(t('contact.error'))
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -133,6 +160,11 @@ export function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                {error && (
+                  <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm text-destructive text-center">
+                    {error}
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
@@ -140,6 +172,8 @@ export function ContactSection() {
                     </label>
                     <Input
                       required
+                      value={formData.name}
+                      onChange={e => updateField('name', e.target.value)}
                       placeholder={t('contact.name')}
                       className="bg-background/50 border-border/40 text-sm"
                     />
@@ -151,6 +185,8 @@ export function ContactSection() {
                     <Input
                       required
                       type="email"
+                      value={formData.email}
+                      onChange={e => updateField('email', e.target.value)}
                       placeholder={t('contact.email')}
                       className="bg-background/50 border-border/40 text-sm"
                     />
@@ -162,6 +198,8 @@ export function ContactSection() {
                     {t('contact.subject')}
                   </label>
                   <Input
+                    value={formData.subject}
+                    onChange={e => updateField('subject', e.target.value)}
                     placeholder={t('contact.subject')}
                     className="bg-background/50 border-border/40 text-sm"
                   />
@@ -174,6 +212,8 @@ export function ContactSection() {
                   <Textarea
                     required
                     rows={4}
+                    value={formData.message}
+                    onChange={e => updateField('message', e.target.value)}
                     placeholder={t('contact.message')}
                     className="bg-background/50 border-border/40 text-sm resize-none"
                   />

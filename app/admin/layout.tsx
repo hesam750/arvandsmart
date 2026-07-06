@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useAuth } from '@/lib/auth-context'
 import { ThemeLanguageSwitcher } from '@/components/landing/theme-language-switcher'
@@ -32,6 +32,7 @@ export default function AdminLayout({
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { t, dir } = useLanguage()
@@ -39,6 +40,10 @@ export default function AdminLayout({
 
   useEffect(() => {
     setIsMounted(true)
+    setIsDesktop(window.innerWidth >= 1024)
+    const onResize = () => setIsDesktop(window.innerWidth >= 1024)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
   }, [])
 
   useEffect(() => {
@@ -269,7 +274,7 @@ export default function AdminLayout({
       <motion.main
         initial={false}
         animate={{
-          marginInlineStart: isMounted && window.innerWidth >= 1024
+          marginInlineStart: isDesktop
             ? (isSidebarOpen ? 280 : 80)
             : 0,
         }}

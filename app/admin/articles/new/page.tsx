@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { createArticle } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
@@ -326,7 +326,7 @@ export default function NewArticle() {
             ) : (
               <Save className="w-4 h-4" />
             )}
-            {saving ? 'Saving...' : t('common.save')}
+            {saving ? t('common.saving') : t('common.save')}
           </Button>
           <Link href="/admin/articles">
             <Button type="button" variant="outline" className="border-border/40">

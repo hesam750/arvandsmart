@@ -158,7 +158,7 @@
 
   /* Section spacing — compact */
   .section-py {
-    @apply py-8 sm:py-10 lg:py-14;
+    @apply py-6 sm:py-8 lg:py-10;
   }
 
   /* Alternating section background tint — creates visual rhythm */

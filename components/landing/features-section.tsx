@@ -197,9 +197,9 @@ export function FeaturesSection() {
                 { src: '/logo/Danfoss.png', name: 'Danfoss' },
                 { src: '/logo/Microtech.png', name: 'Microtech' },
                 { src: '/logo/Siemens.jpg', name: 'Siemens' },
-                { src: '/logo/LG%20Electronics.jpg', name: 'LG' },
+                { src: '/logo/LG-Electronics.jpg', name: 'LG' },
                 { src: '/logo/Schneider.png', name: 'Schneider' },
-                { src: '/logo/Johnson%20Controls.png', name: 'Johnson Controls' },
+                { src: '/logo/Johnson-Controls.png', name: 'Johnson Controls' },
                 { src: '/logo/Honeywell.jpg', name: 'Honeywell' },
               ].map((brand) => (
                 <div key={brand.name} className="flex items-center justify-center h-8 sm:h-10 mx-5 sm:mx-8 grayscale opacity-40 transition-all duration-500 marquee-logo">
@@ -218,9 +218,9 @@ export function FeaturesSection() {
                 { src: '/logo/Danfoss.png', name: 'Danfoss' },
                 { src: '/logo/Microtech.png', name: 'Microtech' },
                 { src: '/logo/Siemens.jpg', name: 'Siemens' },
-                { src: '/logo/LG%20Electronics.jpg', name: 'LG' },
+                { src: '/logo/LG-Electronics.jpg', name: 'LG' },
                 { src: '/logo/Schneider.png', name: 'Schneider' },
-                { src: '/logo/Johnson%20Controls.png', name: 'Johnson Controls' },
+                { src: '/logo/Johnson-Controls.png', name: 'Johnson Controls' },
                 { src: '/logo/Honeywell.jpg', name: 'Honeywell' },
               ].map((brand) => (
                 <div key={`dup-${brand.name}`} className="flex items-center justify-center h-8 sm:h-10 mx-5 sm:mx-8 grayscale opacity-40 transition-all duration-500 marquee-logo">

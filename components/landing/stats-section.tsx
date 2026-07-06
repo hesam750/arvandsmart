@@ -17,7 +17,7 @@ export function StatsSection() {
   const { language } = useLanguage()
 
   return (
-    <section className="relative py-14 sm:py-20 px-4 overflow-hidden" ref={scrollRef}>
+    <section className="relative py-10 sm:py-14 px-4 overflow-hidden" ref={scrollRef}>
       {/* Ambient line */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />

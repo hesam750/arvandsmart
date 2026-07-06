@@ -4,6 +4,7 @@ import { Vazirmatn } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Providers } from '@/components/providers/providers'
+import { PreloaderProvider } from '@/components/providers/preloader-provider'
 
 const inter = localFont({
   src: './fonts/InterVariable.ttf',
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fa" suppressHydrationWarning className="bg-background">
       <body className={`${inter.variable} ${vazirmatn.variable} font-sans antialiased bg-background text-foreground`}>
         <Providers>
-          {children}
+          <PreloaderProvider>
+            {children}
+          </PreloaderProvider>
         </Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

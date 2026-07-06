@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { getArticles, deleteArticle } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
+import { DeleteConfirmDialog } from '@/components/ui/delete-confirm-dialog'
 import {
   FileText,
   Plus,
@@ -22,6 +23,7 @@ export default function AdminArticles() {
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null)
 
   const load = async () => {
     setLoading(true)
@@ -33,7 +35,7 @@ export default function AdminArticles() {
   useEffect(() => { load() }, [])
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this article?')) return
+    setDeleteTarget(null)
     await deleteArticle(id)
     load()
   }
@@ -130,7 +132,7 @@ export default function AdminArticles() {
                       <Edit3 className="w-4 h-4" />
                     </Button>
                   </Link>
-                  <Button variant="ghost" size="icon" className="w-8 h-8 text-destructive/50 hover:text-destructive" onClick={() => handleDelete(article.id)}>
+                  <Button variant="ghost" size="icon" className="w-8 h-8 text-destructive/50 hover:text-destructive" onClick={() => setDeleteTarget(article.id)}>
                     <Trash2 className="w-4 h-4" />
                   </Button>
                 </div>
@@ -139,6 +141,15 @@ export default function AdminArticles() {
           ))}
         </div>
       )}
+
+      <DeleteConfirmDialog
+        open={deleteTarget !== null}
+        onOpenChange={(open) => { if (!open) setDeleteTarget(null) }}
+        onConfirm={() => deleteTarget && handleDelete(deleteTarget)}
+        title={t('admin.articles.delete') + '?'}
+        cancelLabel={t('common.cancel')}
+        confirmLabel={t('common.delete')}
+      />
     </div>
   )
 }

@@ -12,10 +12,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-const VALID_CREDENTIALS = {
-  username: 'admin',
-  password: 'Arvand@1403',
-}
+const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'Arvand@1403'
 
 export function useAuth() {
   const context = useContext(AuthContext)
@@ -49,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const login = useCallback(async (username: string, password: string): Promise<boolean> => {
-    if (username === VALID_CREDENTIALS.username && password === VALID_CREDENTIALS.password) {
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       const data = {
         username,
         role: 'admin',

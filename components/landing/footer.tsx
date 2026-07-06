@@ -65,7 +65,7 @@ export function Footer() {
       {/* Top gradient line */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10">
         {/* Top section: Logo + Social */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-14">
           <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">

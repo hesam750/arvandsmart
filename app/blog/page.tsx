@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { getArticles } from '@/lib/data-service'
