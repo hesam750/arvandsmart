@@ -24,6 +24,8 @@ export function StatsSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
       <motion.div style={{ rotateX, scale, y }} className="max-w-7xl mx-auto relative">
+        {/* Screen-reader heading for SEO/accessibility */}
+        <h2 className="sr-only">ArvandSmartControl — Key Performance Metrics</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/20 rounded-2xl overflow-hidden border border-border/20">
           {stats.map((stat, i) => {
             const Icon = stat.icon

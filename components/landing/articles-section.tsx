@@ -58,7 +58,7 @@ export function ArticlesSection() {
           </span> */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
             <span className="text-foreground">{t('articles.title.part1')}</span>{' '}
-            <span className="text-primary block sm:inline">{t('products.title.part2')}</span>
+            <span className="text-primary block sm:inline">{t('articles.title.part2')}</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono px-2 sm:px-0">
             {t('articles.subtitle')}
