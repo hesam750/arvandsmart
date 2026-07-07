@@ -18,7 +18,7 @@ import {
 import type { Article } from '@/lib/types'
 
 export default function BlogPage() {
-  const { t, language } = useLanguage()
+  const { t, language, dir } = useLanguage()
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -30,6 +30,45 @@ export default function BlogPage() {
       setLoading(false)
     })
   }, [])
+
+  // Dynamic page title + meta description for SEO
+  useEffect(() => {
+    document.title = `${t('blog.title')} | ArvandSmartControl`
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta')
+      metaDesc.setAttribute('name', 'description')
+      document.head.appendChild(metaDesc)
+    }
+    metaDesc.setAttribute('content', t('blog.subtitle'))
+    // Inject BlogPosting JSON-LD for the listing page
+    const existing = document.getElementById('blog-listing-ld-json')
+    if (existing) existing.remove()
+    const script = document.createElement('script')
+    script.id = 'blog-listing-ld-json'
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: t('blog.title'),
+      description: t('blog.subtitle'),
+      url: window.location.href,
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: articles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${window.location.origin}/blog/${a.slug}`,
+        })),
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'ArvandSmartControl',
+        url: window.location.origin,
+      },
+    })
+    document.head.appendChild(script)
+  }, [articles, t])
 
   const categories = [
     { id: 'all', label: t('common.viewAll') },

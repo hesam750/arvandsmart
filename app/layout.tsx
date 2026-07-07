@@ -114,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: SITE_NAME,
               alternateName: ['Arvand Smart Control', 'اروند اسمارت کنترل'],
               url: BASE_URL,
-              logo: `${BASE_URL}/logo.png`,
+              logo: `${BASE_URL}/icon.svg`,
               description: SITE_DESCRIPTION,
               foundingDate: '2020',
               contactPoint: {
@@ -301,6 +301,71 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 bestRating: '5',
                 ratingCount: '127',
                 reviewCount: '127',
+              },
+            }),
+          }}
+        />
+        {/* LocalBusiness schema */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'ArvandSmartControl | اروند اسمارت کنترل',
+              description: 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه',
+              url: BASE_URL,
+              telephone: '+98-21-12345678',
+              areaServed: 'IR',
+              availableLanguage: ['Persian', 'English', 'Arabic'],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+98-21-12345678',
+                contactType: 'customer service',
+                availableLanguage: ['Persian', 'English', 'Arabic'],
+              },
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'IR',
+              },
+            }),
+          }}
+        />
+        {/* Review schema (aggregated from testimonials) */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              name: 'ArvandSmartControl Platform',
+              review: [
+                {
+                  '@type': 'Review',
+                  author: { '@type': 'Person', name: 'Mohammad Rezaei' },
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  reviewBody: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.',
+                },
+                {
+                  '@type': 'Review',
+                  author: { '@type': 'Person', name: 'Sara Ahmadi' },
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  reviewBody: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.',
+                },
+                {
+                  '@type': 'Review',
+                  author: { '@type': 'Person', name: 'Ali Karimi' },
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  reviewBody: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.',
+                },
+              ],
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.8',
+                bestRating: '5',
+                ratingCount: '127',
               },
             }),
           }}

@@ -34,6 +34,28 @@ export default function BlogDetailPage() {
     getArticleBySlug(slug).then(res => {
       if (res.success && res.data) {
         setArticle(res.data)
+        // Inject Article JSON-LD for SEO
+        const existing = document.getElementById('article-ld-json')
+        if (existing) existing.remove()
+        const script = document.createElement('script')
+        script.id = 'article-ld-json'
+        script.type = 'application/ld+json'
+        script.textContent = JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: res.data.title,
+          description: res.data.excerpt,
+          author: { '@type': 'Person', name: res.data.author },
+          datePublished: res.data.publishedAt,
+          image: `${window.location.origin}/og-image.png`,
+          publisher: {
+            '@type': 'Organization',
+            name: 'ArvandSmartControl',
+            logo: { '@type': 'ImageObject', url: `${window.location.origin}/icon.svg` },
+          },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': window.location.href },
+        })
+        document.head.appendChild(script)
         // Load related articles from same category
         getArticles().then(rel => {
           if (rel.success && rel.data) {
