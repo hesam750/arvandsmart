@@ -57,7 +57,12 @@ export function LanguageProvider({ children, translations }: LanguageProviderPro
   }, [dir, language, mounted])
 
   if (!mounted) {
-    return null
+    // SSR: render with default language so page content appears in HTML
+    return (
+      <LanguageContext.Provider value={{ language, setLanguage, dir: language === "en" ? "ltr" : "rtl", t }}>
+        {children}
+      </LanguageContext.Provider>
+    )
   }
 
   return (

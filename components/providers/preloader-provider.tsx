@@ -12,8 +12,8 @@ export function PreloaderProvider({ children }: { children: React.ReactNode }) {
     setMounted(true)
   }, [])
 
-  // During SSR / first paint, show nothing to avoid flash
-  if (!mounted) return null
+  // During SSR / first paint, render children directly so content appears in HTML
+  if (!mounted) return <>{children}</>
 
   return (
     <>
