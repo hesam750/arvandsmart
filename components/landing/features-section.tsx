@@ -208,6 +208,7 @@ export function FeaturesSection() {
                     alt={brand.name}
                     className="h-full w-auto object-contain"
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
                   />
                 </div>
@@ -227,6 +228,7 @@ export function FeaturesSection() {
                   <img
                     src={brand.src}
                     alt={brand.name}
+                    decoding="async"
                     className="h-full w-auto object-contain"
                     loading="lazy"
                     draggable={false}

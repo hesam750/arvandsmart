@@ -223,6 +223,8 @@ export default function BlogDetailPage() {
                 src={article.coverImage}
                 alt={getTitle(article)}
                 className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           )}

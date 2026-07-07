@@ -174,6 +174,8 @@ export const Lid = ({
             src={src as string}
             alt="Arvand Smart Control Dashboard"
             className="absolute inset-0 h-full w-full rounded-[13px] object-cover object-left-top"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </motion.div>

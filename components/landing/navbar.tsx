@@ -111,7 +111,7 @@ export function Navbar() {
             </Link>
 
             {/* Desktop nav (hidden below md) */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
               {navItems.map((item) => (
                 <Link key={item.name} href={item.href}
                   className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
@@ -155,6 +155,8 @@ export function Navbar() {
                   opacity: { duration: 0.2 },
                 }}
                 className="md:hidden overflow-hidden"
+                role="navigation"
+                aria-label="Mobile navigation"
               >
                 <div ref={menuContentRef} className="py-3 space-y-0.5 border-t border-border/50">
                   {navItems.map((item) => (

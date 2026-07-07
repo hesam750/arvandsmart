@@ -391,11 +391,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
-        {/* Preconnect to critical origins */}
+        {/* Preload critical fonts */}
+        <link rel="preload" href="/fonts/InterVariable.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* DNS prefetch for analytics */}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" as="style" />
+        {/* DNS prefetch for critical origins */}
         <link rel="dns-prefetch" href="https://vercel.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       </head>
       <body
         className={`${inter.variable} ${vazirmatn.variable} font-sans antialiased bg-background text-foreground`}
