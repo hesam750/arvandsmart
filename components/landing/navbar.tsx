@@ -11,7 +11,7 @@ import { ThemeLanguageSwitcher } from './theme-language-switcher'
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { t } = useLanguage()
+  const { t, dir } = useLanguage()
   const close = () => setIsOpen(false)
   const toggle = () => setIsOpen((p) => !p)
 
@@ -86,6 +86,7 @@ export function Navbar() {
       </AnimatePresence>
 
       <motion.header
+        dir={dir}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
