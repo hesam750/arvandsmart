@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/providers/theme-provider'
 import { Ripple } from '@/components/ui/ripple'
 
 /* ─── Theme-aware fan SVG ─── */
@@ -124,8 +124,8 @@ function FanSVG({ isDark }: { isDark: boolean }) {
 /* ─── Combined Background (just the fan + vignette) ─── */
 export function CombinedBackground() {
   const [mounted, setIsMounted] = useState(false)
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === 'dark'
 
   useEffect(() => { setIsMounted(true) }, [])
 

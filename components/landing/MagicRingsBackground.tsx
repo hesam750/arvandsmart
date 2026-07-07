@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/providers/theme-provider'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -109,7 +109,7 @@ function Scene3DLayer({ mouse, scroll }: { mouse: React.MutableRefObject<[number
 /* ─── Fan SVG with 3D mouse-follow tilt ─── */
 function FanInCenter() {
   const [isMounted, setIsMounted] = useState(false)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   useEffect(() => { setIsMounted(true) }, [])
 
   // 3D tilt via motion values
@@ -127,7 +127,7 @@ function FanInCenter() {
   }
   const handleMouseLeave = () => { tiltX.set(0.5); tiltY.set(0.5) }
 
-  const isDark = theme === 'dark'
+  const isDark = resolvedTheme === 'dark'
 
   // Colors for dark/light
   const c = isDark

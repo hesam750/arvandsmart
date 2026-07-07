@@ -103,6 +103,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fa" suppressHydrationWarning className="bg-background">
       <head>
+        {/* Flash-prevention theme script — runs before React hydration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function() {
+              try {
+                var t = localStorage.getItem('theme');
+                var s = t === 'system' || !t;
+                var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                var r = s ? d : t;
+                if (r === 'dark' || r === 'light') {
+                  document.documentElement.classList.add(r);
+                  document.documentElement.style.colorScheme = r;
+                }
+              } catch(e) {}
+            })();
+            `,
+          }}
+        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

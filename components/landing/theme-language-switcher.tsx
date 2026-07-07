@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/providers/theme-provider"
 import { useLanguage, type Language } from "@/lib/i18n/language-context"
 import { Sun, Moon, Globe, Check } from "lucide-react"
 
@@ -13,9 +13,12 @@ const languages: { code: Language; name: string; nativeName: string }[] = [
 ]
 
 export function ThemeLanguageSwitcher() {
-  const { theme, setTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme()
   const { language, setLanguage } = useLanguage()
   const [isLangOpen, setIsLangOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   const currentLang = languages.find((l) => l.code === language)
 
@@ -29,29 +32,33 @@ export function ThemeLanguageSwitcher() {
         className="relative flex h-9 w-9 items-center justify-center rounded-lg border bg-card transition-colors hover:bg-secondary"
         aria-label="Toggle theme"
       >
-        <AnimatePresence mode="wait">
-          {theme === "dark" ? (
-            <motion.div
-              key="moon"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Moon className="h-4 w-4 text-foreground" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="sun"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Sun className="h-4 w-4 text-foreground" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {mounted ? (
+          <AnimatePresence mode="wait">
+            {resolvedTheme === "dark" ? (
+              <motion.div
+                key="moon"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Moon className="h-4 w-4 text-foreground" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="sun"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Sun className="h-4 w-4 text-foreground" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        ) : (
+          <Sun className="h-4 w-4 text-foreground" />
+        )}
       </motion.button>
 
       {/* Language Switcher */}

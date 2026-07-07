@@ -7,12 +7,7 @@ import { translations } from "@/lib/i18n/translations"
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-      disableTransitionOnChange
-    >
+    <ThemeProvider>
       <LanguageProvider translations={translations}>
         <AuthProvider>
           {children}
