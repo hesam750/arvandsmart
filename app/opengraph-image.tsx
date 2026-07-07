@@ -7,14 +7,23 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function OGImage() {
-  // Load Persian/English font
+  // Load BYekan locally (48 KB — small enough)
   const byekan = fetch(
     new URL('@/app/fonts/BYekan.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer())
 
-  const inter = fetch(
-    new URL('@/app/fonts/InterVariable.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
+  // Fetch Inter from Google Fonts CDN at runtime so it doesn't bloat the edge bundle
+  // Only the weights we need: 400 (body), 600 (brand)
+  const [inter400, inter600] = await Promise.all([
+    fetch(
+      'https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q5n-wU.woff2',
+      { headers: { 'User-Agent': 'Mozilla/5.0' } },
+    ).then((r) => r.arrayBuffer()),
+    fetch(
+      'https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2pL7W0Q5n-wU.woff2',
+      { headers: { 'User-Agent': 'Mozilla/5.0' } },
+    ).then((r) => r.arrayBuffer()),
+  ])
 
   try {
     return new ImageResponse(
@@ -135,7 +144,7 @@ export default async function OGImage() {
                 style={{
                   fontSize: 28,
                   fontFamily: '"Inter"',
-                  fontWeight: 300,
+                  fontWeight: 400,
                   color: '#60a5fa',
                   letterSpacing: '0.03em',
                 }}
@@ -224,8 +233,14 @@ export default async function OGImage() {
         fonts: [
           {
             name: 'Inter',
-            data: await inter,
+            data: await inter400,
             weight: 400,
+            style: 'normal',
+          },
+          {
+            name: 'Inter',
+            data: await inter600,
+            weight: 600,
             style: 'normal',
           },
           {
