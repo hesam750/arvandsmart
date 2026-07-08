@@ -96,22 +96,8 @@ export function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg group-hover:bg-primary/30 transition-all" />
-                <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/30">
-                  <Monitor className="w-4 h-4 text-primary" />
-                </div>
-              </div>
-              <div className="hidden xs:block">
-                <span className="text-sm font-bold tracking-tight">Arvand</span>
-                <span className="text-sm font-bold text-primary">SmartControl</span>
-              </div>
-            </Link>
-
-            {/* Desktop nav (hidden below md) */}
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+            {/* Desktop nav — order-1 = at start side (left in LTR, right in RTL) */}
+            <nav className="hidden md:flex items-center gap-1 order-1" aria-label="Main navigation">
               {navItems.map((item) => (
                 <Link key={item.name} href={item.href}
                   className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
@@ -127,8 +113,22 @@ export function Navbar() {
               </div>
             </nav>
 
-            {/* Mobile hamburger */}
-            <div className="flex md:hidden items-center gap-1">
+            {/* Logo — order-1 on mobile (start), order-3 on desktop (end) */}
+            <Link href="/" className="flex items-center gap-2.5 group order-1 md:order-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg group-hover:bg-primary/30 transition-all" />
+                <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/30">
+                  <Monitor className="w-4 h-4 text-primary" />
+                </div>
+              </div>
+              <div className="hidden xs:block">
+                <span className="text-sm font-bold tracking-tight">Arvand</span>
+                <span className="text-sm font-bold text-primary">SmartControl</span>
+              </div>
+            </Link>
+
+            {/* Mobile hamburger — order-3 on mobile (end) */}
+            <div className="flex md:hidden items-center gap-1 order-3">
               <ThemeLanguageSwitcher />
               <Button
                 variant="ghost"
