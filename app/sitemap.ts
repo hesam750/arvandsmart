@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import articlesData from '@/data/articles.json'
 
-const BASE_URL = 'https://arvandsmart.com'
+const BASE_URL = 'https://arvandsmart.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic blog slugs from data

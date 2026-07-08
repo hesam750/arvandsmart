@@ -1,6 +1,6 @@
 'use client'
 
-import { Monitor, Github, Linkedin, Twitter } from 'lucide-react'
+import { Monitor, Github, Linkedin } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import Link from 'next/link'
 
@@ -22,9 +22,9 @@ const footerLinks = [
     titleAr: 'الشركة',
     links: [
       { label: 'About', label_fa: 'درباره ما', href: '#about', tKey: 'footer.about' },
-      { label: 'Blog', label_fa: 'وبلاگ', href: '#articles', tKey: 'footer.articles' },
-      { label: 'Careers', label_fa: 'فرصت‌های شغلی', href: '#', tKey: 'footer.careers' },
+      { label: 'Blog', label_fa: 'وبلاگ', href: '/blog', tKey: 'footer.articles' },
       { label: 'Contact', label_fa: 'تماس', href: '#contact', tKey: 'footer.contact' },
+      { label: 'Support', label_fa: 'پشتیبانی', href: '#contact', tKey: 'footer.support' },
     ],
   },
   {
@@ -32,28 +32,13 @@ const footerLinks = [
     title_fa: 'منابع',
     titleAr: 'الموارد',
     links: [
-      { label: 'Documentation', label_fa: 'مستندات', href: '#', tKey: 'footer.link.documentation' },
-      { label: 'API Reference', label_fa: 'مرجع API', href: '#', tKey: 'footer.link.api' },
-      { label: 'Support', label_fa: 'پشتیبانی', href: '#contact', tKey: 'footer.support' },
-      { label: 'Status', label_fa: 'وضعیت', href: '#', tKey: 'footer.link.status' },
-    ],
-  },
-  {
-    title: 'Legal',
-    title_fa: 'قانونی',
-    titleAr: 'القانوني',
-    links: [
-      { label: 'Privacy Policy', label_fa: 'حریم خصوصی', href: '#', tKey: 'footer.privacy' },
-      { label: 'Terms of Service', label_fa: 'شرایط استفاده', href: '#', tKey: 'footer.terms' },
-      { label: 'Cookie Policy', label_fa: 'سیاست کوکی', href: '#', tKey: 'footer.link.cookie' },
-      { label: 'License', label_fa: 'مجوز', href: '#', tKey: 'footer.link.license' },
+      { label: 'FAQ', label_fa: 'سوالات متداول', href: '#faq', tKey: 'footer.link.faq' },
     ],
   },
 ]
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/hesam750', label: 'GitHub' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/hesam-naderi-4252a4367', label: 'LinkedIn' },
 ]
 

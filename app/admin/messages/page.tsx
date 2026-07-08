@@ -68,7 +68,7 @@ export default function AdminMessages() {
 
       {/* Search */}
       <div className="relative max-w-md">
-        <Search className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/40" />
+        <Search className="absolute inset-s-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/40" />
         <input
           value={search}
           onChange={e => setSearch(e.target.value)}

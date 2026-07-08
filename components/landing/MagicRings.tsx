@@ -88,8 +88,8 @@ export default function MagicRings({
   parallax = 0.05,
   clickBurst = false,
 }) {
-  const mountRef = useRef(null)
-  const propsRef = useRef(null)
+  const mountRef = useRef<HTMLDivElement>(null)
+  const propsRef = useRef<any>(null)
   const mouseRef = useRef([0, 0])
   const smoothMouseRef = useRef([0, 0])
   const hoverAmountRef = useRef(0)
@@ -169,7 +169,7 @@ export default function MagicRings({
     const ro = new ResizeObserver(resize)
     ro.observe(mount)
 
-    const onMouseMove = (e) => {
+    const onMouseMove = (e: MouseEvent) => {
       const rect = mount.getBoundingClientRect()
       mouseRef.current[0] = (e.clientX - rect.left) / rect.width - 0.5
       mouseRef.current[1] = -((e.clientY - rect.top) / rect.height - 0.5)
@@ -187,8 +187,8 @@ export default function MagicRings({
     mount.addEventListener('mouseleave', onMouseLeave)
     mount.addEventListener('click', onClick)
 
-    let frameId
-    const animate = (t) => {
+    let frameId: number
+    const animate = (t: number) => {
       frameId = requestAnimationFrame(animate)
       const p = propsRef.current
 

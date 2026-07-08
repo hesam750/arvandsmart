@@ -110,6 +110,10 @@
 }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-ripple { animation: none; opacity: 0.08; }
+}
+
 @layer base {
   * { @apply border-border outline-ring/50; }
   html { scroll-behavior: smooth; }

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { CombinedBackground } from '@/components/landing/combined-background'
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/landing/navbar'
 import { HeroSection } from '@/components/landing/hero-section'
 import { FeaturesSection } from '@/components/landing/features-section'
@@ -23,13 +23,29 @@ const TestimonialsSection = dynamic(
   { loading: () => <div className="h-64" aria-hidden="true" /> },
 )
 
+const LANDING_DESCRIPTION = 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل مصرف انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه برای چیلرهای Carel، Danfoss، Microtech و سایر برندها. بدون نیاز به گیت‌وی، اتصال مستقیم TCP/IP.'
+
+export const metadata: Metadata = {
+  title: 'ArvandSmartControl | پلتفرم هوشمند پایش و کنترل چیلر',
+  description: LANDING_DESCRIPTION,
+  openGraph: {
+    title: 'ArvandSmartControl | پلتفرم هوشمند پایش و کنترل چیلر',
+    description: LANDING_DESCRIPTION,
+    url: 'https://arvandsmart.vercel.app',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ArvandSmartControl | پلتفرم هوشمند پایش و کنترل چیلر',
+    description: LANDING_DESCRIPTION,
+  },
+}
+
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:outline-none">
         Skip to main content
       </a>
-      <CombinedBackground />
       <Navbar />
       <main id="main-content">
         <HeroSection />

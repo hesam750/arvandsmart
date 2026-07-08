@@ -83,8 +83,8 @@ function Particles({ mouse }: { mouse: React.MutableRefObject<[number, number]> 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={PARTICLE_COUNT} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-color" count={PARTICLE_COUNT} array={colors} itemSize={3} />
+        <bufferAttribute attach="attributes-position" count={PARTICLE_COUNT} array={positions} itemSize={3} args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" count={PARTICLE_COUNT} array={colors} itemSize={3} args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial size={0.06} vertexColors transparent opacity={0.6} sizeAttenuation blending={THREE.AdditiveBlending} depthWrite={false} />
     </points>
@@ -154,10 +154,10 @@ function FanInCenter() {
         suppressHydrationWarning
       >
         {/* 3D depth layers: back glow */}
-        <div className="absolute inset-[15%] rounded-full bg-gradient-to-br from-primary/5 via-chart-2/5 to-transparent blur-3xl animate-pulse" style={{ translateZ: '-20px' }} />
+        <div className="absolute inset-[15%] rounded-full bg-gradient-to-br from-primary/5 via-chart-2/5 to-transparent blur-3xl animate-pulse" style={{ transform: 'translateZ(-20px)' }} />
 
         {/* 3D depth layers: SVG fan at z=0 */}
-        <div style={{ translateZ: '0px' }}>
+        <div style={{ transform: 'translateZ(0px)' }}>
           <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" className="w-full h-full relative z-10">
             <defs>
               <linearGradient id="fanMetal" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -221,7 +221,7 @@ function FanInCenter() {
         </div>
 
         {/* 3D depth layers: front glow */}
-        <div className="absolute inset-[30%] rounded-full bg-gradient-to-br from-primary/5 to-chart-2/5 blur-2xl animate-pulse" style={{ translateZ: '15px', animationDelay: '2s' }} />
+        <div className="absolute inset-[30%] rounded-full bg-gradient-to-br from-primary/5 to-chart-2/5 blur-2xl animate-pulse" style={{ transform: 'translateZ(15px)', animationDelay: '2s' }} />
       </motion.div>
     </div>
   )

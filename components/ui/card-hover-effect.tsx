@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import { useState, type ElementType } from "react";
+import { useState } from "react";
 
 export interface HoverItem {
   title: string;
   description: string;
   link?: string;
-  icon?: ElementType;
+  icon?: React.ComponentType<{ className?: string }>;
   metric?: string;
   metricLabel?: string;
   color?: string;
@@ -107,9 +107,9 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-foreground/90 font-bold tracking-wide mt-4 text-sm sm:text-base", className)}>
+    <h3 className={cn("text-foreground/90 font-bold tracking-wide mt-4 text-sm sm:text-base", className)}>
       {children}
-    </h4>
+    </h3>
   );
 };
 

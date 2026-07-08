@@ -7,33 +7,45 @@ import { useScroll3D } from '@/hooks/use-scroll-3d'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 
+function AvatarCircle({ name, bgColor }: { name: string; bgColor: string }) {
+  const initial = name.charAt(0).toUpperCase()
+  return (
+    <div
+      className="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
+      style={{ backgroundColor: bgColor }}
+    >
+      {initial}
+    </div>
+  )
+}
+
 const testimonials = [
   {
     name: 'Mohammad Rezaei',
     role: { en: 'Facility Manager', fa: 'مدیر تأسیسات', ar: 'مدير المرافق' },
     company: { en: 'Tehran Commercial Complex', fa: 'مجتمع تجاری تهران', ar: 'المجمع التجاري بطهران' },
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    avatarColor: '#3b82f6',
     quote: { en: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.', fa: 'ارونداسمارت‌کنترل نحوه مدیریت سیستم‌های سرمایشی ما را متحول کرد. در سه ماه اول ۲۸٪ هزینه انرژی را کاهش دادیم.', ar: 'أرواند سمارت كونترول غيرت طريقة إدارة أنظمة التبريد لدينا. خفضنا تكاليف الطاقة بنسبة ٢٨٪ في الأشهر الثلاثة الأولى.' },
   },
   {
     name: 'Sara Ahmadi',
     role: { en: 'Chief Engineer', fa: 'مهندس ارشد', ar: 'كبير المهندسين' },
     company: { en: 'Pars Hospital', fa: 'بیمارستان پارس', ar: 'مستشفى بارس' },
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
+    avatarColor: '#8b5cf6',
     quote: { en: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.', fa: 'ویژگی نگهداری پیش‌بینانه یک تغییر بزرگ است. یک خرابی بحرانی کمپرسور را قبل از وقوع تشخیص دادیم.', ar: 'ميزة الصيانة التنبؤية هي تغيير جذري. اكتشفنا عطلاً حرجاً في الضاغط قبل حدوثه.' },
   },
   {
     name: 'Ali Karimi',
     role: { en: 'Technical Director', fa: 'مدیر فنی', ar: 'المدير الفني' },
     company: { en: 'Kish Hotel', fa: 'هتل کیش', ar: 'فندق كيش' },
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
+    avatarColor: '#10b981',
     quote: { en: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.', fa: 'داشتن تمام چیلرهای ما روی یک داشبورد با داده‌های لحظه‌ای فوق‌العاده است. تشخیص ناهنجاری به محض بروز مشکل هشدار می‌دهد.', ar: 'وجود جميع مبرداتنا على لوحة تحكم واحدة ببيانات لحظية أمر لا يصدق. كشف الشذوذ ينبهنا فوراً.' },
   },
   {
     name: 'Fatemeh Hosseini',
     role: { en: 'Energy Manager', fa: 'مدیر انرژی', ar: 'مدير الطاقة' },
     company: { en: 'Iran Mall', fa: 'ایران مال', ar: 'إيران مول' },
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    avatarColor: '#f59e0b',
     quote: { en: 'The energy analytics module helped us identify inefficiencies we didn\'t know existed. We saved 35% on cooling costs.', fa: 'ماژول تحلیل انرژی به ما کمک کرد ناکارآمدی‌هایی را که نمی‌دانستیم شناسایی کنیم. ۳۵٪ در هزینه‌های سرمایش صرفه‌جویی کردیم.', ar: 'وحدة تحليلات الطاقة ساعدتنا في تحديد أوجه القصور التي لم نكن نعرفها. وفرنا ٣٥٪ على تكاليف التبريد.' },
   },
 ]
@@ -101,14 +113,7 @@ export function TestimonialsSection() {
                     &ldquo;{testimonial.quote[language] || testimonial.quote.en}&rdquo;
                   </p>
                   <div className="flex items-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border/40">
-                    <div className="w-9 sm:w-11 h-9 sm:h-11 rounded-full overflow-hidden bg-secondary ring-1 ring-border/50 flex-shrink-0">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+                    <AvatarCircle name={testimonial.name} bgColor={testimonial.avatarColor} />
                     <div className="min-w-0">
                       <div className="font-semibold text-xs sm:text-sm text-foreground/80 truncate">{testimonial.name}</div>
                       <div className="text-[10px] sm:text-xs text-muted-foreground/50 data-text tracking-wider truncate">

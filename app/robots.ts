@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/login/'],
     },
-    sitemap: 'https://arvandsmart.com/sitemap.xml',
+    sitemap: 'https://arvandsmart.vercel.app/sitemap.xml',
   }
 }

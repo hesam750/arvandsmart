@@ -20,7 +20,7 @@ const vazirmatn = Vazirmatn({
 
 const SITE_NAME = 'ArvandSmartControl'
 const SITE_DESCRIPTION = 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل مصرف انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه برای چیلرهای Carel، Danfoss، Microtech و سایر برندها. بدون نیاز به گیت‌وی، اتصال مستقیم TCP/IP. | Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance.'
-const BASE_URL = 'https://arvandsmart.com'
+const BASE_URL = 'https://arvandsmart.vercel.app'
 
 export const metadata: Metadata = {
   title: {
@@ -31,11 +31,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: BASE_URL,
-    languages: {
-      fa: BASE_URL,
-      en: `${BASE_URL}/en`,
-      ar: `${BASE_URL}/ar`,
-    },
   },
   openGraph: {
     type: 'website',
@@ -122,270 +117,174 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        {/* JSON-LD Structured Data */}
+        {/* Consolidated JSON-LD Structured Data (single @graph) */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: SITE_NAME,
-              alternateName: ['Arvand Smart Control', 'اروند اسمارت کنترل'],
-              url: BASE_URL,
-              logo: `${BASE_URL}/icon.svg`,
-              description: SITE_DESCRIPTION,
-              foundingDate: '2020',
-              contactPoint: {
-                '@type': 'ContactPoint',
-                telephone: '+98-21-12345678',
-                contactType: 'customer service',
-                availableLanguage: ['English', 'Persian', 'Arabic'],
-              },
-              sameAs: [
-                'https://linkedin.com/company/arvandsmart',
-                'https://instagram.com/arvandsmart',
-              ],
-              offers: {
-                '@type': 'AggregateOffer',
-                offerCount: '3',
-                availability: 'https://schema.org/InStock',
-              },
-            }),
-          }}
-        />
-        {/* WebSite schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: SITE_NAME,
-              url: BASE_URL,
-              description: SITE_DESCRIPTION,
-              inLanguage: ['fa', 'en', 'ar'],
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: {
-                  '@type': 'EntryPoint',
-                  urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
-                },
-                'query-input': 'required name=search_term_string',
-              },
-            }),
-          }}
-        />
-        {/* BreadcrumbList schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-                { '@type': 'ListItem', position: 2, name: 'Products', item: `${BASE_URL}/#products` },
-                { '@type': 'ListItem', position: 3, name: 'Blog', item: `${BASE_URL}/blog` },
-              ],
-            }),
-          }}
-        />
-        {/* FAQ schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: [
+              '@graph': [
                 {
-                  '@type': 'Question',
-                  name: 'آیا به گیت‌وی یا سخت‌افزار اضافی نیاز دارم؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'خیر. ArvandSmartControl مستقیماً از طریق TCP/IP به کنترلرهای چیلر شما متصل می‌شود. بدون گیت‌وی، بدون سخت‌افزار اضافه، بدون دردسر تنظیمات. کافیست کنترلر خود را به شبکه وصل کنید و آنلاین شوید.',
+                  '@type': ['Organization', 'LocalBusiness'],
+                  '@id': `${BASE_URL}/#organization`,
+                  name: SITE_NAME,
+                  alternateName: ['Arvand Smart Control', 'اروند اسمارت کنترل'],
+                  url: BASE_URL,
+                  logo: `${BASE_URL}/icon.svg`,
+                  description: SITE_DESCRIPTION,
+                  foundingDate: '2020',
+                  telephone: '+98-21-12345678',
+                  areaServed: 'IR',
+                  availableLanguage: ['English', 'Persian', 'Arabic'],
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    telephone: '+98-21-12345678',
+                    contactType: 'customer service',
+                    availableLanguage: ['English', 'Persian', 'Arabic'],
+                  },
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressCountry: 'IR',
+                  },
+                  sameAs: [
+                    'https://linkedin.com/company/arvandsmart',
+                    'https://instagram.com/arvandsmart',
+                  ],
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${BASE_URL}/#website`,
+                  name: SITE_NAME,
+                  url: BASE_URL,
+                  description: SITE_DESCRIPTION,
+                  inLanguage: ['fa', 'en', 'ar'],
+                  potentialAction: {
+                    '@type': 'SearchAction',
+                    target: {
+                      '@type': 'EntryPoint',
+                      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+                    },
+                    'query-input': 'required name=search_term_string',
                   },
                 },
                 {
-                  '@type': 'Question',
-                  name: 'کدام برندها و کنترلرهای چیلر پشتیبانی می‌شوند؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'ما از Carel (سری pCO)، Danfoss (MCX, EKF)، Microtech (UC, EC)، Siemens (Climatix, Synco)، Honeywell (Spyder, WEB)، Johnson Controls (Metasys, FX)، Schneider (EcoStruxure) و LG (Multi V, VRF) پشتیبانی می‌کنیم. اگر کنترلر شما Modbus، BACnet یا TCP/IP پشتیبانی می‌کند، کار خواهد کرد.',
-                  },
+                  '@type': 'BreadcrumbList',
+                  '@id': `${BASE_URL}/#breadcrumb`,
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+                    { '@type': 'ListItem', position: 2, name: 'Products', item: `${BASE_URL}/#products` },
+                    { '@type': 'ListItem', position: 3, name: 'Blog', item: `${BASE_URL}/blog` },
+                  ],
                 },
                 {
-                  '@type': 'Question',
-                  name: 'نصب چقدر طول می‌کشد؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'بیشتر نصب‌ها در ۲-۴ ساعت برای هر سایت تکمیل می‌شوند. برای یک تأسیسات معمولی با ۵-۱۰ چیلر، کل راه‌اندازی شامل تنظیمات کمتر از یک روز طول می‌کشد. تیم ما همه چیز را از راه دور انجام می‌دهد — بدون نیاز به حضور در محل.',
-                  },
+                  '@type': 'FAQPage',
+                  '@id': `${BASE_URL}/#faq`,
+                  mainEntity: [
+                    {
+                      '@type': 'Question',
+                      name: 'آیا به گیت‌وی یا سخت‌افزار اضافی نیاز دارم؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'خیر. ArvandSmartControl مستقیماً از طریق TCP/IP به کنترلرهای چیلر شما متصل می‌شود. بدون گیت‌وی، بدون سخت‌افزار اضافه، بدون دردسر تنظیمات. کافیست کنترلر خود را به شبکه وصل کنید و آنلاین شوید.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'کدام برندها و کنترلرهای چیلر پشتیبانی می‌شوند؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'ما از Carel (سری pCO)، Danfoss (MCX, EKF)، Microtech (UC, EC)، Siemens (Climatix, Synco)، Honeywell (Spyder, WEB)، Johnson Controls (Metasys, FX)، Schneider (EcoStruxure) و LG (Multi V, VRF) پشتیبانی می‌کنیم. اگر کنترلر شما Modbus، BACnet یا TCP/IP پشتیبانی می‌کند، کار خواهد کرد.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'نصب چقدر طول می‌کشد؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'بیشتر نصب‌ها در ۲-۴ ساعت برای هر سایت تکمیل می‌شوند. برای یک تأسیسات معمولی با ۵-۱۰ چیلر، کل راه‌اندازی شامل تنظیمات کمتر از یک روز طول می‌کشد. تیم ما همه چیز را از راه دور انجام می‌دهد — بدون نیاز به حضور در محل.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'اگر اتصال اینترنت من قطع شود چه اتفاقی می‌افتد؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'چیلرهای شما به طور عادی به کار خود ادامه می‌دهند — ArvandSmartControl یک پلتفرم نظارت و بهینه‌سازی است، نه یک سیستم کنترل حیاتی. داده‌ها به صورت محلی ذخیره و هنگام بازگشت اتصال به طور خودکار همگام‌سازی می‌شوند. هرگز داده‌های تاریخی را از دست نخواهید داد.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'آیا داده‌های من امن هستند؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'بله. تمام داده‌ها در حال انتقال (TLS 1.3) و در حالت ذخیره (AES-256) رمزنگاری می‌شوند. ما مطابق با SOC 2 هستیم و از بهترین روش‌های صنعت برای کنترل دسترسی و ثبت رویدادها پیروی می‌کنیم.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'آیا می‌توانم قبل از خرید امتحان کنم؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'حتماً. ما یک دوره آزمایشی رایگان ۱۴ روزه با دسترسی کامل به همه امکانات ارائه می‌دهیم — بدون نیاز به کارت اعتباری. یک محیط دمو متصل به چیلرهای شما راه‌اندازی می‌کنیم تا نتایج را از نزدیک ببینید.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'آیا می‌توانم داشبورد را با برند شرکت خود شخصی‌سازی کنم؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'بله. پلن سازمانی ما شامل شخصی‌سازی کامل برند سفید است — دامنه اختصاصی، لوگوی شرکت، رنگ‌های برند و چیدمان داشبورد سفارشی. پلتفرم با هویت سازمان شما تطبیق می‌یابد، نه برعکس.' },
+                    },
+                    {
+                      '@type': 'Question',
+                      name: 'چه نوع پشتیبانی ارائه می‌دهید؟',
+                      acceptedAnswer: { '@type': 'Answer', text: 'همه پلن‌ها شامل پشتیبانی ایمیلی با زمان پاسخ ۴ ساعت هستند. پلن حرفه‌ای پشتیبانی اولویت‌دار با پاسخ ۱ ساعته اضافه می‌کند. پلن سازمانی شامل مدیر حساب اختصاصی و پشتیبانی تلفنی ۲۴/۷ است.' },
+                    },
+                  ],
                 },
                 {
-                  '@type': 'Question',
-                  name: 'اگر اتصال اینترنت من قطع شود چه اتفاقی می‌افتد؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'چیلرهای شما به طور عادی به کار خود ادامه می‌دهند — ArvandSmartControl یک پلتفرم نظارت و بهینه‌سازی است، نه یک سیستم کنترل حیاتی. داده‌ها به صورت محلی ذخیره و هنگام بازگشت اتصال به طور خودکار همگام‌سازی می‌شوند. هرگز داده‌های تاریخی را از دست نخواهید داد.',
+                  '@type': 'Product',
+                  '@id': `${BASE_URL}/#product`,
+                  name: 'ArvandSmartControl — Intelligent Chiller Monitoring Platform',
+                  description: 'Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance capabilities.',
+                  brand: { '@type': 'Brand', name: 'ArvandSmartControl' },
+                  offers: [
+                    {
+                      '@type': 'Offer',
+                      name: 'Starter',
+                      description: 'For small facilities and single-site monitoring. Up to 5 chillers, real-time monitoring, email alerts, 7-day history.',
+                      price: '49000000',
+                      priceCurrency: 'IRR',
+                      priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
+                      eligibleQuantity: { '@type': 'QuantitativeValue', value: 5, unitText: 'chillers' },
+                    },
+                    {
+                      '@type': 'Offer',
+                      name: 'Professional',
+                      description: 'For growing operations with multiple sites. Up to 25 chillers, advanced analytics, predictive maintenance, API access.',
+                      price: '399000000',
+                      priceCurrency: 'IRR',
+                      priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y' },
+                      eligibleQuantity: { '@type': 'QuantitativeValue', value: 25, unitText: 'chillers' },
+                    },
+                    {
+                      '@type': 'Offer',
+                      name: 'Enterprise',
+                      description: 'Custom solutions for large-scale deployments. Unlimited chillers, custom integrations, dedicated account manager, white-label option.',
+                      price: '0',
+                      priceCurrency: 'IRR',
+                    },
+                  ],
+                  review: [
+                    {
+                      '@type': 'Review',
+                      author: { '@type': 'Person', name: 'Mohammad Rezaei' },
+                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                      reviewBody: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.',
+                    },
+                    {
+                      '@type': 'Review',
+                      author: { '@type': 'Person', name: 'Sara Ahmadi' },
+                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                      reviewBody: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.',
+                    },
+                    {
+                      '@type': 'Review',
+                      author: { '@type': 'Person', name: 'Ali Karimi' },
+                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                      reviewBody: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.',
+                    },
+                  ],
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: '4.8',
+                    bestRating: '5',
+                    ratingCount: '127',
+                    reviewCount: '127',
                   },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'آیا داده‌های من امن هستند؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'بله. تمام داده‌ها در حال انتقال (TLS 1.3) و در حالت ذخیره (AES-256) رمزنگاری می‌شوند. ما مطابق با SOC 2 هستیم و از بهترین روش‌های صنعت برای کنترل دسترسی و ثبت رویدادها پیروی می‌کنیم.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'آیا می‌توانم قبل از خرید امتحان کنم؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'حتماً. ما یک دوره آزمایشی رایگان ۱۴ روزه با دسترسی کامل به همه امکانات ارائه می‌دهیم — بدون نیاز به کارت اعتباری. یک محیط دمو متصل به چیلرهای شما راه‌اندازی می‌کنیم تا نتایج را از نزدیک ببینید.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'آیا می‌توانم داشبورد را با برند شرکت خود شخصی‌سازی کنم؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'بله. پلن سازمانی ما شامل شخصی‌سازی کامل برند سفید است — دامنه اختصاصی، لوگوی شرکت، رنگ‌های برند و چیدمان داشبورد سفارشی. پلتفرم با هویت سازمان شما تطبیق می‌یابد، نه برعکس.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'چه نوع پشتیبانی ارائه می‌دهید؟',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'همه پلن‌ها شامل پشتیبانی ایمیلی با زمان پاسخ ۴ ساعت هستند. پلن حرفه‌ای پشتیبانی اولویت‌دار با پاسخ ۱ ساعته اضافه می‌کند. پلن سازمانی شامل مدیر حساب اختصاصی و پشتیبانی تلفنی ۲۴/۷ است.',
-                  },
-                },
-              ],
-            }),
-          }}
-        />
-        {/* Product schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Product',
-              name: 'ArvandSmartControl — Intelligent Chiller Monitoring Platform',
-              description: 'Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance capabilities.',
-              brand: { '@type': 'Brand', name: 'ArvandSmartControl' },
-              offers: [
-                {
-                  '@type': 'Offer',
-                  name: 'Starter',
-                  description: 'For small facilities and single-site monitoring. Up to 5 chillers, real-time monitoring, email alerts, 7-day history.',
-                  price: '49000000',
-                  priceCurrency: 'IRR',
-                  priceSpecification: {
-                    '@type': 'UnitPriceSpecification',
-                    billingDuration: 'P1M',
-                  },
-                  eligibleQuantity: { '@type': 'QuantitativeValue', value: 5, unitText: 'chillers' },
-                },
-                {
-                  '@type': 'Offer',
-                  name: 'Professional',
-                  description: 'For growing operations with multiple sites. Up to 25 chillers, advanced analytics, predictive maintenance, API access.',
-                  price: '399000000',
-                  priceCurrency: 'IRR',
-                  priceSpecification: {
-                    '@type': 'UnitPriceSpecification',
-                    billingDuration: 'P1Y',
-                  },
-                  eligibleQuantity: { '@type': 'QuantitativeValue', value: 25, unitText: 'chillers' },
-                },
-                {
-                  '@type': 'Offer',
-                  name: 'Enterprise',
-                  description: 'Custom solutions for large-scale deployments. Unlimited chillers, custom integrations, dedicated account manager, white-label option.',
-                  price: '0',
-                  priceCurrency: 'IRR',
                 },
               ],
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: '4.8',
-                bestRating: '5',
-                ratingCount: '127',
-                reviewCount: '127',
-              },
-            }),
-          }}
-        />
-        {/* LocalBusiness schema */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: 'ArvandSmartControl | اروند اسمارت کنترل',
-              description: 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه',
-              url: BASE_URL,
-              telephone: '+98-21-12345678',
-              areaServed: 'IR',
-              availableLanguage: ['Persian', 'English', 'Arabic'],
-              contactPoint: {
-                '@type': 'ContactPoint',
-                telephone: '+98-21-12345678',
-                contactType: 'customer service',
-                availableLanguage: ['Persian', 'English', 'Arabic'],
-              },
-              address: {
-                '@type': 'PostalAddress',
-                addressCountry: 'IR',
-              },
-            }),
-          }}
-        />
-        {/* Review schema (aggregated from testimonials) */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Product',
-              name: 'ArvandSmartControl Platform',
-              review: [
-                {
-                  '@type': 'Review',
-                  author: { '@type': 'Person', name: 'Mohammad Rezaei' },
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  reviewBody: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.',
-                },
-                {
-                  '@type': 'Review',
-                  author: { '@type': 'Person', name: 'Sara Ahmadi' },
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  reviewBody: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.',
-                },
-                {
-                  '@type': 'Review',
-                  author: { '@type': 'Person', name: 'Ali Karimi' },
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  reviewBody: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.',
-                },
-              ],
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: '4.8',
-                bestRating: '5',
-                ratingCount: '127',
-              },
             }),
           }}
         />

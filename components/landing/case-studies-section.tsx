@@ -147,17 +147,17 @@ export function CaseStudiesSection() {
 
               <div className="space-y-4 sm:space-y-5 flex-1">
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold data-text tracking-wider text-destructive/80 mb-1.5">
+                  <h3 className="text-xs sm:text-sm font-bold data-text tracking-wider text-destructive/80 mb-1.5">
                     {language === 'fa' ? 'چالش' : language === 'ar' ? 'التحدي' : 'The Challenge'}
-                  </h4>
+                  </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground/80 leading-relaxed">
                     {study.challenge[language] || study.challenge.en}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold data-text tracking-wider text-chart-3/80 mb-1.5">
+                  <h3 className="text-xs sm:text-sm font-bold data-text tracking-wider text-chart-3/80 mb-1.5">
                     {language === 'fa' ? 'راه‌حل' : language === 'ar' ? 'الحل' : 'The Solution'}
-                  </h4>
+                  </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground/80 leading-relaxed">
                     {study.solution[language] || study.solution.en}
                   </p>
