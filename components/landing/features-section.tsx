@@ -2,15 +2,15 @@
 
 import { motion } from 'motion/react'
 import {
-  Cpu,
+  HeartPulse,
+  AlertTriangle,
   BarChart3,
-  Bell,
-  Wifi,
-  Shield,
-  Database,
-  Layers,
+  Thermometer,
   Zap,
-  Palette,
+  Wrench,
+  Layers,
+  Building2,
+  Webhook,
 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import { HoverEffect, type HoverItem } from '@/components/ui/card-hover-effect'
 
 interface FeatureData {
-  icon: typeof Cpu
+  icon: typeof HeartPulse
   title: Record<string, string>
   description: Record<string, string>
   metric: string
@@ -29,76 +29,76 @@ interface FeatureData {
 
 const featuresList: FeatureData[] = [
   {
-    icon: Cpu,
-    title: { en: 'Real-Time Monitoring', fa: 'پایش لحظه‌ای', ar: 'المراقبة اللحظية' },
-    description: { en: 'Real-time monitoring of all chillers and cooling equipment from a centralized dashboard', fa: 'پایش لحظه‌ای تمامی چیلرها و تجهیزات سرمایشی از یک داشبورد متمرکز', ar: 'مراقبة لحظية لجميع المبردات ومعدات التبريد من لوحة تحكم مركزية' },
-    metric: '250+',
-    metricLabel: 'DATA POINTS/SEC',
+    icon: HeartPulse,
+    title: { en: 'Health Score System', fa: 'سیستم امتیاز سلامت', ar: 'نظام درجة الصحة' },
+    description: { en: 'Proprietary 0–100 health score computed from four weighted sub-scores: compressor (35%), fan (20%), refrigerant (30%), and base status (15%). Know your chiller\'s true condition at a glance.', fa: 'امتیاز سلامت اختصاصی ۰–۱۰۰ از چهار زیرامتیاز وزنی: کمپرسور (۳۵٪)، فن (۲۰٪)، مبرد (۳۰٪) و وضعیت پایه (۱۵٪). وضعیت واقعی چیلر خود را در یک نگاه بدانید.', ar: 'درجة صحة ملكية ٠–١٠٠ تحسب من أربع درجات فرعية مرجحة: الضاغط (٣٥٪)، المروحة (٢٠٪)، المبرد (٣٠٪)، والحالة الأساسية (١٥٪). اعرف حالة مبردك الحقيقية بنظرة واحدة.' },
+    metric: '0–100',
+    metricLabel: 'HEALTH SCORE',
     color: 'text-chart-3',
   },
   {
-    icon: BarChart3,
-    title: { en: 'Energy Analytics', fa: 'تحلیل انرژی', ar: 'تحليل الطاقة' },
-    description: { en: 'Energy consumption analysis and smart optimization with advanced algorithms', fa: 'تحلیل مصرف انرژی و بهینه‌سازی هوشمند با الگوریتم‌های پیشرفته', ar: 'تحليل استهلاك الطاقة والتحسين الذكي باستخدام خوارزميات متقدمة' },
-    metric: '32%',
-    metricLabel: 'AVG. SAVINGS',
-    color: 'text-primary',
-  },
-  {
-    icon: Bell,
-    title: { en: 'Anomaly Detection', fa: 'تشخیص ناهنجاری', ar: 'كشف الشذوذ' },
-    description: { en: 'Automatic anomaly detection and smart alerting before failures occur', fa: 'تشخیص خودکار ناهنجاری‌ها و هشداردهی هوشمند قبل از بروز خرابی', ar: 'كشف تلقائي للشذوذ وتنبيه ذكي قبل حدوث الأعطال' },
-    metric: '99.7%',
-    metricLabel: 'DETECTION RATE',
+    icon: AlertTriangle,
+    title: { en: 'Z-Score Anomaly Detection', fa: 'تشخیص ناهنجاری Z-Score', ar: 'كشف الشذوذ بـ Z-Score' },
+    description: { en: 'Real-time anomaly detection using Z-score analysis (>2.5 threshold) across supply/return temperature, power, and current. Plus hard-threshold monitoring for motor, IGBT, and discharge temperatures.', fa: 'تشخیص ناهنجاری لحظه‌ای با تحلیل Z-Score (آستانه >۲.۵) روی دمای رفت/برگشت، توان و جریان. به همراه پایش آستانه سخت برای دمای موتور، IGBT و تخلیه.', ar: 'كشف الشذوذ في الوقت الفعلي باستخدام تحليل Z-Score (عتبة >٢.٥) عبر درجة حرارة الإمداد/العودة والطاقة والتيار. بالإضافة إلى مراقبة العتبة الصلبة لدرجات حرارة المحرك وIGBT والتفريغ.' },
+    metric: '>2.5σ',
+    metricLabel: 'Z-SCORE THRESHOLD',
     color: 'text-chart-4',
   },
   {
-    icon: Wifi,
-    title: { en: 'IoT Connectivity', fa: 'اتصال IoT', ar: 'اتصال إنترنت الأشياء' },
-    description: { en: 'Connect to all equipment via Modbus, BACnet and IoT protocols', fa: 'اتصال به تمامی تجهیزات از طریق پروتکل‌های Modbus، BACnet و IoT', ar: 'اتصل بجميع المعدات عبر بروتوكولات Modbus و BACnet وإنترنت الأشياء' },
-    metric: '12+',
-    metricLabel: 'PROTOCOLS',
-    color: 'text-chart-2',
-  },
-  {
-    icon: Shield,
-    title: { en: 'Predictive Maintenance', fa: 'نگهداری پیش‌بینانه', ar: 'الصيانة التنبؤية' },
-    description: { en: 'Predictive maintenance scheduling based on historical data analysis', fa: 'برنامه‌ریزی نگهداری پیش‌بینانه بر اساس تحلیل داده‌های تاریخی', ar: 'جدولة الصيانة التنبؤية بناءً على تحليل البيانات التاريخية' },
-    metric: '94%',
-    metricLabel: 'ACCURACY',
-    color: 'text-chart-3',
-  },
-  {
-    icon: Database,
-    title: { en: 'Cloud Platform', fa: 'پلتفرم ابری', ar: 'منصة سحابية' },
-    description: { en: 'Secure remote access to all data and equipment control from anywhere', fa: 'دسترسی امن از راه دور به تمامی داده‌ها و کنترل تجهیزات از هر مکان', ar: 'وصول آمن عن بعد إلى جميع البيانات والتحكم بالمعدات من أي مكان' },
-    metric: '99.99%',
-    metricLabel: 'UPTIME SLA',
-    color: 'text-chart-2',
-  },
-  {
-    icon: Layers,
-    title: { en: 'Carel Expertise', fa: 'تخصص کرل', ar: 'خبرة كرل' },
-    description: { en: 'Deep integration with Carel pCO, c.series, and all programmable controllers. Plus multi-brand support for Danfoss, Microtech and more.', fa: 'یکپارچگی عمیق با Carel pCO، c.series و تمامی کنترلرهای قابل برنامه‌ریزی. به همراه پشتیبانی از برندهای Danfoss، Microtech و سایر برندها.', ar: 'تكامل عميق مع Carel pCO و c.series وجميع وحدات التحكم القابلة للبرمجة. بالإضافة إلى دعم متعدد العلامات التجارية لـ Danfoss و Microtech والمزيد.' },
-    metric: '50+',
-    metricLabel: 'CAREL MODELS',
+    icon: BarChart3,
+    title: { en: 'Energy & Tariff Analytics', fa: 'تحلیل انرژی و تعرفه', ar: 'تحليل الطاقة والتعرفة' },
+    description: { en: 'Energy breakdown per chiller with tariff-based cost calculation supporting three tariff tiers. Monthly kWh aggregation and cost reporting — accurate enough for IRR-based billing.', fa: 'تفکیک انرژی به تفکیک چیلر با محاسبه هزینه مبتنی بر تعرفه با پشتیبانی از سه سطح تعرفه. تجمیع kWh ماهانه و گزارش هزینه — به اندازه کافی دقیق برای صورتحساب IRR.', ar: 'تفصيل الطاقة لكل مبرد مع حساب التكلفة القائم على التعرفة بدعم ثلاث مستويات تعرفة. تجميع kWh الشهري وتقارير التكلفة — دقة كافية للفوترة بالريال.' },
+    metric: '3',
+    metricLabel: 'TARIFF TIERS',
     color: 'text-primary',
   },
   {
+    icon: Thermometer,
+    title: { en: 'Real-Time Setpoint Control', fa: 'کنترل Setpoint لحظه‌ای', ar: 'التحكم اللحظي بنقطة الضبط' },
+    description: { en: 'Remotely adjust temperature setpoints with ±0.1°C precision. Power chillers on/off, switch seasons (summer/winter), and change fan modes — all from the dashboard, all in real time.', fa: 'تنظیم از راه دور Setpoint دما با دقت ±۰.۱°C. روشن/خاموش کردن چیلرها، تغییر فصل (تابستان/زمستان) و تغییر حالت فن — همه از داشبورد، همه به صورت لحظه‌ای.', ar: 'ضبط نقاط الضبط عن بعد بدقة ±٠.١°م. تشغيل/إيقاف المبردات، تبديل الفصول (صيف/شتاء)، وتغيير أوضاع المروحة — كل ذلك من لوحة التحكم، في الوقت الفعلي.' },
+    metric: '±0.1°C',
+    metricLabel: 'SETPOINT PRECISION',
+    color: 'text-chart-2',
+  },
+  {
     icon: Zap,
-    title: { en: 'No Gateway Required', fa: 'بدون نیاز به گیت‌وی', ar: 'بدون حاجة لبوابة' },
-    description: { en: 'Direct TCP/IP connection to chiller controllers. No extra hardware, no configuration headaches.', fa: 'اتصال مستقیم TCP/IP به کنترلر چیلر. بدون سخت‌افزار اضافه، بدون دردسر تنظیمات.', ar: 'اتصال مباشر عبر TCP/IP بوحدات تحكم المبردات. بدون أجهزة إضافية، بدون متاعب التكوين.' },
+    title: { en: 'Direct TCP/IP Connection', fa: 'اتصال مستقیم TCP/IP', ar: 'اتصال مباشر TCP/IP' },
+    description: { en: 'Connect directly to chiller controllers over standard Ethernet — no gateway, no extra hardware, no middleware. Our HTTP-based PLC reader communicates with Carel pCO, Danfoss MCX, and Microtech controllers natively.', fa: 'اتصال مستقیم به کنترلرهای چیلر از طریق Ethernet استاندارد — بدون گیت‌وی، بدون سخت‌افزار اضافه، بدون میان‌افزار. خواننده PLC مبتنی بر HTTP ما به طور بومی با کنترلرهای Carel pCO، Danfoss MCX و Microtech ارتباط برقرار می‌کند.', ar: 'اتصال مباشر بوحدات تحكم المبردات عبر Ethernet قياسي — بدون بوابة، بدون أجهزة إضافية، بدون برمجيات وسيطة. قارئ PLC المعتمد على HTTP يتواصل أصلاً مع وحدات تحكم Carel pCO و Danfoss MCX و Microtech.' },
     metric: '0',
     metricLabel: 'GATEWAYS NEEDED',
     color: 'text-chart-3',
   },
   {
-    icon: Palette,
-    title: { en: 'White-Label Customization', fa: 'شخصی‌سازی برند سفید', ar: 'تخصيص العلامة البيضاء' },
-    description: { en: 'Custom branding, custom domain, custom dashboards. The platform adapts to your company identity.', fa: 'برند اختصاصی، دامنه سفارشی، داشبورد شخصی‌سازی شده. پلتفرم با هویت سازمان شما تطبیق می‌یابد.', ar: 'علامة تجارية مخصصة، نطاق مخصص، لوحات تحكم مخصصة. المنصة تتكيف مع هوية شركتك.' },
-    metric: '100%',
-    metricLabel: 'CUSTOMIZABLE',
+    icon: Wrench,
+    title: { en: 'Predictive Maintenance & Work Orders', fa: 'نگهداری پیش‌بینانه و دستور کار', ar: 'الصيانة التنبؤية وأوامر العمل' },
+    description: { en: '15 preventive maintenance templates across compressor, fan, refrigerant, and electrical systems. Auto-generate and track work orders. Catch failures before they happen.', fa: '۱۵ الگوی نگهداری پیش‌گیرانه برای سیستم‌های کمپرسور، فن، مبرد و الکتریکال. تولید و پیگیری خودکار دستور کارها. خرابی‌ها را قبل از وقوع تشخیص دهید.', ar: '١٥ قالب صيانة وقائية عبر أنظمة الضاغط والمروحة والمبرد والكهرباء. إنشاء وتتبع أوامر العمل تلقائياً. اكتشف الأعطال قبل حدوثها.' },
+    metric: '15',
+    metricLabel: 'PM TEMPLATES',
+    color: 'text-chart-2',
+  },
+  {
+    icon: Layers,
+    title: { en: 'Multi-Brand Compatible', fa: 'سازگاری چند برند', ar: 'متوافق مع علامات متعددة' },
+    description: { en: 'Deep Carel pCO/c.series integration — 50+ controller models supported. Also compatible with Danfoss MCX/EKF, Microtech UC/EC, Siemens Climatix, and controllers from Honeywell, JCI, Schneider, and LG.', fa: 'یکپارچگی عمیق با Carel pCO/c.series — پشتیبانی از ۵۰+ مدل کنترلر. همچنین سازگار با Danfoss MCX/EKF، Microtech UC/EC، Siemens Climatix و کنترلرهای Honeywell، JCI، Schneider و LG.', ar: 'تكامل عميق مع Carel pCO/c.series — دعم لأكثر من ٥٠ نموذج وحدة تحكم. متوافق أيضاً مع Danfoss MCX/EKF و Microtech UC/EC و Siemens Climatix ووحدات تحكم Honeywell و JCI و Schneider و LG.' },
+    metric: '50+',
+    metricLabel: 'CONTROLLER MODELS',
+    color: 'text-primary',
+  },
+  {
+    icon: Building2,
+    title: { en: 'Multi-Tenant Architecture', fa: 'معماری چندمستأجری', ar: 'معمارية متعددة المستأجرين' },
+    description: { en: 'Organization-based isolation with role-based access (admin/viewer). Each tenant sees only their data. Perfect for facility management companies managing multiple client sites from one platform.', fa: 'ایزولاسیون مبتنی بر سازمان با دسترسی مبتنی بر نقش (مدیر/بیننده). هر مستأجر فقط داده‌های خود را می‌بیند. ایده‌آل برای شرکت‌های مدیریت تأسیسات که چندین سایت مشتری را از یک پلتفرم مدیریت می‌کنند.', ar: 'عزل قائم على المؤسسة مع وصول قائم على الدور (مدير/مشاهد). كل مستأجر يرى بياناته فقط. مثالي لشركات إدارة المرافق التي تدير مواقع عملاء متعددة من منصة واحدة.' },
+    metric: 'RBAC',
+    metricLabel: 'ACCESS CONTROL',
     color: 'text-chart-4',
+  },
+  {
+    icon: Webhook,
+    title: { en: 'Webhook & API Integration', fa: 'یکپارچه‌سازی Webhook و API', ar: 'تكامل Webhook و API' },
+    description: { en: 'Real-time event-driven webhooks for anomaly alerts, health status changes, and data sync. Comprehensive REST API for custom integrations, automation, and third-party system connectivity.', fa: 'Webhook رویدادمحور لحظه‌ای برای هشدارهای ناهنجاری، تغییرات وضعیت سلامت و همگام‌سازی داده. REST API جامع برای یکپارچه‌سازی سفارشی، اتوماسیون و اتصال به سیستم‌های شخص ثالث.', ar: 'Webhook فوري مدفوعة بالأحداث لتنبيهات الشذوذ وتغييرات حالة الصحة ومزامنة البيانات. REST API شامل للتكاملات المخصصة والأتمتة والاتصال بأنظمة الطرف الثالث.' },
+    metric: 'REST',
+    metricLabel: 'FULL API',
+    color: 'text-chart-3',
   },
 ]
 

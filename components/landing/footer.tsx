@@ -10,9 +10,10 @@ const footerLinks = [
     title_fa: 'محصولات',
     titleAr: 'المنتجات',
     links: [
-      { label: 'ASC-2000', href: '#products' },
-      { label: 'ASC-1000', href: '#products' },
-      { label: 'Arvand Cloud', href: '#products' },
+      { label: 'Live Monitoring Hub', href: '#products' },
+      { label: 'Health Score Engine', href: '#products' },
+      { label: 'Remote Control Suite', href: '#products' },
+      { label: 'API & Webhook Gateway', href: '#products' },
       { label: 'Pricing', label_fa: 'قیمت‌گذاری', href: '#pricing', tKey: 'footer.link.pricing' },
     ],
   },

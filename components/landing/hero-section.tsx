@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Zap, Layers, Palette } from 'lucide-react'
+import { Zap, Layers, Palette, HeartPulse, AlertTriangle } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D, useTilt } from '@/hooks/use-scroll-3d'
 import TextType from './TextType'
@@ -87,10 +87,10 @@ export function HeroSection() {
               <TextType
                 text={
                   language === 'fa'
-                    ? ['پایش لحظه‌ای چیلرها', 'اتصال مستقیم — بدون گیت‌وی', 'کاهش مصرف انرژی', 'نگهداری پیش‌بینانه']
+                    ? ['پایش لحظه‌ای چیلرها', 'امتیاز سلامت ۰–۱۰۰', 'اتصال مستقیم — بدون گیت‌وی', 'کاهش مصرف انرژی']
                     : language === 'ar'
-                      ? ['مراقبة لحظية للمبردات', 'اتصال مباشر — بدون بوابة', 'تقليل استهلاك الطاقة', 'صيانة تنبؤية']
-                      : ['Real-time Chiller Monitoring', 'Direct Connection — No Gateway', 'Energy & Cost Optimization', 'Predictive Maintenance']
+                      ? ['مراقبة لحظية للمبردات', 'درجة الصحة ٠–١٠٠', 'اتصال مباشر — بدون بوابة', 'تقليل استهلاك الطاقة']
+                      : ['Real-time Chiller Monitoring', 'Health Score 0–100', 'Direct Connection — No Gateway', 'Energy & Cost Optimization']
                 }
                 as="p"
                 typingSpeed={60}
@@ -108,11 +108,15 @@ export function HeroSection() {
 
             {/* Description */}
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-xl">
-              {t('hero.description')}
+              {t('hero.description')} <span className="text-primary/80">{t('hero.descriptionExt')}</span>
             </p>
 
             {/* Key differentiators */}
             <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-3/20 bg-chart-3/8 text-[11px] sm:text-xs font-medium text-chart-3">
+                <HeartPulse className="w-3 h-3" />
+                Health Score 0–100
+              </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/15 bg-primary/5 text-[11px] sm:text-xs font-medium text-primary/90">
                 <Zap className="w-3 h-3" />
                 {t('hero.noGateway')}
@@ -120,6 +124,10 @@ export function HeroSection() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/15 bg-primary/5 text-[11px] sm:text-xs font-medium text-primary/90">
                 <Layers className="w-3 h-3" />
                 {t('hero.multiBrand')}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-2/15 bg-chart-2/5 text-[11px] sm:text-xs font-medium text-chart-2">
+                <AlertTriangle className="w-3 h-3" />
+                Z-Score Detection
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-chart-4/15 bg-chart-4/5 text-[11px] sm:text-xs font-medium text-chart-4">
                 <Palette className="w-3 h-3" />

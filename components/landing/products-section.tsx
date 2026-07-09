@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Check, Monitor, ArrowRight, Gauge, Cpu, Wifi, Thermometer } from 'lucide-react'
+import { Check, Monitor, ArrowRight, Gauge, Cpu, Wifi, Webhook } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
 import Link from 'next/link'
@@ -11,58 +11,62 @@ import { Button } from '@/components/ui/button'
 const categories = [
   {
     id: 'all',
-    label: { en: 'All Products', fa: 'همه محصولات', ar: 'جميع المنتجات' },
+    label: { en: 'All Modules', fa: 'همه ماژول‌ها', ar: 'جميع الوحدات' },
   },
   {
-    id: 'chillers',
-    label: { en: 'Chillers', fa: 'چیلرها', ar: 'المبردات' },
+    id: 'monitoring',
+    label: { en: 'Monitoring', fa: 'پایش', ar: 'المراقبة' },
   },
   {
-    id: 'controllers',
-    label: { en: 'Controllers', fa: 'کنترلرها', ar: 'وحدات التحكم' },
+    id: 'analytics',
+    label: { en: 'Analytics', fa: 'تحلیل', ar: 'التحليلات' },
   },
   {
-    id: 'software',
-    label: { en: 'Software', fa: 'نرم‌افزار', ar: 'البرمجيات' },
+    id: 'control',
+    label: { en: 'Control', fa: 'کنترل', ar: 'التحكم' },
+  },
+  {
+    id: 'integration',
+    label: { en: 'Integration', fa: 'یکپارچه‌سازی', ar: 'التكامل' },
   },
 ]
 
 const products = [
   {
     id: 1,
-    name: 'ASC-2000',
-    subtitle: { en: 'Industrial Chiller Controller', fa: 'کنترلر چیلر صنعتی', ar: 'وحدة تحكم مبرد صناعي' },
-    category: 'controllers',
-    description: { en: 'Advanced industrial controller with real-time monitoring, multi-protocol support, and predictive analytics engine.', fa: 'کنترلر صنعتی پیشرفته با پایش لحظه‌ای، پشتیبانی از چندین پروتکل و موتور تحلیل پیش‌بینانه.', ar: 'وحدة تحكم صناعية متقدمة مع مراقبة لحظية ودعم متعدد البروتوكولات ومحرك تحليلات تنبؤية.' },
-    specs: ['8 analog inputs', '4 PID loops', 'Modbus TCP/RTU', 'Ethernet/IP'],
-    icon: Cpu,
-  },
-  {
-    id: 2,
-    name: 'ASC-1000',
-    subtitle: { en: 'Commercial Chiller Controller', fa: 'کنترلر چیلر تجاری', ar: 'وحدة تحكم مبرد تجاري' },
-    category: 'controllers',
-    description: { en: 'Cost-effective controller for commercial applications with built-in energy optimization algorithms.', fa: 'کنترلر مقرون‌به‌صرفه برای کاربردهای تجاری با الگوریتم‌های بهینه‌سازی انرژی داخلی.', ar: 'وحدة تحكم اقتصادية للتطبيقات التجارية مع خوارزميات تحسين الطاقة المدمجة.' },
-    specs: ['4 analog inputs', '2 PID loops', 'BACnet MS/TP', 'Built-in display'],
-    icon: Thermometer,
-  },
-  {
-    id: 3,
-    name: 'Arvand Cloud',
-    subtitle: { en: 'IoT & Analytics Platform', fa: 'پلتفرم IoT و تحلیل', ar: 'منصة إنترنت الأشياء والتحليلات' },
-    category: 'software',
-    description: { en: 'Cloud-based monitoring platform with real-time dashboards, anomaly detection, and mobile alerts.', fa: 'پلتفرم نظارت ابری با داشبوردهای لحظه‌ای، تشخیص ناهنجاری و هشدارهای موبایل.', ar: 'منصة مراقبة سحابية مع لوحات معلومات لحظية وكشف الشذوذ وتنبيهات الجوال.' },
-    specs: ['Unlimited devices', '30-day history', 'API access', 'White-label'],
+    name: 'Live Monitoring Hub',
+    subtitle: { en: 'Real-Time Chiller Dashboard', fa: 'داشبورد لحظه‌ای چیلر', ar: 'لوحة تحكم المبردات اللحظية' },
+    category: 'monitoring',
+    description: { en: 'WebSocket-powered live dashboards with sub-second latency. View all chillers in one screen with group tabs, individual chiller cards, temperature gauges, and real-time status indicators.', fa: 'داشبوردهای زنده مبتنی بر WebSocket با تأخیر زیر ثانیه. مشاهده تمام چیلرها در یک صفحه با تب‌های گروهی، کارت‌های چیلر، دماسنج‌ها و نشانگرهای وضعیت لحظه‌ای.', ar: 'لوحات تحكم حية مدعومة من WebSocket بزمن استجابة تحت الثانية. عرض جميع المبردات في شاشة واحدة مع علامات تبويب المجموعات وبطاقات المبردات الفردية ومقاييس الحرارة ومؤشرات الحالة اللحظية.' },
+    specs: ['WebSocket real-time', 'Chiller group tabs', 'Temperature gauges', 'Status indicators'],
     icon: Monitor,
   },
   {
-    id: 4,
-    name: 'ASC-3000',
-    subtitle: { en: 'Premium Modular Controller', fa: 'کنترلر مدولار ممتاز', ar: 'وحدة تحكم معيارية متميزة' },
-    category: 'controllers',
-    description: { en: 'Modular controller for large installations with redundant power, hot-swap I/O, and advanced security.', fa: 'کنترلر مدولار برای تأسیسات بزرگ با برق اضافی، I/O قابل تعویض و امنیت پیشرفته.', ar: 'وحدة تحكم معيارية للمنشآت الكبيرة مع طاقة احتياطية وإدخال/إخراج قابل للتبديل السريع وأمان متقدم.' },
-    specs: ['16 analog inputs', '8 PID loops', 'All protocols', 'Redundant power'],
+    id: 2,
+    name: 'Health Score Engine',
+    subtitle: { en: '0–100 Chiller Health Analytics', fa: 'تحلیل سلامت چیلر ۰–۱۰۰', ar: 'تحليلات صحة المبرد ٠–١٠٠' },
+    category: 'analytics',
+    description: { en: 'Proprietary algorithm computing a 0–100 health score from four weighted sub-scores. Includes Z-score anomaly detection, energy breakdown with tariff cost calculation, and 15 PM templates.', fa: 'الگوریتم اختصاصی محاسبه امتیاز سلامت ۰–۱۰۰ از چهار زیرامتیاز وزنی. شامل تشخیص ناهنجاری Z-Score، تفکیک انرژی با محاسبه هزینه تعرفه و ۱۵ الگوی نگهداری.', ar: 'خوارزمية ملكية تحسب درجة صحة ٠–١٠٠ من أربع درجات فرعية مرجحة. تشمل كشف الشذوذ Z-Score وتفصيل الطاقة مع حساب تكلفة التعرفة و١٥ قالب صيانة وقائية.' },
+    specs: ['Health Score 0–100', 'Z-score >2.5σ', 'Energy tariff calc', '15 PM templates'],
     icon: Gauge,
+  },
+  {
+    id: 3,
+    name: 'Remote Control Suite',
+    subtitle: { en: 'Precision Setpoint & Mode Control', fa: 'کنترل Setpoint دقیق و حالت', ar: 'التحكم الدقيق بنقطة الضبط والوضع' },
+    category: 'control',
+    description: { en: 'Remotely adjust temperature setpoints with ±0.1°C precision. Power chillers on/off, switch between summer/winter seasons, change fan modes, and manage work orders — all from the dashboard.', fa: 'تنظیم از راه دور Setpoint دما با دقت ±۰.۱°C. روشن/خاموش کردن چیلرها، تغییر بین فصل تابستان/زمستان، تغییر حالت فن و مدیریت دستور کارها — همه از داشبورد.', ar: 'ضبط نقاط الضبط عن بعد بدقة ±٠.١°م. تشغيل/إيقاف المبردات، التبديل بين فصلي الصيف/الشتاء، تغيير أوضاع المروحة، وإدارة أوامر العمل — كل ذلك من لوحة التحكم.' },
+    specs: ['±0.1°C precision', 'On/Off control', 'Season switching', 'Fan mode control'],
+    icon: Cpu,
+  },
+  {
+    id: 4,
+    name: 'API & Webhook Gateway',
+    subtitle: { en: 'REST API + Event-Driven Webhooks', fa: 'REST API + Webhook رویدادمحور', ar: 'REST API + Webhook مدفوعة بالأحداث' },
+    category: 'integration',
+    description: { en: 'Comprehensive REST API for custom integrations and automation. Real-time event-driven webhooks for anomaly alerts, health status changes, and data sync. Multi-tenant with role-based access control.', fa: 'REST API جامع برای یکپارچه‌سازی سفارشی و اتوماسیون. Webhook رویدادمحور لحظه‌ای برای هشدارهای ناهنجاری، تغییرات وضعیت سلامت و همگام‌سازی داده. چندمستأجری با کنترل دسترسی مبتنی بر نقش.', ar: 'REST API شامل للتكاملات المخصصة والأتمتة. Webhook فوري مدفوعة بالأحداث لتنبيهات الشذوذ وتغييرات حالة الصحة ومزامنة البيانات. متعدد المستأجرين مع التحكم في الوصول القائم على الدور.' },
+    specs: ['REST API', 'Event webhooks', 'Multi-tenant', 'Role-based access'],
+    icon: Webhook,
   },
 ]
 

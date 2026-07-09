@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Database, Cpu, TrendingUp, Rocket } from 'lucide-react'
+import { Plug, Eye, Activity, Settings2 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
 
@@ -12,27 +12,27 @@ export function HowItWorksSection() {
   const steps = [
     {
       number: '01',
-      icon: Database,
-      title: { en: 'Connect & Collect', fa: 'اتصال و جمع‌آوری', ar: 'اتصال وجمع' },
-      desc: { en: 'Connect your Carel chillers (pCO, c.series) via Modbus, BACnet, or IoT gateway. Data flows automatically to the cloud.', fa: 'چیلرهای Carel خود (pCO، c.series) را از طریق Modbus، BACnet یا دروازه IoT متصل کنید. داده‌ها به طور خودکار به ابر منتقل می‌شوند.', ar: 'قم بتوصيل مبردات Carel الخاصة بك (pCO، c.series) عبر Modbus أو BACnet أو بوابة IoT. تتدفق البيانات تلقائياً إلى السحابة.' },
+      icon: Plug,
+      title: { en: 'Connect Directly', fa: 'اتصال مستقیم', ar: 'اتصال مباشر' },
+      desc: { en: 'Connect your chiller controller directly over standard Ethernet — no gateway, no extra hardware. Our HTTP-based PLC reader communicates natively with Carel pCO, Danfoss MCX, Microtech UC, and 50+ controller models via TCP/IP.', fa: 'کنترلر چیلر خود را مستقیماً از طریق Ethernet استاندارد متصل کنید — بدون گیت‌وی، بدون سخت‌افزار اضافه. خواننده PLC مبتنی بر HTTP ما به طور بومی با Carel pCO، Danfoss MCX، Microtech UC و ۵۰+ مدل کنترلر از طریق TCP/IP ارتباط برقرار می‌کند.', ar: 'قم بتوصيل وحدة تحكم المبرد مباشرة عبر Ethernet قياسي — بدون بوابة، بدون أجهزة إضافية. قارئ PLC المعتمد على HTTP يتواصل أصلاً مع Carel pCO و Danfoss MCX و Microtech UC وأكثر من ٥٠ نموذج وحدة تحكم عبر TCP/IP.' },
     },
     {
       number: '02',
-      icon: Cpu,
+      icon: Eye,
       title: { en: 'Real-Time Monitoring', fa: 'پایش لحظه‌ای', ar: 'مراقبة لحظية' },
-      desc: { en: 'Live dashboards display every metric from temperature to power consumption in real time.', fa: 'داشبوردهای زنده تمام معیارها را از دما تا مصرف برق به صورت لحظه‌ای نمایش می‌دهند.', ar: 'لوحات المعلومات الحية تعرض كل مقياس من درجة الحرارة إلى استهلاك الطاقة في الوقت الفعلي.' },
+      desc: { en: 'WebSocket-powered live dashboards display supply/return temperatures, pressure, power consumption, current, and system status — updating with sub-second latency. Every chiller, every metric, one screen.', fa: 'داشبوردهای زنده مبتنی بر WebSocket دمای رفت/برگشت، فشار، مصرف برق، جریان و وضعیت سیستم را نمایش می‌دهند — با تأخیر زیر ثانیه به‌روزرسانی می‌شوند. هر چیلر، هر معیار، یک صفحه.', ar: 'لوحات تحكم حية مدعومة من WebSocket تعرض درجات حرارة الإمداد/العودة والضغط واستهلاك الطاقة والتيار وحالة النظام — تتحدث بزمن استجابة تحت الثانية. كل مبرد، كل مقياس، شاشة واحدة.' },
     },
     {
       number: '03',
-      icon: TrendingUp,
-      title: { en: 'Analyze & Optimize', fa: 'تحلیل و بهینه‌سازی', ar: 'تحليل وتحسين' },
-      desc: { en: 'AI-powered analytics identify inefficiencies and recommend optimizations automatically.', fa: 'تحلیل مبتنی بر هوش مصنوعی ناکارآمدی‌ها را شناسایی و بهینه‌سازی‌ها را به طور خودکار توصیه می‌کند.', ar: 'تحليلات مدعومة بالذكاء الاصطناعي تحدد أوجه القصور وتوصي بالتحسينات تلقائياً.' },
+      icon: Activity,
+      title: { en: 'Analyze & Detect', fa: 'تحلیل و تشخیص', ar: 'تحليل واكتشاف' },
+      desc: { en: 'Proprietary Health Score (0–100) and Z-score anomaly detection (>2.5σ) analyze compressor, fan, refrigerant, and electrical data in real time. Get instant alerts and clear health insights for every chiller.', fa: 'امتیاز سلامت اختصاصی (۰–۱۰۰) و تشخیص ناهنجاری Z-Score (>۲.۵σ) داده‌های کمپرسور، فن، مبرد و الکتریکال را به صورت لحظه‌ای تحلیل می‌کنند. هشدارهای فوری و بینش سلامت واضح برای هر چیلر دریافت کنید.', ar: 'درجة الصحة الملكية (٠–١٠٠) وكشف الشذوذ Z-Score (>٢.٥σ) يحللان بيانات الضاغط والمروحة والمبرد والكهرباء في الوقت الفعلي. احصل على تنبيهات فورية ورؤى صحية واضحة لكل مبرد.' },
     },
     {
       number: '04',
-      icon: Rocket,
-      title: { en: 'Scale & Succeed', fa: 'توسعه و موفقیت', ar: 'توسع ونجاح' },
-      desc: { en: 'Add more units, users, and facilities seamlessly. Your platform grows with your business.', fa: 'واحدها، کاربران و تأسیسات بیشتری را به طور یکپارچه اضافه کنید. پلتفرم شما با کسب و کارتان رشد می‌کند.', ar: 'أضف المزيد من الوحدات والمستخدمين والمرافق بسلاسة. منصتك تنمو مع عملك.' },
+      icon: Settings2,
+      title: { en: 'Control & Scale', fa: 'کنترل و توسعه', ar: 'تحكم وتوسع' },
+      desc: { en: 'Adjust setpoints with ±0.1°C precision, switch seasons, change fan modes, and manage work orders — all remotely. Add unlimited chillers, users, and sites. Integrate via REST API and webhooks.', fa: 'تنظیم Setpoint با دقت ±۰.۱°C، تغییر فصل، تغییر حالت فن و مدیریت دستور کارها — همه از راه دور. افزودن چیلرها، کاربران و سایت‌های نامحدود. یکپارچه‌سازی از طریق REST API و Webhook.', ar: 'اضبط نقاط الضبط بدقة ±٠.١°م، بدّل الفصول، غيّر أوضاع المروحة، وأدر أوامر العمل — كل ذلك عن بعد. أضف مبردات ومستخدمين ومواقع غير محدودة. التكامل عبر REST API و Webhook.' },
     },
   ]
 

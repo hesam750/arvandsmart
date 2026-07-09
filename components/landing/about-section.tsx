@@ -8,24 +8,24 @@ import { useScroll3D } from '@/hooks/use-scroll-3d'
 const pillars = [
   {
     icon: Eye,
-    title: { en: 'Our Vision', fa: 'چشم‌انداز ما', ar: 'رؤيتنا' },
-    desc: { en: 'To be the global standard in intelligent cooling management, driving efficiency and sustainability across every industry that relies on climate control.', fa: 'تبدیل شدن به استاندارد جهانی در مدیریت هوشمند سرمایش، افزایش بهره‌وری و پایداری در تمام صنایع وابسته به کنترل آب و هوا.', ar: 'أن نكون المعيار العالمي في الإدارة الذكية للتبريد، دافعين للكفاءة والاستدامة عبر كل صناعة تعتمد على التحكم في المناخ.' },
-    stat: '15+',
-    statLabel: { en: 'Years Experience', fa: 'سال تجربه', ar: 'سنوات خبرة' },
+    title: { en: 'Carel Expertise', fa: 'تخصص Carel', ar: 'خبرة Carel' },
+    desc: { en: 'Deep specialization in Carel pCO and c.series programmable controllers — with native support for 50+ controller models across 8 major brands. Our platform communicates directly via TCP/IP with no middleware or gateway.', fa: 'تخصص عمیق در کنترلرهای قابل برنامه‌ریزی Carel pCO و c.series — با پشتیبانی بومی از ۵۰+ مدل کنترلر در ۸ برند اصلی. پلتفرم ما مستقیماً از طریق TCP/IP بدون میان‌افزار یا گیت‌وی ارتباط برقرار می‌کند.', ar: 'تخصص عميق في وحدات التحكم القابلة للبرمجة Carel pCO و c.series — مع دعم أصلي لأكثر من ٥٠ نموذج وحدة تحكم عبر ٨ علامات تجارية رئيسية. منصتنا تتواصل مباشرة عبر TCP/IP بدون برمجيات وسيطة أو بوابة.' },
+    stat: '50+',
+    statLabel: { en: 'Controller Models', fa: 'مدل کنترلر', ar: 'نموذج وحدة تحكم' },
   },
   {
     icon: Target,
-    title: { en: 'Our Mission', fa: 'رسالت ما', ar: 'رسالتنا' },
-    desc: { en: 'Empower facility managers with real-time data, predictive analytics, and seamless control — reducing energy waste and operational risk.', fa: 'توانمندسازی مدیران تأسیسات با داده‌های لحظه‌ای، تحلیل پیش‌بینانه و کنترل یکپارچه - کاهش اتلاف انرژی و ریسک عملیاتی.', ar: 'تمكين مدراء المرافق ببيانات لحظية وتحليلات تنبؤية وتحكم سلس — تقليل هدر الطاقة والمخاطر التشغيلية.' },
-    stat: '10k+',
-    statLabel: { en: 'Units Shipped', fa: 'دستگاه ارسال شده', ar: 'وحدة تم شحنها' },
+    title: { en: 'Proven Technology', fa: 'فناوری اثبات‌شده', ar: 'تقنية مثبتة' },
+    desc: { en: 'Built on a production-grade stack: WebSocket live dashboards, proprietary Health Score algorithm, Z-score anomaly detection (>2.5σ), and tariff energy calculus — all battle-tested in real facilities across Iran.', fa: 'ساخته شده بر روی استک تولیدی: داشبوردهای زنده WebSocket، الگوریتم اختصاصی امتیاز سلامت، تشخیص ناهنجاری Z-Score (>۲.۵σ) و محاسبه انرژی تعرفه — همه در تأسیسات واقعی در سراسر ایران آزمایش شده‌اند.', ar: 'مبنية على مجموعة إنتاجية: لوحات تحكم حية WebSocket، خوارزمية درجة الصحة الملكية، كشف الشذوذ Z-Score (>٢.٥σ)، وحساب طاقة التعرفة — جميعها تم اختبارها في مرافق حقيقية في جميع أنحاء إيران.' },
+    stat: '99.99%',
+    statLabel: { en: 'Platform Uptime', fa: 'آپتایم پلتفرم', ar: 'وقت تشغيل المنصة' },
   },
   {
     icon: ShieldCheck,
-    title: { en: 'Quality Assurance', fa: 'تضمین کیفیت', ar: 'ضمان الجودة' },
-    desc: { en: 'Every product undergoes rigorous testing under extreme conditions. Our ISO-certified processes ensure reliability in the harshest environments.', fa: 'هر محصول تحت آزمایش‌های سختگیرانه در شرایط بحرانی قرار می‌گیرد. فرآیندهای دارای گواهی ISO قابلیت اطمینان را تضمین می‌کند.', ar: 'كل منتج يخضع لاختبارات صارمة في ظروف قاسية. عملياتنا المعتمدة من ISO تضمن الاعتمادية في أقسى البيئات.' },
-    stat: '99.9%',
-    statLabel: { en: 'Quality Score', fa: 'امتیاز کیفیت', ar: 'درجة الجودة' },
+    title: { en: 'Secure & Scalable', fa: 'امن و مقیاس‌پذیر', ar: 'آمن وقابل للتوسع' },
+    desc: { en: 'Multi-tenant architecture with organization-based isolation and role-based access (admin/viewer). TLS 1.3 in transit, AES-256 at rest, JWT + API Key + HMAC authentication. Scales from single-site monitoring to enterprise-level multi-facility deployments.', fa: 'معماری چندمستأجری با ایزولاسیون مبتنی بر سازمان و دسترسی مبتنی بر نقش (مدیر/بیننده). TLS 1.3 در انتقال، AES-256 در ذخیره، احراز هویت JWT + API Key + HMAC. مقیاس‌پذیری از نظارت تک‌مکانی تا استقرارهای چند تأسیساتی سازمانی.', ar: 'معمارية متعددة المستأجرين مع عزل قائم على المؤسسة ووصول قائم على الدور (مدخل/مشاهد). TLS 1.3 أثناء النقل، AES-256 عند التخزين، مصادقة JWT + API Key + HMAC. يتوسع من مراقبة موقع واحد إلى نشر مؤسسي متعدد المرافق.' },
+    stat: '100%',
+    statLabel: { en: 'Data Protection', fa: 'حفاظت از داده', ar: 'حماية البيانات' },
   },
 ]
 
