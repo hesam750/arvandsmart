@@ -1,80 +1,123 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useRef } from 'react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
-import { CircuitBoard, Cpu, Wifi, Building2, Thermometer, Factory, Microchip, Zap } from 'lucide-react'
+import {
+  Cpu,
+  Network,
+  Activity,
+  Gauge,
+  Thermometer,
+  ShieldCheck,
+  Zap,
+  Server,
+} from 'lucide-react'
 
-const brands = [
+const features = [
   {
-    name: 'Carel',
-    desc: { en: 'pCO series controllers — full Modbus & BACnet support', fa: 'کنترلرهای سری pCO — پشتیبانی کامل Modbus و BACnet', ar: 'وحدات تحكم سلسلة pCO — دعم كامل لـ Modbus و BACnet' },
-    color: 'from-blue-500/20 to-blue-600/10',
-    icon: Microchip,
-    protocols: ['Modbus', 'BACnet'],
-  },
-  {
-    name: 'Danfoss',
-    desc: { en: 'MCX and EKF series — direct TCP/IP connection', fa: 'سری MCX و EKF — اتصال مستقیم TCP/IP', ar: 'سلسلة MCX و EKF — اتصال مباشر عبر TCP/IP' },
-    color: 'from-emerald-500/20 to-emerald-600/10',
-    icon: CircuitBoard,
-    protocols: ['TCP/IP', 'Modbus'],
-  },
-  {
-    name: 'Microtech',
-    desc: { en: 'All UC and EC series controllers supported', fa: 'تمامی کنترلرهای سری UC و EC پشتیبانی می‌شوند', ar: 'جميع وحدات تحكم سلسلة UC و EC مدعومة' },
-    color: 'from-violet-500/20 to-violet-600/10',
     icon: Cpu,
-    protocols: ['Modbus', 'BACnet'],
+    title: {
+      en: 'CAREL pCO Controllers',
+      fa: 'کنترلرهای CAREL pCO',
+      ar: 'وحدات تحكم CAREL pCO',
+    },
+    desc: {
+      en: 'Direct integration with CAREL pCO controller families for real-time monitoring and control.',
+      fa: 'یکپارچه‌سازی مستقیم با خانواده کنترلرهای CAREL pCO برای پایش و کنترل لحظه‌ای.',
+      ar: 'تكامل مباشر مع عائلات وحدات تحكم CAREL pCO للمراقبة والتحكم الفوري.',
+    },
   },
   {
-    name: 'Siemens',
-    desc: { en: 'Climatix and Synco series — seamless integration', fa: 'سری Climatix و Synco — یکپارچه‌سازی بدون درز', ar: 'سلسلة Climatix و Synco — تكامل سلس' },
-    color: 'from-cyan-500/20 to-cyan-600/10',
-    icon: Wifi,
-    protocols: ['BACnet', 'KNX'],
+    icon: Network,
+    title: {
+      en: 'Modbus & BACnet',
+      fa: 'Modbus و BACnet',
+      ar: 'Modbus و BACnet',
+    },
+    desc: {
+      en: 'Reliable communication through industrial protocols used across HVAC control systems.',
+      fa: 'ارتباط پایدار از طریق پروتکل‌های صنعتی مورد استفاده در سیستم‌های کنترل HVAC.',
+      ar: 'اتصال موثوق عبر البروتوكولات الصناعية المستخدمة في أنظمة التحكم HVAC.',
+    },
   },
   {
-    name: 'Honeywell',
-    desc: { en: 'Spyder and WEB series controllers supported', fa: 'کنترلرهای سری Spyder و WEB پشتیبانی می‌شوند', ar: 'وحدات تحكم سلسلة Spyder و WEB مدعومة' },
-    color: 'from-amber-500/20 to-amber-600/10',
+    icon: Activity,
+    title: {
+      en: 'Real-Time Monitoring',
+      fa: 'پایش لحظه‌ای',
+      ar: 'المراقبة الفورية',
+    },
+    desc: {
+      en: 'Monitor operating parameters, alarms, temperatures and system status in real time.',
+      fa: 'پایش لحظه‌ای پارامترهای عملکرد، آلارم‌ها، دما و وضعیت سیستم.',
+      ar: 'مراقبة معايير التشغيل والإنذارات ودرجات الحرارة وحالة النظام في الوقت الفعلي.',
+    },
+  },
+  {
+    icon: Gauge,
+    title: {
+      en: 'Energy Monitoring',
+      fa: 'پایش مصرف انرژی',
+      ar: 'مراقبة استهلاك الطاقة',
+    },
+    desc: {
+      en: 'Track energy consumption and identify opportunities for improving system efficiency.',
+      fa: 'اندازه‌گیری و تحلیل مصرف انرژی برای شناسایی فرصت‌های افزایش بهره‌وری سیستم.',
+      ar: 'تتبع استهلاك الطاقة وتحديد فرص تحسين كفاءة النظام.',
+    },
+  },
+  {
     icon: Thermometer,
-    protocols: ['BACnet', 'Modbus'],
+    title: {
+      en: 'Equipment Health',
+      fa: 'سلامت تجهیزات',
+      ar: 'سلامة المعدات',
+    },
+    desc: {
+      en: 'Continuous visibility into equipment conditions to help detect abnormal operation early.',
+      fa: 'پایش مستمر وضعیت تجهیزات برای شناسایی زودهنگام عملکرد غیرعادی.',
+      ar: 'رؤية مستمرة لحالة المعدات للمساعدة في اكتشاف التشغيل غير الطبيعي مبكرًا.',
+    },
   },
   {
-    name: 'Johnson Controls',
-    desc: { en: 'Metasys and FX series — full integration', fa: 'سری Metasys و FX — یکپارچه‌سازی کامل', ar: 'سلسلة Metasys و FX — تكامل كامل' },
-    color: 'from-rose-500/20 to-rose-600/10',
-    icon: Building2,
-    protocols: ['BACnet', 'N2'],
-  },
-  {
-    name: 'Schneider',
-    desc: { en: 'EcoStruxure and Andover Continuum ready', fa: 'سازگار با EcoStruxure و Andover Continuum', ar: 'متوافق مع EcoStruxure و Andover Continuum' },
-    color: 'from-green-500/20 to-green-600/10',
-    icon: Factory,
-    protocols: ['Modbus', 'BACnet'],
-  },
-  {
-    name: 'LG Electronics',
-    desc: { en: 'Multi V and VRF systems — direct connection', fa: 'سیستم‌های Multi V و VRF — اتصال مستقیم', ar: 'أنظمة Multi V و VRF — اتصال مباشر' },
-    color: 'from-red-500/20 to-red-600/10',
-    icon: Zap,
-    protocols: ['TCP/IP', 'Modbus'],
+    icon: ShieldCheck,
+    title: {
+      en: 'Secure Access',
+      fa: 'دسترسی امن',
+      ar: 'الوصول الآمن',
+    },
+    desc: {
+      en: 'Role-based access allows different users to monitor and control systems securely.',
+      fa: 'دسترسی مبتنی بر نقش به کاربران مختلف اجازه پایش و کنترل ایمن سیستم را می‌دهد.',
+      ar: 'يتيح الوصول المستند إلى الأدوار للمستخدمين مراقبة الأنظمة والتحكم بها بأمان.',
+    },
   },
 ]
 
 export function BrandShowcaseSection() {
   const { t, language } = useLanguage()
-  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
-  const dir = language === 'ar' ? 'rtl' : 'ltr'
+
+  const {
+    ref: scrollRef,
+    rotateX,
+    scale,
+    y,
+  } = useScroll3D({
+    rotateRange: 5,
+    scaleRange: [0.97, 1],
+  })
+
+  const dir = language === 'ar' || language === 'fa' ? 'rtl' : 'ltr'
 
   return (
-    <section id="brands" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
+    <section
+      id="carel"
+      className="relative section-py px-4 overflow-hidden"
+      ref={scrollRef}
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
-      <div className="section-alt absolute inset-0 pointer-events-none" />
 
       <motion.div
         style={{ rotateX, scale, y }}
@@ -85,79 +128,148 @@ export function BrandShowcaseSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14"
+          style={{ direction: dir }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
-            <span className="text-foreground">{t('brands.title.part1')}</span>{' '}
-            <span className="text-primary block sm:inline">{t('brands.title.part2')}</span>
+          {/* CAREL Label */}
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+
+            <span className="text-[10px] sm:text-xs font-mono tracking-[0.15em] text-primary uppercase">
+              CAREL Integration
+            </span>
+          </div> */}
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.2]">
+            <span className="text-foreground">
+              {t('brands.title.part1')}
+            </span>{' '}
+            <span className="text-primary">
+              {t('brands.title.part2')}
+            </span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed max-w-2xl mx-auto">
             {t('brands.subtitle')}
           </p>
         </motion.div>
 
-        {/* Brand Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {brands.map((brand, i) => {
-            const Icon = brand.icon
-            const isCarel = brand.name === 'Carel'
+        {/* Main CAREL Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/[0.03] p-5 sm:p-8 mb-5"
+          style={{ direction: dir }}
+        >
+          {/* Decorative glow */}
+          <div className="absolute -top-32 -right-32 w-72 h-72 bg-primary/10 blur-3xl rounded-full pointer-events-none" />
+
+          <div className="relative flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+            {/* Icon */}
+            <div className="shrink-0">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-lg shadow-primary/10">
+                <Cpu className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-primary">
+                  CAREL
+                </h3>
+
+                <span className="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[9px] sm:text-[10px] font-mono text-primary tracking-wider">
+                  pCO
+                </span>
+              </div>
+
+              <p className="text-sm sm:text-base text-muted-foreground/80 leading-relaxed max-w-3xl">
+                {language === 'fa'
+                  ? 'اتصال و یکپارچه‌سازی با کنترلرهای CAREL برای پایش، کنترل، تحلیل مصرف انرژی و بررسی سلامت تجهیزات HVAC.'
+                  : language === 'ar'
+                    ? 'تكامل مع وحدات تحكم CAREL للمراقبة والتحكم وتحليل استهلاك الطاقة ومتابعة حالة معدات HVAC.'
+                    : 'Integration with CAREL controllers for monitoring, control, energy analysis and HVAC equipment health.'}
+              </p>
+            </div>
+
+            {/* Protocols */}
+            <div className="flex flex-wrap gap-2 shrink-0" style={{ direction: 'ltr' }}>
+              {['Modbus', 'BACnet'].map((protocol) => (
+                <span
+                  key={protocol}
+                  className="px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/5 text-xs font-mono text-primary"
+                >
+                  {protocol}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Features */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((feature, i) => {
+            const Icon = feature.icon
+
             return (
               <motion.div
-                key={brand.name}
+                key={feature.title.en}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.4, delay: 0.08 * i }}
-                className={`group card-command p-4 sm:p-5 hover:-translate-y-1 hover:shadow-lg transition-all cursor-default ${isCarel ? 'sm:col-span-2 lg:col-span-2 border-primary/30 shadow-primary/10 hover:shadow-primary/20' : 'hover:shadow-primary/5'}`}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.06 * i,
+                }}
+                className="group card-command p-4 sm:p-5 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all"
                 style={{ direction: dir }}
               >
-                {/* Icon */}
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${brand.color} flex items-center justify-center mb-3 border ${isCarel ? 'border-primary/40 shadow-sm shadow-primary/20' : 'border-border/30'}`}>
-                  <Icon className={`w-5 h-5 ${isCarel ? 'text-primary' : 'text-foreground/80'}`} />
+                <div className="w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                  <Icon className="w-5 h-5 text-primary" />
                 </div>
 
-                {/* Brand name */}
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className={`text-base sm:text-lg font-bold ${isCarel ? 'text-primary' : 'text-foreground/90'} mb-0`}>{brand.name}</h3>
-                  {isCarel && (
-                    <span className="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[9px] sm:text-[10px] font-mono text-primary tracking-wider uppercase">
-                      Primary
-                    </span>
-                  )}
-                </div>
+                <h3 className="text-base sm:text-lg font-bold text-foreground/90 mb-2">
+                  {feature.title[language] || feature.title.en}
+                </h3>
 
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-muted-foreground/70 leading-relaxed mb-3">
-                  {brand.desc[language] || brand.desc.en}
+                <p className="text-xs sm:text-sm text-muted-foreground/70 leading-relaxed">
+                  {feature.desc[language] || feature.desc.en}
                 </p>
-
-                {/* Protocol badges */}
-                <div className="flex flex-wrap gap-1.5" style={{ direction: 'ltr' }}>
-                  {brand.protocols.map((p) => (
-                    <span
-                      key={p}
-                      className={`px-2 py-0.5 rounded-md border text-[10px] sm:text-[11px] font-mono ${isCarel ? 'bg-primary/10 border-primary/20 text-primary' : 'bg-primary/5 border-primary/10 text-primary/70'}`}
-                    >
-                      {p}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
             )
           })}
         </div>
 
         {/* Bottom note */}
-        <motion.p
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="text-center text-xs sm:text-sm text-muted-foreground/50 mt-6 sm:mt-8 data-text"
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-7 sm:mt-9 text-center"
+          style={{ direction: dir }}
         >
-          {t('brands.note')}
-        </motion.p>
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground/50">
+            <Server className="w-4 h-4" />
+            <span>{t('brands.note')}</span>
+          </div>
+
+          <span className="hidden sm:block text-muted-foreground/20">
+            •
+          </span>
+
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground/50">
+            <Zap className="w-4 h-4" />
+            <span>Industrial HVAC Integration</span>
+          </div>
+        </motion.div> */}
       </motion.div>
     </section>
   )

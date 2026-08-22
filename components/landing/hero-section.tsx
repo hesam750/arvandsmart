@@ -46,7 +46,7 @@ export function HeroSection() {
   const { ref, rotateX, scale, y } = useScroll3D({ rotateRange: 12, scaleRange: [0.95, 1] })
 
   return (
-    <section ref={ref} className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden">
+    <section ref={ref} className="relative min-h-[75vh] sm:min-h-[90vh] pb-0 flex items-center overflow-hidden">
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/90" />
       <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-[120px] hidden sm:block" />
@@ -78,7 +78,7 @@ export function HeroSection() {
             className="lg:col-span-7"
           >
             {/* Main headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.0] sm:leading-[0.95] mb-4 sm:mb-6">
+            <h1 className="max-w-4xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.35] sm:leading-[1.3] md:leading-[1.2] lg:leading-[1.15] mb-6">
               <span className="text-foreground">{t('hero.title')}</span>
             </h1>
 

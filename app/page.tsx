@@ -52,7 +52,7 @@ export default function LandingPage() {
         <FeaturesSection />
         <HowItWorksSection />
         <ProductsSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
         <BrandShowcaseSection />
         <CaseStudiesSection />
         <TestimonialsSection />

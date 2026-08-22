@@ -20,13 +20,13 @@ const contactInfo = [
   {
     icon: Mail,
     title: { en: 'Email', fa: 'ایمیل', ar: 'بريد إلكتروني' },
-    value: { en: 'info@arvandsmartcontrol.com', fa: 'info@arvandsmartcontrol.com', ar: 'info@arvandsmartcontrol.com' },
-    href: 'mailto:info@arvandsmartcontrol.com',
+    value: { en: 'devbase@gmail.com', fa: 'devbase@gmail.com', ar: 'devbase@gmail.com' },
+    href: 'mailto:devbase@gmail.com',
   },
   {
     icon: MapPin,
     title: { en: 'Address', fa: 'آدرس', ar: 'العنوان' },
-    value: { en: 'Tehran, Iran', fa: 'تهران، ایران', ar: 'طهران، إيران' },
+    value: { en: 'Tehran, Iran', fa: 'ابادان، ایران', ar: 'ابادان. إيران' },
   },
 ]
 

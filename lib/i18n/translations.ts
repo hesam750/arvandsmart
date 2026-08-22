@@ -393,9 +393,9 @@ export const translations: Record<Language, Record<string, string>> = {
     // ── Hero ──
     "hero.badge": "پلتفرم کنترل هوشمند اروند",
     "hero.badge.status": "سیستم فعال",
-    "hero.title": "پلتفرم پایش و کنترل هوشمند چیلر",
+    "hero.title": "پلتفرم پایش و کنترل هوشمند سیستم های سرمایشی",
     "hero.subtitle": "کنترل هوشمند | بهینه‌سازی انرژی | اتصال IoT",
-    "hero.description": "متخصص در کنترلرهای Carel pCO و c.series — با پشتیبانی کامل از برندهای Danfoss، Microtech، Siemens و سایر برندها. همه از یک داشبورد، بدون نیاز به گیت‌وی.",
+    "hero.description": "متخصص در کنترلرهای Carel pCO و c.series — با پشتیبانی کامل از برندهای Danfoss، Microtech، Siemens و سایر برندها و کنترلرهای دارای وب سرور. همه از یک داشبورد، بدون نیاز به گیت‌وی.",
     "hero.descriptionExt": "امتیاز سلامت لحظه‌ای، تشخیص ناهنجاری Z-Score، تحلیل انرژی و کنترل Setpoint از راه دور — همه در یک پلتفرم.",
     "hero.cta.primary": "مشاهده قابلیت‌ها",
     "hero.cta.secondary": "خواندن مقالات",

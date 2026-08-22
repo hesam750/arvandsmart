@@ -7,9 +7,9 @@ import { useLanguage } from '@/lib/i18n/language-context'
 import { useScroll3D } from '@/hooks/use-scroll-3d'
 
 const stats = [
-  { icon: Building2, value: 3400, suffix: '+', decimalPlaces: 0, label: { en: 'Units Connected', fa: 'دستگاه متصل', ar: 'وحدات متصلة' }, sub: { en: 'globally deployed', fa: 'مستقر در جهان', ar: 'منشورة عالمياً' } },
+  { icon: Building2, value: 10, suffix: '+', decimalPlaces: 0, label: { en: 'Units Connected', fa: 'دستگاه متصل', ar: 'وحدات متصلة' }, sub: { en: 'globally deployed', fa: 'مستقر در جهان', ar: 'منشورة عالمياً' } },
   { icon: BarChart3, value: 32, suffix: '%', decimalPlaces: 0, label: { en: 'Avg. Energy Savings', fa: 'میانگین صرفه‌جویی انرژی', ar: 'متوسط توفير الطاقة' }, sub: { en: 'verified reduction', fa: 'کاهش تأیید شده', ar: 'تخفيض مؤكد' } },
-  { icon: Users, value: 200, suffix: '+', decimalPlaces: 0, label: { en: 'Active Clients', fa: 'مشتریان فعال', ar: 'عملاء نشطون' }, sub: { en: 'growing daily', fa: 'رشد روزافزون', ar: 'ينمو يومياً' } },
+  { icon: Users, value: 6, suffix: '+', decimalPlaces: 0, label: { en: 'Active Clients', fa: 'مشتریان فعال', ar: 'عملاء نشطون' }, sub: { en: 'growing daily', fa: 'رشد روزافزون', ar: 'ينمو يومياً' } },
   { icon: TrendingUp, value: 99.7, suffix: '%', decimalPlaces: 1, label: { en: 'Uptime Rate', fa: 'نرخ در دسترس بودن', ar: 'معدل التشغيل' }, sub: { en: '30-day rolling', fa: 'میانگین ۳۰ روزه', ar: 'متوسط ٣٠ يوماً' } },
 ]
 

@@ -90,9 +90,8 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled ? 'nav-command' : 'bg-transparent'
-        }`}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'nav-command' : 'bg-transparent'
+          }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
@@ -114,17 +113,30 @@ export function Navbar() {
             </nav>
 
             {/* Logo — order-1 on mobile (start), order-3 on desktop (end) */}
-            <Link href="/" className="flex items-center gap-2.5 group order-1 md:order-3">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-lg group-hover:bg-primary/30 transition-all" />
-                <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/30">
-                  <Monitor className="w-4 h-4 text-primary" />
-                </div>
-              </div>
-              <div className="hidden xs:block">
-                <span className="text-sm font-bold tracking-tight">Arvand</span>
-                <span className="text-sm font-bold text-primary">SmartControl</span>
-              </div>
+            <Link
+              href="/"
+              className="flex items-center group order-1 md:order-3"
+              aria-label="ArvandSmartControl"
+            >
+              <img
+                src="/logo/arvandsmart.png"
+                alt="ArvandSmartControl"
+                className="
+      w-auto
+      h-11
+      sm:h-14
+      md:h-[65px]
+      max-w-[250px]
+      sm:max-w-[280px]
+      md:max-w-[300px]
+      object-contain
+      transition-all
+      duration-300
+      group-hover:scale-[1.02]
+    "
+                loading="eager"
+                decoding="async"
+              />
             </Link>
 
             {/* Mobile hamburger — order-3 on mobile (end) */}

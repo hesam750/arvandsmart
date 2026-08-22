@@ -116,7 +116,7 @@ export function FeaturesSection() {
   }))
 
   return (
-    <section id="features" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
+    <section id="features" className="relative overflow-hidden" ref={scrollRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">

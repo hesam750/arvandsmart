@@ -171,12 +171,12 @@ export function ProductsSection() {
                     ))}
                   </div>
 
-                  <Link href="#contact">
+                  {/* <Link href="#contact">
                     <Button variant="outline" className="w-full text-xs sm:text-sm border-primary/30 hover:bg-primary/5 text-muted-foreground hover:text-foreground">
                       {t('products.request')}
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ms-1.5 sm:ms-2 rtl:rotate-180" />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </motion.div>
               )
             })}

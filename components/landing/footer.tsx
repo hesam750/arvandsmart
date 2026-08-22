@@ -4,7 +4,21 @@ import { Monitor, Github, Linkedin } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import Link from 'next/link'
 
-const footerLinks = [
+type FooterLink = {
+  label: string
+  label_fa?: string
+  href: string
+  tKey?: string
+}
+
+type FooterLinkGroup = {
+  title: string
+  title_fa: string
+  titleAr: string
+  links: FooterLink[]
+}
+
+const footerLinks: FooterLinkGroup[] = [
   {
     title: 'Products',
     title_fa: 'محصولات',
@@ -14,7 +28,6 @@ const footerLinks = [
       { label: 'Health Score Engine', href: '#products' },
       { label: 'Remote Control Suite', href: '#products' },
       { label: 'API & Webhook Gateway', href: '#products' },
-      { label: 'Pricing', label_fa: 'قیمت‌گذاری', href: '#pricing', tKey: 'footer.link.pricing' },
     ],
   },
   {
@@ -28,14 +41,14 @@ const footerLinks = [
       { label: 'Support', label_fa: 'پشتیبانی', href: '#contact', tKey: 'footer.support' },
     ],
   },
-  {
-    title: 'Resources',
-    title_fa: 'منابع',
-    titleAr: 'الموارد',
-    links: [
-      { label: 'FAQ', label_fa: 'سوالات متداول', href: '#faq', tKey: 'footer.link.faq' },
-    ],
-  },
+  // {
+  //   title: 'Resources',
+  //   title_fa: 'منابع',
+  //   titleAr: 'الموارد',
+  //   links: [
+  //     { label: 'FAQ', label_fa: 'سوالات متداول', href: '#faq', tKey: 'footer.link.faq' },
+  //   ],
+  // },
 ]
 
 const socialLinks = [
@@ -53,35 +66,70 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10">
         {/* Top section: Logo + Social */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-10 sm:mb-12 lg:mb-14">
-          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-              <Monitor className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
-            </div>
-            <div>
-              <div className="font-bold text-sm sm:text-base text-foreground leading-tight">
-                Arvand<span className="text-primary">SmartControl</span>
-              </div>
-              {/* <div className="data-text text-[8px] sm:text-[9px] text-muted-foreground/30 tracking-[0.15em]">{t('footer.status')}</div> */}
-            </div>
-          </Link>
+        {/* Top section: Logo + Social */}
+<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 mb-10 sm:mb-12 lg:mb-14">
 
-          <div className="flex items-center gap-2">
-            {socialLinks.map((social) => {
-              const Icon = social.icon
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg border border-border/60 bg-card flex items-center justify-center text-muted-foreground/50 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all"
-                  aria-label={social.label}
-                >
-                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                </a>
-              )
-            })}
-          </div>
-        </div>
+  {/* Full Logo */}
+  <Link
+    href="/"
+    className="inline-flex items-center group"
+    aria-label="ArvandSmartControl"
+  >
+    <img
+      src="/logo/arvandsmart.png"
+      alt="ArvandSmartControl"
+      className="
+        w-auto
+        h-14
+        sm:h-16
+        lg:h-[72px]
+        max-w-[280px]
+        sm:max-w-[340px]
+        lg:max-w-[380px]
+        object-contain
+        object-left
+        transition-all
+        duration-300
+        group-hover:scale-[1.02]
+      "
+      loading="eager"
+      decoding="async"
+    />
+  </Link>
+
+  {/* Social Links */}
+  <div className="flex items-center gap-2">
+    {socialLinks.map((social) => {
+      const Icon = social.icon
+
+      return (
+        <a
+          key={social.label}
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            w-9 h-9
+            sm:w-10 sm:h-10
+            rounded-lg
+            border border-border/60
+            bg-card
+            flex items-center justify-center
+            text-muted-foreground/50
+            hover:text-primary
+            hover:border-primary/30
+            hover:bg-primary/5
+            transition-all
+          "
+          aria-label={social.label}
+        >
+          <Icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+        </a>
+      )
+    })}
+  </div>
+
+</div>
 
         {/* Links Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-12">
