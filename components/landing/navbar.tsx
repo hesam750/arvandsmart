@@ -106,9 +106,9 @@ export function Navbar() {
               ))}
               <div className="ms-2 flex items-center gap-2">
                 <ThemeLanguageSwitcher />
-                <Link href="/admin">
+                {/* <Link href="/admin">
                   <Button size="sm">{t('nav.admin')}</Button>
-                </Link>
+                </Link> */}
               </div>
             </nav>
 

@@ -145,7 +145,7 @@ export function HeroSection() {
                 </Button>
               </Link>
               <Link href="#articles" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base border-primary/20 hover:bg-primary/5">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base border-primary/20 dark:hover:text-purple-50 dark:hover:bg-slate-900 hover:bg-primary/5">
                   {t('hero.cta.secondary')}
                 </Button>
               </Link>
