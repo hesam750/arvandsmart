@@ -97,7 +97,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               name: 'ArvandSmartControl',
               logo: {
                 '@type': 'ImageObject',
-                url: `${BASE_URL}/icon.svg`,
+                url: `${BASE_URL}/iconsvg.jpg`,
               },
             },
             mainEntityOfPage: {

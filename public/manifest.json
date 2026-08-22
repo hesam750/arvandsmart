@@ -21,7 +21,7 @@
       "type": "image/png"
     },
     {
-      "src": "/icon.svg",
+      "src": "/iconsvg.jpg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -34,7 +34,7 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "ArvandSmartControl Dashboard — Chiller Monitoring"
+      "label": "ArvandSmartControl—Chiller Monitoring"
     }
   ]
 }

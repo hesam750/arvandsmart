@@ -131,7 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   name: SITE_NAME,
                   alternateName: ['Arvand Smart Control', 'اروند اسمارت کنترل'],
                   url: BASE_URL,
-                  logo: `${BASE_URL}/icon.svg`,
+                  logo: `${BASE_URL}/iconsvg.jpg`,
                   description: SITE_DESCRIPTION,
                   foundingDate: '2020',
                   telephone: '+98-21-12345678',
