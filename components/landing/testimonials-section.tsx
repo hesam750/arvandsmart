@@ -100,20 +100,20 @@ const team = [
 
 const colorClasses = {
   blue: {
-    icon: 'bg-blue-500/10 border-blue-500/20 text-blue-500',
-    badge: 'bg-blue-500/5 border-blue-500/10 text-blue-500',
+    icon: 'bg-primary/10 border-primary/20 text-primary',
+    badge: 'bg-primary/5 border-primary/10 text-primary',
   },
   violet: {
-    icon: 'bg-violet-500/10 border-violet-500/20 text-violet-500',
-    badge: 'bg-violet-500/5 border-violet-500/10 text-violet-500',
+    icon: 'bg-chart-2/10 border-chart-2/20 text-chart-2',
+    badge: 'bg-chart-2/5 border-chart-2/10 text-chart-2',
   },
   emerald: {
-    icon: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500',
-    badge: 'bg-emerald-500/5 border-emerald-500/10 text-emerald-500',
+    icon: 'bg-chart-3/10 border-chart-3/20 text-chart-3',
+    badge: 'bg-chart-3/5 border-chart-3/10 text-chart-3',
   },
   amber: {
-    icon: 'bg-amber-500/10 border-amber-500/20 text-amber-500',
-    badge: 'bg-amber-500/5 border-amber-500/10 text-amber-500',
+    icon: 'bg-chart-4/10 border-chart-4/20 text-chart-4',
+    badge: 'bg-chart-4/5 border-chart-4/10 text-chart-4',
   },
 }
 
@@ -165,9 +165,9 @@ export function TestimonialsSection() {
       id="fanap-team"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-background via-background to-background pointer-events-none" />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-primary/[0.03] blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-primary/3 blur-[120px] pointer-events-none" />
 
       <motion.div
         style={{ rotateX, scale, y }}
@@ -218,7 +218,7 @@ export function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/[0.03] p-5 sm:p-6 mb-5"
+          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/3 p-5 sm:p-6 mb-5"
           style={{ direction: dir }}
         >
           <div className="absolute -top-24 -right-24 w-56 h-56 bg-primary/10 blur-3xl rounded-full pointer-events-none" />

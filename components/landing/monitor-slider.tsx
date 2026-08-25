@@ -42,7 +42,7 @@ export function MonitorSlider() {
 
   return (
     <div
-      className="relative w-full h-full bg-[#0a0a0c] overflow-hidden"
+      className="relative w-full h-full bg-surface-deep overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

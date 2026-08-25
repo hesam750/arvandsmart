@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { getArticleBySlug, getArticles } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
 import {
   Clock,
@@ -21,32 +20,13 @@ import type { Article } from '@/lib/types'
 interface Props {
   initialArticle: Article
   slug: string
+  initialRelated: Article[]
 }
 
-export function BlogDetailClient({ initialArticle, slug }: Props) {
+export function BlogDetailClient({ initialArticle, slug, initialRelated }: Props) {
   const { t, language, dir } = useLanguage()
   const [article, setArticle] = useState<Article | null>(initialArticle)
-  const [related, setRelated] = useState<Article[]>([])
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    if (!slug) return
-    getArticleBySlug(slug).then((res) => {
-      if (res.success && res.data) {
-        setArticle(res.data)
-        // Load related articles from same category
-        getArticles().then((rel) => {
-          if (rel.success && rel.data) {
-            setRelated(
-              rel.data
-                .filter((a) => a.category === res.data!.category && a.id !== res.data!.id)
-                .slice(0, 3)
-            )
-          }
-        })
-      }
-    })
-  }, [slug])
+  const related = initialRelated
 
   const getCategoryColor = (cat: string) => {
     const colors: Record<string, string> = {
@@ -87,17 +67,6 @@ export function BlogDetailClient({ initialArticle, slug }: Props) {
       await navigator.clipboard.writeText(url)
       alert(t('blog.share'))
     }
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-sm text-muted-foreground/50">{t('common.loading')}</p>
-        </div>
-      </div>
-    )
   }
 
   if (!article) {

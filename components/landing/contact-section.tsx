@@ -73,7 +73,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-background via-background to-background pointer-events-none" />
 
       <motion.div style={{ rotateX, scale, y }} className="section-glow max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -109,7 +109,7 @@ export function ContactSection() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="card-command p-5 sm:p-6 flex items-center gap-4 sm:gap-5 group hover:-translate-y-0.5 hover:shadow-md transition-all"
                 >
-                  <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 flex-shrink-0">
+                  <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 shrink-0">
                     <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
                   <div className="min-w-0">
@@ -172,6 +172,8 @@ export function ContactSection() {
                     </label>
                     <Input
                       required
+                      minLength={2}
+                      maxLength={100}
                       value={formData.name}
                       onChange={e => updateField('name', e.target.value)}
                       placeholder={t('contact.name')}
@@ -185,6 +187,7 @@ export function ContactSection() {
                     <Input
                       required
                       type="email"
+                      maxLength={254}
                       value={formData.email}
                       onChange={e => updateField('email', e.target.value)}
                       placeholder={t('contact.email')}
@@ -198,6 +201,7 @@ export function ContactSection() {
                     {t('contact.subject')}
                   </label>
                   <Input
+                    maxLength={160}
                     value={formData.subject}
                     onChange={e => updateField('subject', e.target.value)}
                     placeholder={t('contact.subject')}
@@ -211,6 +215,8 @@ export function ContactSection() {
                   </label>
                   <Textarea
                     required
+                    minLength={10}
+                    maxLength={5000}
                     rows={4}
                     value={formData.message}
                     onChange={e => updateField('message', e.target.value)}

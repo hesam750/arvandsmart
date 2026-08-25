@@ -32,6 +32,8 @@
   --chart-3: oklch(0.55 0.16 170);
   --chart-4: oklch(0.65 0.18 70);
   --chart-5: oklch(0.5 0.18 340);
+  --surface-deep: oklch(0.11 0.012 250);
+  --surface-deep-elevated: oklch(0.15 0.014 250);
   --radius: 0.75rem;
 }
 
@@ -59,6 +61,8 @@
   --chart-3: oklch(0.48 0.14 165);
   --chart-4: oklch(0.7 0.18 70);
   --chart-5: oklch(0.55 0.16 340);
+  --surface-deep: oklch(0.045 0.012 250);
+  --surface-deep-elevated: oklch(0.075 0.014 250);
 }
 
 @theme inline {
@@ -85,6 +89,8 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-surface-deep: var(--surface-deep);
+  --color-surface-deep-elevated: var(--surface-deep-elevated);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

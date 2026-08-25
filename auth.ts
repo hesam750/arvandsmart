@@ -13,9 +13,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const username = credentials?.username as string | undefined
         const password = credentials?.password as string | undefined
 
-        // Read expected credentials from env vars (server-only)
-        const adminUser = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
-        const adminPass = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'Arvand@1403'
+        // Credentials must remain server-only and must be configured per environment.
+        const adminUser = process.env.ADMIN_USERNAME
+        const adminPass = process.env.ADMIN_PASSWORD
+
+        if (!adminUser || !adminPass) {
+          return null
+        }
 
         if (username === adminUser && password === adminPass) {
           return { id: '1', name: username, email: 'admin@arvandsmart.com' }

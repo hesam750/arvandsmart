@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { getArticles } from '@/lib/data-service'
 import { Button } from '@/components/ui/button'
 import {
   Clock,
@@ -22,16 +21,8 @@ interface Props {
 export function BlogListClient({ initialArticles }: Props) {
   const { t, language, dir } = useLanguage()
   const [articles, setArticles] = useState<Article[]>(initialArticles)
-  const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
-
-  useEffect(() => {
-    getArticles().then((res) => {
-      if (res.success && res.data) setArticles(res.data)
-      setLoading(false)
-    })
-  }, [])
 
   // Page title is set server-side via metadata in app/blog/page.tsx.
 
@@ -138,12 +129,7 @@ export function BlogListClient({ initialArticles }: Props) {
         </motion.div>
 
         {/* Articles Grid */}
-        {loading ? (
-          <div className="text-center py-20">
-            <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-sm text-muted-foreground/50">{t('common.loading')}</p>
-          </div>
-        ) : filtered.length === 0 ? (
+        {filtered.length === 0 ? (
           <div className="text-center py-20">
             <FileText className="w-12 h-12 text-muted-foreground/20 mx-auto mb-4" />
             <p className="text-sm text-muted-foreground/50">{t('articles.noArticles')}</p>

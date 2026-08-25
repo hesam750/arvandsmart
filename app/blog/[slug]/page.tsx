@@ -6,6 +6,10 @@ import type { Article } from '@/lib/types'
 
 const BASE_URL = 'https://arvandsmart.vercel.app'
 
+export function generateStaticParams() {
+  return (articlesData.articles as Article[]).map((article) => ({ slug: article.slug }))
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const article = (articlesData.articles as Article[]).find((a) => a.slug === slug)
@@ -46,6 +50,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   const { slug } = await params
   const article = (articlesData.articles as Article[]).find((a) => a.slug === slug)
   if (!article) notFound()
+  const relatedArticles = (articlesData.articles as Article[])
+    .filter((candidate) => candidate.category === article.category && candidate.id !== article.id)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, 3)
 
   const imageUrl = article.coverImage || `${BASE_URL}/og-image.png`
   const timeRequired = `PT${article.readTime}M`
@@ -107,7 +115,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           }),
         }}
       />
-      <BlogDetailClient initialArticle={article} slug={slug} />
+      <BlogDetailClient initialArticle={article} slug={slug} initialRelated={relatedArticles} />
     </>
   )
 }

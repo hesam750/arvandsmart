@@ -19,9 +19,9 @@ function MonitorFrame({ label, status, children, contentHeight = 'max-h-56' }: {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={tiltStyle}
-      className="relative rounded-xl sm:rounded-2xl border border-border/15 bg-[#0c0c0e] p-1 sm:p-1.25 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-primary/5 transition-shadow duration-500"
+      className="relative rounded-xl sm:rounded-2xl border border-border/15 bg-surface-deep p-1 sm:p-1.25 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-primary/5 transition-shadow duration-500"
     >
-      <div className="relative rounded-[8px] sm:rounded-[11px] bg-[#111113] overflow-hidden shadow-inner shadow-black/30">
+      <div className="relative rounded-xl sm:rounded-[11px] bg-surface-deep-elevated overflow-hidden shadow-inner shadow-black/30">
         {/* Title bar */}
         <div className="absolute top-0 inset-x-0 z-10 flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-linear-to-b from-black/60 to-transparent">
           <div className="flex gap-0.5 sm:gap-1">
@@ -48,7 +48,7 @@ export function HeroSection() {
   return (
     <section ref={ref} className="relative min-h-[75vh] sm:min-h-[90vh] pb-0 flex items-center overflow-hidden">
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/40 to-background/90" />
       <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-[120px] hidden sm:block" />
       <div className="absolute bottom-1/3 -right-32 w-80 h-80 rounded-full bg-accent/5 blur-[100px] hidden sm:block" />
       <div className="absolute top-2/3 left-1/3 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-chart-2/5 blur-[80px]" />
@@ -56,14 +56,14 @@ export function HeroSection() {
       {/* Data particles row */}
       <div className="absolute top-24 sm:top-32 inset-x-0 h-px overflow-hidden">
         <motion.div
-          className="h-full w-20 bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+          className="h-full w-20 bg-linear-to-r from-transparent via-primary/40 to-transparent"
           animate={{ x: ['-20vw', '120vw'] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
         />
       </div>
       <div className="absolute bottom-32 sm:bottom-40 inset-x-0 h-px overflow-hidden">
         <motion.div
-          className="h-full w-16 bg-gradient-to-r from-transparent via-accent/30 to-transparent"
+          className="h-full w-16 bg-linear-to-r from-transparent via-accent/30 to-transparent"
           animate={{ x: ['120vw', '-20vw'] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
         />
@@ -83,7 +83,7 @@ export function HeroSection() {
             </h1>
 
             {/* Animated tagline */}
-            <div className="min-h-[2.5rem] sm:min-h-[3rem] mb-4 sm:mb-5">
+            <div className="min-h-10 sm:min-h-12 mb-4 sm:mb-5">
               <TextType
                 text={
                   language === 'fa'
@@ -145,7 +145,7 @@ export function HeroSection() {
                 </Button>
               </Link>
               <Link href="#articles" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base border-primary/20 dark:hover:text-purple-50 dark:hover:bg-slate-900 hover:bg-primary/5">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base border-primary/20 hover:bg-primary/5">
                   {t('hero.cta.secondary')}
                 </Button>
               </Link>
@@ -172,9 +172,9 @@ export function HeroSection() {
 
                 {/* TV-style stand/console */}
                 <div className="mx-auto mt-1 sm:mt-1.5 w-full">
-                  <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
                   <div className="flex justify-center">
-                    <div className="w-[70%] sm:w-[60%] h-5 sm:h-7 bg-linear-to-b from-[#1c1c1e] to-[#0c0c0e] rounded-b-lg border-x border-b border-border/10 shadow-inner shadow-black/40">
+                    <div className="w-[70%] sm:w-[60%] h-5 sm:h-7 bg-linear-to-b from-surface-deep-elevated to-surface-deep rounded-b-lg border-x border-b border-border/10 shadow-inner shadow-black/40">
                       <div className="flex items-center justify-center gap-2 sm:gap-3 h-full">
                         <div className="w-5 sm:w-8 h-px bg-white/4 rounded-full" />
                         <div className="w-3 sm:w-5 h-px bg-white/4 rounded-full" />
@@ -183,8 +183,8 @@ export function HeroSection() {
                     </div>
                   </div>
                   <div className="flex justify-between mx-auto w-[75%] sm:w-[65%]">
-                    <div className="w-3 sm:w-4 h-1 sm:h-1.5 bg-[#0c0c0e] rounded-b-full border-x border-b border-border/10" />
-                    <div className="w-3 sm:w-4 h-1 sm:h-1.5 bg-[#0c0c0e] rounded-b-full border-x border-b border-border/10" />
+                    <div className="w-3 sm:w-4 h-1 sm:h-1.5 bg-surface-deep rounded-b-full border-x border-b border-border/10" />
+                    <div className="w-3 sm:w-4 h-1 sm:h-1.5 bg-surface-deep rounded-b-full border-x border-b border-border/10" />
                   </div>
                 </div>
               </div>

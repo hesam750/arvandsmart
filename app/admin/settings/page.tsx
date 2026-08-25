@@ -1,19 +1,73 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { SERVER_URL_STORAGE_KEY } from '@/lib/data-service'
 import {
   Database,
   Key,
   Bell,
   Save,
   RefreshCw,
+  Server,
 } from 'lucide-react'
 
 export default function SettingsPage() {
   const { t } = useLanguage()
+  const [serverUrl, setServerUrl] = useState('')
+  const [serverUrlStatus, setServerUrlStatus] = useState<'idle' | 'saved' | 'testing' | 'success' | 'error'>('idle')
+  const [serverUrlMessage, setServerUrlMessage] = useState('')
+
+  useEffect(() => {
+    setServerUrl(localStorage.getItem(SERVER_URL_STORAGE_KEY) || '')
+  }, [])
+
+  const normalizeServerUrl = (value: string) => value.trim().replace(/\/$/, '')
+
+  const validateServerUrl = (value: string) => {
+    if (!value.trim()) return window.location.origin
+    const url = new URL(value)
+    if (!['http:', 'https:'].includes(url.protocol)) throw new Error(t('settings.serverUrl.invalid'))
+    return normalizeServerUrl(url.toString())
+  }
+
+  const handleServerUrlSave = () => {
+    try {
+      const normalizedUrl = validateServerUrl(serverUrl)
+      localStorage.setItem(SERVER_URL_STORAGE_KEY, normalizedUrl)
+      setServerUrl(normalizedUrl === window.location.origin ? '' : normalizedUrl)
+      setServerUrlStatus('saved')
+      setServerUrlMessage(t('settings.serverUrl.saved'))
+    } catch (error) {
+      setServerUrlStatus('error')
+      setServerUrlMessage(error instanceof Error ? error.message : t('settings.serverUrl.invalid'))
+    }
+  }
+
+  const handleServerUrlTest = async () => {
+    setServerUrlStatus('testing')
+    setServerUrlMessage(t('settings.serverUrl.testing'))
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 5000)
+
+    try {
+      const response = await fetch(validateServerUrl(serverUrl), {
+        cache: 'no-store',
+        signal: controller.signal,
+      })
+      if (!response.ok) throw new Error(`${t('settings.serverUrl.error')} (${response.status})`)
+      setServerUrlStatus('success')
+      setServerUrlMessage(t('settings.serverUrl.connected'))
+    } catch (error) {
+      setServerUrlStatus('error')
+      setServerUrlMessage(error instanceof Error ? error.message : t('settings.serverUrl.error'))
+    } finally {
+      window.clearTimeout(timeout)
+    }
+  }
 
   const settingsSections = [
     {
@@ -60,6 +114,59 @@ export default function SettingsPage() {
         <p className="text-muted-foreground/70 font-mono text-sm">
           {t('admin.settings.description')}
         </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="card-command p-6"
+      >
+        <div className="flex items-start gap-4 mb-6">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/10 flex items-center justify-center">
+            <Server className="w-5 h-5 text-primary" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">{t('settings.serverUrl.title')}</h2>
+            <p className="text-sm text-muted-foreground/70">{t('settings.serverUrl.description')}</p>
+          </div>
+        </div>
+
+        <label className="text-sm font-medium mb-2 block text-muted-foreground/70" htmlFor="server-url">
+          {t('settings.serverUrl.label')}
+        </label>
+        <Input
+          id="server-url"
+          value={serverUrl}
+          onChange={(event) => {
+            setServerUrl(event.target.value)
+            setServerUrlStatus('idle')
+            setServerUrlMessage('')
+          }}
+          placeholder={t('settings.serverUrl.placeholder')}
+          inputMode="url"
+          type="url"
+          dir="ltr"
+          className="bg-background/50 border-border/40"
+        />
+        <p className="mt-2 text-xs text-muted-foreground/60">{t('settings.serverUrl.hint')}</p>
+
+        {serverUrlMessage && (
+          <p className={`mt-3 text-sm ${serverUrlStatus === 'error' ? 'text-destructive' : 'text-chart-3'}`} role="status">
+            {serverUrlMessage}
+          </p>
+        )}
+
+        <div className="flex flex-wrap justify-end gap-3 mt-6 pt-4 border-t border-border/30">
+          <Button variant="outline" size="sm" className="border-border/40" onClick={handleServerUrlTest} disabled={serverUrlStatus === 'testing'}>
+            <RefreshCw className={`w-4 h-4 me-2 ${serverUrlStatus === 'testing' ? 'animate-spin' : ''}`} />
+            {t('settings.testConnection')}
+          </Button>
+          <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleServerUrlSave}>
+            <Save className="w-4 h-4 me-2" />
+            {t('settings.saveChanges')}
+          </Button>
+        </div>
       </motion.div>
 
       {/* Settings Sections */}
