@@ -11,7 +11,7 @@ This document is the working context for the next AI coding agent. Read it befor
 - Deployment target: Vercel
 - Languages: Persian (`fa`, default), English (`en`), Arabic (`ar`)
 - Direction: Persian and Arabic are RTL; English is LTR
-- Current production metadata URL: `https://arvandsmart.vercel.app`
+- Current production metadata URL: `https://arvandsmartcontrol.ir`
 
 ## 2. Runbook
 
@@ -188,7 +188,7 @@ Do not pretend that a Vercel deployment can persist changes to repository JSON a
 ### Priority 2: Centralize deployment configuration
 
 - Add a server-only `SITE_URL` or `NEXT_PUBLIC_SITE_URL` policy.
-- Replace hardcoded `https://arvandsmart.vercel.app` in metadata, sitemap, robots, and JSON-LD.
+- Replace hardcoded `https://arvandsmartcontrol.ir` in metadata, sitemap, robots, and JSON-LD.
 - Validate the URL and document Vercel configuration.
 
 ### Priority 3: Production security

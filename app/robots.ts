@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/login/'],
       },
     ],
-    sitemap: 'https://arvandsmart.vercel.app/sitemap.xml',
+    sitemap: 'https://arvandsmartcontrol.ir/sitemap.xml',
   }
 }

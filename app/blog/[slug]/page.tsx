@@ -4,7 +4,7 @@ import articlesData from '@/data/articles.json'
 import { BlogDetailClient } from './blog-detail-client'
 import type { Article } from '@/lib/types'
 
-const BASE_URL = 'https://arvandsmart.vercel.app'
+const BASE_URL = 'https://arvandsmartcontrol.ir'
 
 export function generateStaticParams() {
   return (articlesData.articles as Article[]).map((article) => ({ slug: article.slug }))

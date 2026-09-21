@@ -12,16 +12,16 @@
   "icons": [
     {
       "src": "/icon-light-32x32.png",
-      "sizes": "32x32",
+      "sizes": "any",
       "type": "image/png"
     },
     {
-      "src": "/icon-dark-32x32.png",
-      "sizes": "32x32",
+      "src": "/icon-light-32x32.png",
+      "sizes": "any",
       "type": "image/png"
     },
     {
-      "src": "/iconsvg.jpg",
+      "src": "/icon-light-32x32.png",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

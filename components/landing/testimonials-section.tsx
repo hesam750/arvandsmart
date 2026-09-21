@@ -186,7 +186,7 @@ export function TestimonialsSection() {
           style={{ direction: dir }}
         >
           {/* Label */}
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-4 sm:mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-4 sm:mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
 
             <span className="text-[10px] sm:text-xs font-mono tracking-wider text-primary uppercase">
@@ -196,7 +196,7 @@ export function TestimonialsSection() {
                   ? 'Fanap Tech • فريق المشروع'
                   : 'Fanap Tech • Project Team'}
             </span>
-          </div>
+          </div> */}
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-[1.2]">
             <span className="text-foreground">

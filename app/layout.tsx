@@ -20,7 +20,7 @@ const vazirmatn = Vazirmatn({
 
 const SITE_NAME = 'ArvandSmartControl'
 const SITE_DESCRIPTION = 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل مصرف انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه برای چیلرهای Carel، Danfoss، Microtech و سایر برندها. بدون نیاز به گیت‌وی، اتصال مستقیم TCP/IP. | Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance.'
-const BASE_URL = 'https://arvandsmart.vercel.app'
+const BASE_URL = 'https://arvandsmartcontrol.ir'
 
 export const metadata: Metadata = {
   title: {

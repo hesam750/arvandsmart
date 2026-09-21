@@ -223,7 +223,7 @@ export default async function OGImage() {
               letterSpacing: '0.1em',
             }}
           >
-            arvandsmart.vercel.app
+            arvandsmartcontrol.ir
           </div>
         </div>
       ),

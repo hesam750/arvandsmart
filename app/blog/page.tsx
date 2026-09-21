@@ -3,7 +3,7 @@ import articlesData from '@/data/articles.json'
 import { BlogListClient } from './blog-list-client'
 import type { Article } from '@/lib/types'
 
-const BASE_URL = 'https://arvandsmart.vercel.app'
+const BASE_URL = 'https://arvandsmartcontrol.ir'
 
 export const metadata: Metadata = {
   title: 'Blog',

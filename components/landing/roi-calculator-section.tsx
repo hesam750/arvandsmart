@@ -814,7 +814,7 @@ export function ROICalculatorSection() {
             duration: 0.5,
             delay: 0.6,
           }}
-          className="text-center text-[9px] sm:text-[10px] text-muted-foreground/30 data-text mt-4 sm:mt-5 max-w-2xl mx-auto leading-relaxed"
+          className="text-center text-[15px] sm:text-[16px] text-muted-foreground/10 data-text mt-4 sm:mt-5 max-w-2xl mx-auto leading-relaxed"
         >
           {language === 'fa'
             ? 'این محاسبه بر اساس مبلغ قبض ماهانه و درصد کاهش مصرف واردشده توسط کاربر انجام می‌شود. نتیجه، برآورد مالی است و میزان صرفه‌جویی واقعی به شرایط بهره‌برداری، تجهیزات و الگوی مصرف بستگی دارد.'

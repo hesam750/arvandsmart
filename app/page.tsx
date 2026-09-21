@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ArvandSmartControl | پلتفرم هوشمند پایش و کنترل چیلر',
     description: LANDING_DESCRIPTION,
-    url: 'https://arvandsmart.vercel.app',
+    url: 'https://arvandsmartcontrol.ir',
   },
   twitter: {
     card: 'summary_large_image',
