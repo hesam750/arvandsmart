@@ -13,26 +13,65 @@ import { submitContact } from '@/lib/data-service'
 const contactInfo = [
   {
     icon: Phone,
-    title: { en: 'Phone', fa: 'تلفن', ar: 'هاتف' },
-    value: { en: '+989021584678', fa: '+989021584678', ar: '+989021584678' },
-    href: 'tel:+989021584678',
+    title: {
+      en: 'Phone',
+      fa: 'تلفن',
+      ar: 'هاتف',
+    },
+    value: {
+      en: [
+        { number: '+989021584678', label: 'Sales' },
+        { number: '+989123456789', label: 'Support' },
+      ],
+      fa: [
+        { number: '+989021584678', label: 'واحد فروش' },
+        { number: '+989123456789', label: 'واحد پشتیبانی' },
+      ],
+      ar: [
+        { number: '+989021584678', label: 'المبيعات' },
+        { number: '+989123456789', label: 'الدعم' },
+      ],
+    },
   },
+
   {
     icon: Mail,
-    title: { en: 'Email', fa: 'ایمیل', ar: 'بريد إلكتروني' },
-    value: { en: 'devbase@gmail.com', fa: 'devbase@gmail.com', ar: 'devbase@gmail.com' },
+    title: {
+      en: 'Email',
+      fa: 'ایمیل',
+      ar: 'بريد إلكتروني',
+    },
+    value: {
+      en: [{ number: 'devbase@gmail.com', label: '' }],
+      fa: [{ number: 'devbase@gmail.com', label: '' }],
+      ar: [{ number: 'devbase@gmail.com', label: '' }],
+    },
     href: 'mailto:devbase@gmail.com',
   },
+
   {
     icon: MapPin,
-    title: { en: 'Address', fa: 'آدرس', ar: 'العنوان' },
-    value: { en: 'Tehran, Iran', fa: 'ابادان، ایران', ar: 'ابادان. إيران' },
+    title: {
+      en: 'Address',
+      fa: 'آدرس',
+      ar: 'العنوان',
+    },
+    value: {
+      en: [{ number: 'Abadan, Iran', label: '' }],
+      fa: [{ number: 'آبادان، ایران', label: '' }],
+      ar: [{ number: 'آبادان، إيران', label: '' }],
+    },
   },
 ]
 
 export function ContactSection() {
-  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({ rotateRange: 5, scaleRange: [0.97, 1] })
+  const { ref: scrollRef, rotateX, scale, y } = useScroll3D({
+    rotateRange: 5,
+    scaleRange: [0.97, 1],
+  })
+
   const { t, language } = useLanguage()
+
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -51,6 +90,7 @@ export function ContactSection() {
     e.preventDefault()
     setError('')
     setLoading(true)
+
     try {
       const res = await submitContact({
         name: formData.name,
@@ -59,6 +99,7 @@ export function ContactSection() {
         subject: formData.subject,
         message: formData.message,
       })
+
       if (res.success) {
         setSubmitted(true)
       } else {
@@ -72,25 +113,32 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative section-py px-4 overflow-hidden" ref={scrollRef}>
+    <section
+      id="contact"
+      className="relative section-py px-4 overflow-hidden"
+      ref={scrollRef}
+    >
       <div className="absolute inset-0 bg-linear-to-b from-background via-background to-background pointer-events-none" />
 
-      <motion.div style={{ rotateX, scale, y }} className="section-glow max-w-7xl mx-auto relative z-10">
+      <motion.div
+        style={{ rotateX, scale, y }}
+        className="section-glow max-w-7xl mx-auto relative z-10"
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16"
         >
-          {/* <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] sm:text-xs data-text tracking-wider uppercase mb-4 sm:mb-6 text-primary/80">
-            <span className="glow-dot text-chart-3" />
-            {t('contact.badge')}
-          </span> */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.1]">
             {t('contact.title')}
           </h2>
+
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
             {t('contact.subtitle')}
           </p>
@@ -101,31 +149,82 @@ export function ContactSection() {
           <div className="lg:col-span-2 space-y-4 sm:space-y-5">
             {contactInfo.map((info, i) => {
               const Icon = info.icon
+              const values = info.value[language] || info.value.en
+
               const content = (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-100px' }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: i * 0.1,
+                  }}
                   className="card-command p-5 sm:p-6 flex items-center gap-4 sm:gap-5 group hover:-translate-y-0.5 hover:shadow-md transition-all"
                 >
+                  {/* Icon */}
                   <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 shrink-0">
                     <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs data-text text-muted-foreground/50 tracking-wider mb-0.5">{info.title[language] || info.title.en}</div>
+
+                  {/* Content */}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] sm:text-xs data-text text-muted-foreground/50 tracking-wider mb-1">
+                      {info.title[language] || info.title.en}
+                    </div>
+
                     <div
-                      className="text-sm sm:text-base text-foreground/80 font-medium truncate"
-                      dir={info.icon === Phone || info.icon === Mail ? 'ltr' : undefined}
+                      className="text-sm sm:text-base text-foreground/80 font-medium"
+                      dir={language === 'fa' || language === 'ar' ? 'rtl' : 'ltr'}
                     >
-                      {info.value[language] || info.value.en}
+                      {info.icon === Phone ? (
+                        <div className="space-y-1.5">
+                          {values.map((item, index) => (
+                            <div
+                              key={index}
+                              className="grid grid-cols-[1fr_auto] items-center gap-4"
+                              dir="rtl"
+                            >
+                              {/* متن سمت راست */}
+                              <span className="text-xs sm:text-sm text-muted-foreground/70 whitespace-nowrap">
+                                {item.label}
+                              </span>
+
+                              {/* شماره سمت چپ */}
+                              <span
+                                className="whitespace-nowrap text-left"
+                                dir="ltr"
+                              >
+                                {item.number}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div
+                          className="whitespace-nowrap"
+                          dir={
+                            info.icon === Mail
+                              ? 'ltr'
+                              : language === 'fa' || language === 'ar'
+                                ? 'rtl'
+                                : 'ltr'
+                          }
+                        >
+                          {values[0].number}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
               )
 
               return info.href ? (
-                <a key={info.title.en} href={info.href} className="block">
+                <a
+                  key={info.title.en}
+                  href={info.href}
+                  className="block"
+                >
                   {content}
                 </a>
               ) : (
@@ -139,7 +238,10 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.3,
+            }}
             className="lg:col-span-3 card-command p-5 sm:p-6 md:p-8"
           >
             {submitted ? (
@@ -147,85 +249,119 @@ export function ContactSection() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 200,
+                    damping: 15,
+                  }}
                 >
                   <CheckCircle className="w-14 h-14 sm:w-16 sm:h-16 text-chart-3 mb-4 sm:mb-5" />
                 </motion.div>
+
                 <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
                   {t('contact.success')}
                 </h3>
+
                 <p className="text-xs sm:text-sm text-muted-foreground/70 text-center max-w-sm">
                   {t('contact.success.desc')}
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4 sm:space-y-5"
+              >
                 {error && (
                   <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm text-destructive text-center">
                     {error}
                   </div>
                 )}
+
+                {/* Name + Email */}
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
-                      {t('contact.name')} <span className="text-destructive">*</span>
+                      {t('contact.name')}{' '}
+                      <span className="text-destructive">*</span>
                     </label>
+
                     <Input
                       required
                       minLength={2}
                       maxLength={100}
                       value={formData.name}
-                      onChange={e => updateField('name', e.target.value)}
+                      onChange={e =>
+                        updateField('name', e.target.value)
+                      }
                       placeholder={t('contact.name')}
                       className="bg-background/50 border-border/40 text-sm"
                     />
                   </div>
+
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
-                      {t('contact.email')} <span className="text-destructive">*</span>
+                      {t('contact.email')}{' '}
+                      <span className="text-destructive">*</span>
                     </label>
+
                     <Input
                       required
                       type="email"
                       maxLength={254}
                       value={formData.email}
-                      onChange={e => updateField('email', e.target.value)}
+                      onChange={e =>
+                        updateField('email', e.target.value)
+                      }
                       placeholder={t('contact.email')}
                       className="bg-background/50 border-border/40 text-sm"
                     />
                   </div>
                 </div>
 
+                {/* Subject */}
                 <div>
                   <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
                     {t('contact.subject')}
                   </label>
+
                   <Input
                     maxLength={160}
                     value={formData.subject}
-                    onChange={e => updateField('subject', e.target.value)}
+                    onChange={e =>
+                      updateField('subject', e.target.value)
+                    }
                     placeholder={t('contact.subject')}
                     className="bg-background/50 border-border/40 text-sm"
                   />
                 </div>
 
+                {/* Message */}
                 <div>
                   <label className="block text-xs sm:text-sm font-medium text-foreground/80 mb-1.5 sm:mb-2">
-                    {t('contact.message')} <span className="text-destructive">*</span>
+                    {t('contact.message')}{' '}
+                    <span className="text-destructive">*</span>
                   </label>
+
                   <Textarea
                     required
                     minLength={10}
                     maxLength={5000}
                     rows={4}
                     value={formData.message}
-                    onChange={e => updateField('message', e.target.value)}
+                    onChange={e =>
+                      updateField('message', e.target.value)
+                    }
                     placeholder={t('contact.message')}
                     className="bg-background/50 border-border/40 text-sm resize-none"
                   />
                 </div>
 
-                <Button type="submit" disabled={loading} className="w-full text-sm">
+                {/* Submit */}
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full text-sm"
+                >
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 me-2 animate-spin" />
@@ -246,3 +382,4 @@ export function ContactSection() {
     </section>
   )
 }
+
