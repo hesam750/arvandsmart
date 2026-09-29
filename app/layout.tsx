@@ -20,7 +20,7 @@ const vazirmatn = Vazirmatn({
 
 const SITE_NAME = 'ArvandSmartControl'
 const SITE_DESCRIPTION = 'پلتفرم هوشمند پایش و کنترل چیلر — مانیتورینگ لحظه‌ای، تحلیل مصرف انرژی، تشخیص ناهنجاری و نگهداری پیش‌بینانه برای چیلرهای Carel، Danfoss، Microtech و سایر برندها. بدون نیاز به گیت‌وی، اتصال مستقیم TCP/IP. | Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance.'
-const BASE_URL = 'https://arvandsmartcontrol.ir'
+const BASE_URL = 'https://www.arvandsmartcontrol.ir'
 
 export const metadata: Metadata = {
   title: {
@@ -134,17 +134,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   logo: `${BASE_URL}/iconsvg.jpg`,
                   description: SITE_DESCRIPTION,
                   foundingDate: '2020',
-                  telephone: '+98-21-12345678',
+                  telephone: '+989021584678',
                   areaServed: 'IR',
                   availableLanguage: ['English', 'Persian', 'Arabic'],
                   contactPoint: {
                     '@type': 'ContactPoint',
-                    telephone: '+98-21-12345678',
+                    telephone: '+989021584678',
                     contactType: 'customer service',
                     availableLanguage: ['English', 'Persian', 'Arabic'],
                   },
                   address: {
                     '@type': 'PostalAddress',
+                    addressLocality: 'آبادان',
+                    addressRegion: 'خوزستان',
                     addressCountry: 'IR',
                   },
                   sameAs: [
@@ -159,24 +161,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   url: BASE_URL,
                   description: SITE_DESCRIPTION,
                   inLanguage: ['fa', 'en', 'ar'],
-                  potentialAction: {
-                    '@type': 'SearchAction',
-                    target: {
-                      '@type': 'EntryPoint',
-                      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
-                    },
-                    'query-input': 'required name=search_term_string',
-                  },
+                  // potentialAction: {
+                  //   '@type': 'SearchAction',
+                  //   target: {
+                  //     '@type': 'EntryPoint',
+                  //     urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+                  //   },
+                  //   'query-input': 'required name=search_term_string',
+                  // },
                 },
-                {
-                  '@type': 'BreadcrumbList',
-                  '@id': `${BASE_URL}/#breadcrumb`,
-                  itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-                    { '@type': 'ListItem', position: 2, name: 'Products', item: `${BASE_URL}/#products` },
-                    { '@type': 'ListItem', position: 3, name: 'Blog', item: `${BASE_URL}/blog` },
-                  ],
-                },
+                // {
+                //   '@type': 'BreadcrumbList',
+                //   '@id': `${BASE_URL}/#breadcrumb`,
+                //   itemListElement: [
+                //     { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+                //     { '@type': 'ListItem', position: 2, name: 'Products', item: `${BASE_URL}/#products` },
+                //     { '@type': 'ListItem', position: 3, name: 'Blog', item: `${BASE_URL}/blog` },
+                //   ],
+                // },
                 {
                   '@type': 'FAQPage',
                   '@id': `${BASE_URL}/#faq`,
@@ -229,53 +231,53 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   name: 'ArvandSmartControl — Intelligent Chiller Monitoring Platform',
                   description: 'Advanced IoT platform for intelligent monitoring, control and management of chiller systems with real-time data analytics, anomaly detection, and predictive maintenance capabilities.',
                   brand: { '@type': 'Brand', name: 'ArvandSmartControl' },
-                  offers: [
-                    {
-                      '@type': 'Offer',
-                      name: 'Starter',
-                      description: 'For small facilities and single-site monitoring. Up to 5 chillers, real-time monitoring, email alerts, 7-day history.',
-                      price: '49000000',
-                      priceCurrency: 'IRR',
-                      priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
-                      eligibleQuantity: { '@type': 'QuantitativeValue', value: 5, unitText: 'chillers' },
-                    },
-                    {
-                      '@type': 'Offer',
-                      name: 'Professional',
-                      description: 'For growing operations with multiple sites. Up to 25 chillers, advanced analytics, predictive maintenance, API access.',
-                      price: '399000000',
-                      priceCurrency: 'IRR',
-                      priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y' },
-                      eligibleQuantity: { '@type': 'QuantitativeValue', value: 25, unitText: 'chillers' },
-                    },
-                    {
-                      '@type': 'Offer',
-                      name: 'Enterprise',
-                      description: 'Custom solutions for large-scale deployments. Unlimited chillers, custom integrations, dedicated account manager, white-label option.',
-                      price: '0',
-                      priceCurrency: 'IRR',
-                    },
-                  ],
-                  review: [
-                    {
-                      '@type': 'Review',
-                      author: { '@type': 'Person', name: 'Mohammad Rezaei' },
-                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                      reviewBody: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.',
-                    },
-                    {
-                      '@type': 'Review',
-                      author: { '@type': 'Person', name: 'Sara Ahmadi' },
-                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                      reviewBody: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.',
-                    },
-                    {
-                      '@type': 'Review',
-                      author: { '@type': 'Person', name: 'Ali Karimi' },
-                      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                      reviewBody: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.',
-                    },
-                  ],
+                  // offers: [
+                  //   {
+                  //     '@type': 'Offer',
+                  //     name: 'Starter',
+                  //     description: 'For small facilities and single-site monitoring. Up to 5 chillers, real-time monitoring, email alerts, 7-day history.',
+                  //     price: '49000000',
+                  //     priceCurrency: 'IRR',
+                  //     priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
+                  //     eligibleQuantity: { '@type': 'QuantitativeValue', value: 5, unitText: 'chillers' },
+                  //   },
+                  //   {
+                  //     '@type': 'Offer',
+                  //     name: 'Professional',
+                  //     description: 'For growing operations with multiple sites. Up to 25 chillers, advanced analytics, predictive maintenance, API access.',
+                  //     price: '399000000',
+                  //     priceCurrency: 'IRR',
+                  //     priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y' },
+                  //     eligibleQuantity: { '@type': 'QuantitativeValue', value: 25, unitText: 'chillers' },
+                  //   },
+                  //   {
+                  //     '@type': 'Offer',
+                  //     name: 'Enterprise',
+                  //     description: 'Custom solutions for large-scale deployments. Unlimited chillers, custom integrations, dedicated account manager, white-label option.',
+                  //     price: '0',
+                  //     priceCurrency: 'IRR',
+                  //   },
+                  // ],
+                  // review: [
+                  //   {
+                  //     '@type': 'Review',
+                  //     author: { '@type': 'Person', name: 'Mohammad Rezaei' },
+                  //     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  //     reviewBody: 'ArvandSmartControl has transformed how we manage our cooling systems. We reduced energy costs by 28% in the first three months.',
+                  //   },
+                  //   {
+                  //     '@type': 'Review',
+                  //     author: { '@type': 'Person', name: 'Sara Ahmadi' },
+                  //     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  //     reviewBody: 'The predictive maintenance feature is a game-changer. We caught a critical compressor failure before it happened.',
+                  //   },
+                  //   {
+                  //     '@type': 'Review',
+                  //     author: { '@type': 'Person', name: 'Ali Karimi' },
+                  //     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  //     reviewBody: 'Having all our chillers on a single dashboard with real-time data is incredible. The anomaly detection alerts us instantly.',
+                  //   },
+                  // ],
                   aggregateRating: {
                     '@type': 'AggregateRating',
                     ratingValue: '4.8',
