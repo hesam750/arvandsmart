@@ -21,15 +21,15 @@ const contactInfo = [
     value: {
       en: [
         { number: '+989021584678', label: 'Sales' },
-        { number: '+989123456789', label: 'Support' },
+        { number: '+989165760896', label: 'Support' },
       ],
       fa: [
         { number: '+989021584678', label: 'واحد فروش' },
-        { number: '+989123456789', label: 'واحد پشتیبانی' },
+        { number: '+989165760896', label: 'واحد پشتیبانی' },
       ],
       ar: [
         { number: '+989021584678', label: 'المبيعات' },
-        { number: '+989123456789', label: 'الدعم' },
+        { number: '+989165760896', label: 'الدعم' },
       ],
     },
   },
