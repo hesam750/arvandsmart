@@ -185,7 +185,7 @@ export function BrandShowcaseSection() {
                   CAREL
                 </h3>
 
-                <span className="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[9px] sm:text-[10px] font-mono text-primary tracking-wider">
+                <span className="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[9px] sm:text-[10px] font-bold text-primary tracking-wider">
                   pCO
                 </span>
               </div>
@@ -204,7 +204,7 @@ export function BrandShowcaseSection() {
               {['Modbus', 'BACnet'].map((protocol) => (
                 <span
                   key={protocol}
-                  className="px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/5 text-xs font-mono text-primary"
+                  className="px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/5 text-xs font-bold text-primary"
                 >
                   {protocol}
                 </span>

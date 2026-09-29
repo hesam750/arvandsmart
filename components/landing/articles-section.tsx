@@ -60,7 +60,7 @@ export function ArticlesSection() {
             <span className="text-foreground">{t('articles.title.part1')}</span>{' '}
             <span className="text-primary block sm:inline">{t('articles.title.part2')}</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold px-2 sm:px-0">
             {t('articles.subtitle')}
           </p>
         </motion.div>

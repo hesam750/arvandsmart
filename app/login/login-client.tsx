@@ -189,7 +189,7 @@ export function LoginClient() {
                 text-sm
                 text-muted-foreground/60
                 mt-4
-                font-mono
+                font-bold
                 tracking-wider
               "
             >
@@ -210,7 +210,7 @@ export function LoginClient() {
                 className="
                   block
                   text-xs
-                  font-mono
+                  font-bold
                   text-muted-foreground/60
                   tracking-wider
                   mb-1.5
@@ -259,7 +259,7 @@ export function LoginClient() {
                 className="
                   block
                   text-xs
-                  font-mono
+                  font-bold
                   text-muted-foreground/60
                   tracking-wider
                   mb-1.5
@@ -396,7 +396,7 @@ export function LoginClient() {
               text-[10px]
               text-muted-foreground/30
               mt-6
-              font-mono
+              font-bold
               tracking-wider
             "
           >

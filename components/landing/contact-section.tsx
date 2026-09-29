@@ -139,7 +139,7 @@ export function ContactSection() {
             {t('contact.title')}
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('contact.subtitle')}
           </p>
         </motion.div>

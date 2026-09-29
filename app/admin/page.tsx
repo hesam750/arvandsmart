@@ -111,7 +111,7 @@ export default function AdminDashboard() {
           <Monitor className="w-8 h-8 text-primary" />
           <h1 className="text-2xl sm:text-3xl font-bold">{t('admin.welcome')}</h1>
         </div>
-        <p className="text-muted-foreground/70 font-mono text-sm">
+        <p className="text-muted-foreground/70 font-bold text-sm">
           {t('admin.dashboardDesc')}
         </p>
       </motion.div>
@@ -135,8 +135,8 @@ export default function AdminDashboard() {
                       <Icon className="w-4 h-4 text-primary" />
                     </div>
                   </div>
-                  <div className="text-3xl font-bold font-mono mt-2">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground/50 font-mono tracking-wider mt-1">{stat.subtitle}</div>
+                  <div className="text-3xl font-bold font-bold mt-2">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground/50 font-bold tracking-wider mt-1">{stat.subtitle}</div>
                 </div>
               </Link>
             </motion.div>
@@ -201,11 +201,11 @@ export default function AdminDashboard() {
                     <div className="text-sm font-medium capitalize">{activity.action}</div>
                     <div className="text-xs text-muted-foreground/60">{activity.itemTitle}</div>
                   </div>
-                  <div className="text-xs text-muted-foreground/40 font-mono">{formatTime(activity.timestamp)}</div>
+                  <div className="text-xs text-muted-foreground/40 font-bold">{formatTime(activity.timestamp)}</div>
                 </motion.div>
               ))
             ) : (
-              <p className="text-sm text-muted-foreground/50 text-center py-4 font-mono">{t('common.noRecentActivity')}</p>
+              <p className="text-sm text-muted-foreground/50 text-center py-4 font-bold">{t('common.noRecentActivity')}</p>
             )}
           </div>
         </motion.div>

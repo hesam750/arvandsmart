@@ -66,7 +66,7 @@ export function FAQSection() {
             <span className="text-foreground">{t('faq.title.part1')}</span>{' '}
             <span className="text-primary block sm:inline">{t('faq.title.part2')}</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('faq.subtitle')}
           </p>
         </motion.div>

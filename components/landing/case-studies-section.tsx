@@ -318,7 +318,7 @@ export function CaseStudiesSection() {
               >
                 <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary mb-2" />
 
-                <div className="text-lg sm:text-2xl font-bold font-mono text-primary">
+                <div className="text-lg sm:text-2xl font-bold font-bold text-primary">
                   {result.value}
                 </div>
 
@@ -351,7 +351,7 @@ export function CaseStudiesSection() {
           ].map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 rounded-md bg-secondary/50 border border-border/20 text-[9px] sm:text-[10px] font-mono text-muted-foreground/50"
+              className="px-2.5 py-1 rounded-md bg-secondary/50 border border-border/20 text-[9px] sm:text-[10px] font-bold text-muted-foreground/50"
             >
               {tag}
             </span>

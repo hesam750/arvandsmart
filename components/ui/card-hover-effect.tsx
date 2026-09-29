@@ -62,7 +62,7 @@ export const HoverEffect = ({
               )}
               {item.metric && (
                 <div className="text-end ms-auto">
-                  <div className={`text-base sm:text-lg font-bold font-mono ${item.color || 'text-primary'}`}>{item.metric}</div>
+                  <div className={`text-base sm:text-lg font-bold font-bold ${item.color || 'text-primary'}`}>{item.metric}</div>
                   {item.metricLabel && (
                     <div className="text-[7px] sm:text-[8px] text-muted-foreground/40 tracking-widest">{item.metricLabel}</div>
                   )}

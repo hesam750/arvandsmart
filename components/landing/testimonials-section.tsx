@@ -254,7 +254,7 @@ export function TestimonialsSection() {
             >
               <CheckCircle2 className="w-4 h-4 text-primary" />
 
-              <span className="text-xs font-mono text-primary">
+              <span className="text-xs font-bold text-primary">
                 10 Rooftop Package Units
               </span>
             </div>
@@ -305,7 +305,7 @@ export function TestimonialsSection() {
 
                 {/* Focus */}
                 <div className="pt-4 border-t border-border/30">
-                  <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/40 mb-2">
+                  <div className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground/40 mb-2">
                     {language === 'fa'
                       ? 'Focus'
                       : language === 'ar'

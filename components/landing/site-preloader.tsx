@@ -57,7 +57,7 @@ export function SitePreloader({ onFinish }: Props) {
   // Phase transitions on fixed timers
   useEffect(() => {
     const t1 = setTimeout(() => setPhase('typing'), 2500)  // start typewriter at 2.5s
-    const t2 = setTimeout(() => setPhase('reveal'), 7000)   // start exit at 7s
+    const t2 = setTimeout(() => setPhase('reveal'), 3000)   // start exit at 7s
 
     return () => {
       clearTimeout(t1)
@@ -149,7 +149,7 @@ export function SitePreloader({ onFinish }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 0.2, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-8 sm:bottom-10 text-[9px] sm:text-[10px] text-white/10 tracking-[0.4em] uppercase font-mono"
+          className="absolute bottom-8 sm:bottom-10 text-[9px] sm:text-[10px] text-white/10 tracking-[0.4em] uppercase font-bold"
         >
           Initializing ...
         </motion.p>

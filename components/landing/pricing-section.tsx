@@ -65,7 +65,7 @@ export function PricingSection() {
               {t('pricing.title.part2')}
             </span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font- max-w-2xl mx-auto px-2 sm:px-0">
             {t('pricing.subtitle')}
           </p>
 
@@ -132,7 +132,7 @@ export function PricingSection() {
               <div className="mb-6 sm:mb-8">
                 {plan.price.monthly ? (
                   <div className="flex items-baseline gap-1">
-                    <span className="text-3xl sm:text-4xl font-bold font-mono">
+                    <span className="text-3xl sm:text-4xl font-bold font-bold">
                       {language === 'fa'
                         ? `${((isAnnual ? plan.price.annual : plan.price.monthly) * priceFactor).toLocaleString()} ${currencySymbol}`
                         : `${currencySymbol}${isAnnual ? plan.price.annual : plan.price.monthly}`
@@ -141,7 +141,7 @@ export function PricingSection() {
                     <span className="text-muted-foreground/60 text-xs sm:text-sm">{periodLabels.monthly}</span>
                   </div>
                 ) : (
-                  <div className="text-2xl sm:text-3xl font-bold font-mono">
+                  <div className="text-2xl sm:text-3xl font-bold font-bold">
                     {language === 'fa' ? 'تماس بگیرید' : language === 'ar' ? 'اتصل بنا' : 'Contact Us'}
                   </div>
                 )}

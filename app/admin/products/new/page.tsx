@@ -116,7 +116,7 @@ export default function NewProduct() {
           </Link>
           <div>
             <h1 className="text-xl font-bold">{t('admin.products.add')}</h1>
-            <p className="text-sm text-muted-foreground/70 font-mono">{t('admin.products.description')}</p>
+            <p className="text-sm text-muted-foreground/70 font-bold">{t('admin.products.description')}</p>
           </div>
         </div>
       </motion.div>

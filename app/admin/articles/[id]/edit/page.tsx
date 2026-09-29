@@ -156,7 +156,7 @@ export default function EditArticle() {
               key={l}
               type="button"
               onClick={() => setLangTab(l)}
-              className={`px-2.5 py-1 text-[10px] font-mono rounded-lg border transition-colors ${
+              className={`px-2.5 py-1 text-[10px] font-bold rounded-lg border transition-colors ${
                 langTab === l
                   ? 'bg-primary/15 text-primary border-primary/30'
                   : 'text-muted-foreground/50 border-transparent hover:text-foreground/70'
@@ -203,7 +203,7 @@ export default function EditArticle() {
   if (notFound) {
     return (
       <div className="text-center py-20">
-        <p className="text-muted-foreground/50 font-mono text-sm">{t('blog.notFound')}</p>
+        <p className="text-muted-foreground/50 font-bold text-sm">{t('blog.notFound')}</p>
         <Link href="/admin/articles" className="mt-4 inline-block">
           <Button variant="outline" className="gap-2">
             <ArrowLeft className="w-4 h-4" />
@@ -230,7 +230,7 @@ export default function EditArticle() {
           </Link>
           <div>
             <h1 className="text-xl font-bold">{t('admin.articles.edit')}</h1>
-            <p className="text-sm text-muted-foreground/70 font-mono">{t('admin.articles.description')}</p>
+            <p className="text-sm text-muted-foreground/70 font-bold">{t('admin.articles.description')}</p>
           </div>
         </div>
       </motion.div>
@@ -258,7 +258,7 @@ export default function EditArticle() {
             type="text"
             value={form.slug}
             onChange={e => update('slug', e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-border/40 bg-background/50 text-sm outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/30 font-mono"
+            className="w-full px-4 py-2.5 rounded-xl border border-border/40 bg-background/50 text-sm outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/30 font-bold"
             dir="ltr"
           />
         </div>

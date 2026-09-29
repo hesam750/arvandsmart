@@ -50,7 +50,7 @@ export function AboutSection() {
             <span className="text-foreground">{t('why.title.part1')}</span>{' '}
             <span className="text-primary block sm:inline">{t('why.title.part2')}</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('about.subtitle.simple')}
           </p>
         </motion.div>
@@ -73,7 +73,7 @@ export function AboutSection() {
                     <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
                   <div className="text-end ms-2">
-                    <div className="text-lg sm:text-xl font-bold font-mono text-primary">{pillar.stat}</div>
+                    <div className="text-lg sm:text-xl font-bold font-bold text-primary">{pillar.stat}</div>
                     <div className="text-[8px] sm:text-[9px] data-text text-muted-foreground/40 tracking-widest">
                       {pillar.statLabel[language] || pillar.statLabel.en}
                     </div>

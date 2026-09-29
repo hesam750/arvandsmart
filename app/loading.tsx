@@ -7,7 +7,7 @@ export default function Loading() {
         <div className="relative inline-flex">
           <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
         </div>
-        <p className="text-sm text-muted-foreground/50 font-mono tracking-wider">
+        <p className="text-sm text-muted-foreground/50 font-bold tracking-wider">
           Loading
           <span className="animate-pulse">.</span>
           <span className="animate-pulse" style={{ animationDelay: '0.2s' }}>.</span>

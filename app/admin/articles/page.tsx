@@ -66,7 +66,7 @@ export default function AdminArticles() {
       >
         <div>
           <h1 className="text-2xl font-bold">{t('admin.articles.title')}</h1>
-          <p className="text-sm text-muted-foreground/70 font-mono">{t('admin.articles.description')}</p>
+          <p className="text-sm text-muted-foreground/70 font-bold">{t('admin.articles.description')}</p>
         </div>
         <Link href="/admin/articles/new">
           <Button className="bg-primary text-primary-foreground gap-2 hover:bg-primary/90 shadow-sm cursor-pointer">
@@ -89,9 +89,9 @@ export default function AdminArticles() {
 
       {/* List */}
       {loading ? (
-        <div className="text-center py-12 text-muted-foreground/50 font-mono text-sm">{t('common.loading')}</div>
+        <div className="text-center py-12 text-muted-foreground/50 font-bold text-sm">{t('common.loading')}</div>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground/50 font-mono text-sm">{t('common.noData')}</div>
+        <div className="text-center py-12 text-muted-foreground/50 font-bold text-sm">{t('common.noData')}</div>
       ) : (
         <div className="space-y-3">
           {filtered.map((article, i) => (
@@ -105,7 +105,7 @@ export default function AdminArticles() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono tracking-wider border ${getCategoryColor(article.category)}`}>
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold tracking-wider border ${getCategoryColor(article.category)}`}>
                       {article.category.toUpperCase()}
                     </span>
                     {article.featured && (
@@ -118,7 +118,7 @@ export default function AdminArticles() {
                   <p className="text-sm text-muted-foreground/70 truncate mt-0.5">
                     {language === 'fa' ? article.excerpt : language === 'ar' ? article.excerpt_ar || article.excerpt : article.excerpt_en || article.excerpt}
                   </p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground/50 font-mono">
+                  <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground/50 font-bold">
                     <span>{language === 'fa' ? article.author : language === 'ar' ? article.author_ar || article.author : article.author_en || article.author}</span>
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />

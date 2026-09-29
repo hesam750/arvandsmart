@@ -159,7 +159,7 @@ export function FeaturesSection() {
             <span className="text-foreground">{t('features.title.part1')}</span>{' '}
             <span className="text-primary block sm:inline">{t('features.title.part2')}</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('features.subtitle')}
           </p>
         </motion.div>

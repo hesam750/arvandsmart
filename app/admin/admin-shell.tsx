@@ -70,7 +70,7 @@ export default function AdminShell({
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-sm text-muted-foreground font-mono tracking-wider">AUTHENTICATING...</p>
+          <p className="text-sm text-muted-foreground font-bold tracking-wider">AUTHENTICATING...</p>
         </div>
       </div>
     )

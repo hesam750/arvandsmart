@@ -43,7 +43,7 @@ export function StatsSection() {
                   <div className="absolute top-0 left-0 w-8 sm:w-12 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent group-hover:via-primary/60 transition-all" />
                 )}
                 <Icon className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-primary/40 mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:text-primary/60 transition-colors" />
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-0.5 sm:mb-1 font-mono tracking-tight">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-0.5 sm:mb-1 font-bold tracking-tight">
                   <NumberTicker value={stat.value} decimalPlaces={stat.decimalPlaces} className="text-foreground" />
                   <span>{stat.suffix}</span>
                 </div>

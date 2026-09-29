@@ -239,7 +239,7 @@ export function ROICalculatorSection() {
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('roi.subtitle')}
           </p>
         </motion.div>
@@ -291,7 +291,7 @@ export function ROICalculatorSection() {
                     {t('roi.chillers')}
                   </label>
 
-                  <span className="text-sm sm:text-base font-bold font-mono text-primary tabular-nums">
+                  <span className="text-sm sm:text-base font-bold font-bold text-primary tabular-nums">
                     {numberOfChillers}
                   </span>
                 </div>
@@ -387,7 +387,7 @@ export function ROICalculatorSection() {
                       border-border/60
                       text-sm
                       text-foreground
-                      font-mono
+                      font-bold
                       tabular-nums
                       focus:outline-none
                       focus:ring-1
@@ -418,7 +418,7 @@ export function ROICalculatorSection() {
                     {t('roi.improvement')}
                   </label>
 
-                  <span className="text-sm sm:text-base font-bold font-mono text-primary tabular-nums">
+                  <span className="text-sm sm:text-base font-bold font-bold text-primary tabular-nums">
                     {reductionPercent}%
                   </span>
                 </div>
@@ -455,7 +455,7 @@ export function ROICalculatorSection() {
                   "
                 />
 
-                <div className="flex justify-between text-[9px] text-muted-foreground/40 mt-2 font-mono">
+                <div className="flex justify-between text-[9px] text-muted-foreground/40 mt-2 font-bold">
                   <span>1%</span>
                   <span>80%</span>
                 </div>
@@ -595,7 +595,7 @@ export function ROICalculatorSection() {
                         damping: 15,
                         delay: 0.2,
                       }}
-                      className="text-2xl sm:text-3xl lg:text-4xl font-bold font-mono text-chart-3 tabular-nums"
+                      className="text-2xl sm:text-3xl lg:text-4xl font-bold font-bold text-chart-3 tabular-nums"
                       dir="ltr"
                     >
                       {formatMoney(annualSavings)}
@@ -627,7 +627,7 @@ export function ROICalculatorSection() {
                         <TrendingDown className="w-3.5 h-3.5 text-primary" />
                       </div>
 
-                      <div className="text-sm sm:text-base font-bold font-mono text-primary">
+                      <div className="text-sm sm:text-base font-bold font-bold text-primary">
                         {reductionPercent}%
                       </div>
 
@@ -648,7 +648,7 @@ export function ROICalculatorSection() {
                       </div>
 
                       <div
-                        className="text-sm sm:text-base font-bold font-mono text-chart-3 tabular-nums"
+                        className="text-sm sm:text-base font-bold font-bold text-chart-3 tabular-nums"
                         dir="ltr"
                       >
                         {formatMoney(
@@ -679,7 +679,7 @@ export function ROICalculatorSection() {
                         <Snowflake className="w-3.5 h-3.5 text-primary" />
                       </div>
 
-                      <div className="text-sm font-bold font-mono text-foreground/80">
+                      <div className="text-sm font-bold font-bold text-foreground/80">
                         {numberOfChillers}
                       </div>
 
@@ -700,7 +700,7 @@ export function ROICalculatorSection() {
                       </div>
 
                       <div
-                        className="text-sm font-bold font-mono text-foreground/80 tabular-nums"
+                        className="text-sm font-bold font-bold text-foreground/80 tabular-nums"
                         dir="ltr"
                       >
                         {formatMoney(
@@ -736,7 +736,7 @@ export function ROICalculatorSection() {
                       </span>
 
                       <span
-                        className="font-mono text-muted-foreground/70"
+                        className="font-bold text-muted-foreground/70"
                         dir="ltr"
                       >
                         {formatMoney(annualBill)}{' '}
@@ -754,7 +754,7 @@ export function ROICalculatorSection() {
                       </span>
 
                       <span
-                        className="font-mono text-chart-3 font-semibold"
+                        className="font-bold text-chart-3 font-semibold"
                         dir="ltr"
                       >
                         {formatMoney(

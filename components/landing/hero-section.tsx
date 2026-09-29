@@ -29,8 +29,8 @@ function MonitorFrame({ label, status, children, contentHeight = 'max-h-56' }: {
             <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-chart-4/60" />
             <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-chart-3/60" />
           </div>
-          <span className="text-[5px] sm:text-[7px] font-mono text-white/35 tracking-widest truncate">{label}</span>
-          <span className="ms-auto text-[5px] sm:text-[7px] font-mono text-chart-3/50 tracking-widest">{status}</span>
+          <span className="text-[5px] sm:text-[7px] font-bold text-white/35 tracking-widest truncate">{label}</span>
+          <span className="ms-auto text-[5px] sm:text-[7px] font-bold text-chart-3/50 tracking-widest">{status}</span>
         </div>
         {/* Content */}
         <div className={`w-full h-auto ${contentHeight}`}>
@@ -100,7 +100,7 @@ export function HeroSection() {
                 showCursor={true}
                 cursorCharacter="|"
                 cursorBlinkDuration={0.4}
-                className="text-sm sm:text-base md:text-lg lg:text-xl font-mono"
+                className="text-sm sm:text-base md:text-lg lg:text-xl font-bold"
                 textColors={['var(--primary)', 'var(--chart-3)', 'var(--chart-2)', 'var(--chart-4)']}
                 startOnVisible={true}
               />

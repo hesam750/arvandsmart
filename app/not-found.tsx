@@ -25,7 +25,7 @@ export default function NotFound() {
           <Monitor className="w-10 h-10 text-primary" />
         </div>
 
-        <h1 className="text-7xl sm:text-8xl font-bold tracking-tight text-primary mb-2 font-mono">
+        <h1 className="text-7xl sm:text-8xl font-bold tracking-tight text-primary mb-2 font-bold">
           404
         </h1>
         <p className="text-lg sm:text-xl font-bold tracking-tight text-foreground/90 mb-2">

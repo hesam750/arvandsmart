@@ -59,7 +59,7 @@ export function HowItWorksSection() {
               {t('howItWorks.title.part2')}
             </span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-mono max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 leading-relaxed font-bold max-w-2xl mx-auto px-2 sm:px-0">
             {t('howItWorks.subtitle')}
           </p>
         </motion.div>
@@ -82,7 +82,7 @@ export function HowItWorksSection() {
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary/15 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="text-lg sm:text-xl font-bold font-mono text-primary/30">{step.number}</span>
+                  <span className="text-lg sm:text-xl font-bold font-bold text-primary/30">{step.number}</span>
                 </div>
 
                 <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-foreground/90">

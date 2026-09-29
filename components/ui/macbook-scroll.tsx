@@ -149,7 +149,7 @@ export const Lid = ({
           }}
           className="absolute inset-0 flex items-center justify-center rounded-[13px] bg-[#0a0a0c]"
         >
-          <span className="text-white/10 text-[8px] font-mono tracking-widest uppercase">
+          <span className="text-white/10 text-[8px] font-bold tracking-widest uppercase">
             Arvand Terminal
           </span>
         </div>

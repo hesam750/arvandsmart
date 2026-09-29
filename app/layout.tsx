@@ -305,7 +305,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.variable} ${vazirmatn.variable} font-sans antialiased bg-background text-foreground`}
       >
         <Providers>
-          <PreloaderProvider>{children}</PreloaderProvider>
+          {children}
         </Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
